@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div id="app">
+  <b-container class="bv-example-row" fluid>
       <MessageList  :msgs="msgs"/>
-      <MessageForm :client="stompClient"/>
+      <MessageForm :client="stompClient" v-on:scrollDown="scrollDown"/>
+  </b-container>
   </div>
 </template>
 
@@ -49,6 +51,10 @@ export default {
         }
         );
       },
+      scrollDown() {
+          var container = document.getElementById("container");
+          container.scrollTop = container.scrollHeight+50;
+      }
     }
 }
 </script>

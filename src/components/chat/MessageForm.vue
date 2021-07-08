@@ -1,5 +1,14 @@
 <template>
-  <textarea v-model="message" type="text" @keyup.enter="sendMessage" />
+  <b-row>
+  <b-form-textarea
+    id="textarea-no-resize"
+    placeholder="채팅을 입력하세요."
+    rows="3"
+    v-model="message"
+    no-resize
+    @keyup.enter="sendMessage"
+  ></b-form-textarea>
+  </b-row>
 </template>
 
 <script>
@@ -15,6 +24,7 @@ export default {
     methods: {
         sendMessage() {
             this.send();
+            this.$emit('scrollDown');
             this.message = '';
         },
         send() {
