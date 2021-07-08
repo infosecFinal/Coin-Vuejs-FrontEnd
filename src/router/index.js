@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
-import Chat from '@/components/Chat.vue'
+import ChatRoom from '../views/ChatRoom.vue'
 
 Vue.use(VueRouter)
 
@@ -12,9 +12,9 @@ const routes = [
     component: HelloWorld
   }, 
   {
-    path: '/chat',
-    name: 'Chat',
-    component: Chat
+    path: '/chatroom',
+    name: 'ChatRoom',
+    component: ChatRoom
   }
 ]
 

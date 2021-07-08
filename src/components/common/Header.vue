@@ -3,8 +3,8 @@
 		<h1><router-link to='/'><img alt="Vue logo" src="../../assets/logo.png" width="80"></router-link></h1>
 		<div class="menuWrap">
 			<ul class="menu">
-				<li><router-link to='/chat'>Chatting</router-link></li>
-				<li><a href="javascript:;">menu2</a></li>
+				<li><a href="javascript:;">menu1</a></li>
+				<li><router-link to='/chatroom'>ChatRoom</router-link></li>
 				<li><a href="javascript:;">menu3</a></li>
 				<li><a href="javascript:;">menu4</a></li>
 			</ul>
