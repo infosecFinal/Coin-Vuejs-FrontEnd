@@ -1,9 +1,11 @@
 <template> 
+    <div style="padding-bottom: 0.5em">
     <b-list-group>
-        <b-list-group-item id="container" class="list-group">
+        <b-list-group-item id="container" class="list-group mb-9">
             <p v-for="(msg, idx) in msgs" :key="idx">{{msg.content}}</p>
         </b-list-group-item>
     </b-list-group>
+    </div>
 </template>
 
 <script>
