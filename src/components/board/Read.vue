@@ -1,10 +1,10 @@
 <template>
   <div>
       <tr>
-          <td>ê¸€ë²ˆí˜¸</td>
-          <td>ê¸€ì“´ì´</td>
-          <td>ì œëª©</td>
-          <td>ë‚´ìš©</td>
+          <td>±Û¹øÈ£</td>
+          <td>±Û¾´ÀÌ</td>
+          <td>Á¦¸ñ</td>
+          <td>³»¿ë</td>
       </tr>
       <tr v-for="(value, idx) in items" :key="(idx)" @click="detail(value.id)">
           <td v-html="value.id"></td>
@@ -12,7 +12,7 @@
           <td v-html="value.title"></td>
           <td v-html="value.content"></td>
       </tr>
-      <button @click="write">ê¸€ì“°ê¸°</button>
+      <button @click="write">±Û¾²±â</button>
   </div>
 </template>
 
