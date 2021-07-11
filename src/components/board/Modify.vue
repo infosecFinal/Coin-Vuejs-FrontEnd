@@ -1,8 +1,8 @@
 <template>
   <div>
       <p>{{user_id}}</p>
-      <input v-model="title" placeholder="Á¦¸ñ"/>
-      <textarea v-model="content" placeholder="³»¿ë"/>
+      <input v-model="title" placeholder="ï¿½ï¿½ï¿½ï¿½"/>
+      <textarea v-model="content" placeholder="ï¿½ï¿½ï¿½ï¿½"/>
       <button @click="modify"><router-link to='board'>Modify</router-link></button>
   </div>
 </template>
@@ -14,11 +14,14 @@ export default {
     name: 'Modify',
     data() {
         return {
-            index: this.$route.params.contentId
+            index: this.$route.params.contentId,
+            title: "",
+            content: ""
         }
     },
     created() {
-        console.log(this.index);
+        this.title = this.$store.state.board.writelist[this.index].title
+        this.content = this.$store.state.board.writelist[this.index].content
     },
     computed: {
         user_id () {
@@ -26,21 +29,17 @@ export default {
         },
         id() {
             return this.$store.state.board.writelist[this.index].id
-        },
-        title() {
-            return this.$store.state.board.writelist[this.index].title
-        },
-        content() {
-            return this.$store.state.board.writelist[this.index].content
         }
     },
     methods: {
-        modify() {
-            const response = axios.post(`${this.$baseURL}/board/update`, {
+        async  modify() {
+            const post_data = {
                 id: this.id,
                 title: this.title,
                 content: this.content
-            });
+            }
+            console.log(post_data)
+            const response = await axios.post(`${this.$baseURL}/board/update`, post_data);
             console.log(response);
             this.$router.push('/board');
         }

@@ -22,20 +22,12 @@ export default {
         }
     },
     created() {
-        this.getContent();
+        this.data = this.$store.state.board.writelist[this.index];
+        console.log(this.data);
     },
     methods: {
-        getContent() {
-            console.log(`URL: ${this.$baseURL}/board/${this.index}`)
-            axios.get(`${this.$baseURL}/board/${this.index}`)
-                .then((result) => {
-                    console.log(result)
-                    this.data = result.data.data
-                    console.log(this.data);
-                })
-        },
         async deletePost() {
-            const response = await axios.post(`${this.$baseURL}/board/delete`, {id: this.index});
+            const response = await axios.post(`${this.$baseURL}/board/delete`, {id: this.data.id});
             console.log(response);
             this.$router.push('/board');
         },

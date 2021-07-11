@@ -1,18 +1,18 @@
 <template>
   <div>
       <tr>
-          <td>글번호</td>
-          <td>글쓴이</td>
-          <td>제목</td>
-          <td>내용</td>
+          <td>pst number</td>
+          <td>writer</td>
+          <td>title</td>
+          <td>content</td>
       </tr>
-      <tr v-for="(value, idx) in items" :key="(idx)" @click="detail(value.id)">
+      <tr v-for="(value, idx) in items" :key="(idx)" @click="detail(idx)">
           <td v-html="value.id"></td>
           <td v-html="value.user_id"></td>
           <td v-html="value.title"></td>
           <td v-html="value.content"></td>
       </tr>
-      <button @click="write">글쓰기</button>
+      <button @click="write">write</button>
   </div>
 </template>
 
