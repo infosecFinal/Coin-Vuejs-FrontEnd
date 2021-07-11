@@ -4,7 +4,7 @@
       {{data.content}}
   </div>
   <div>
-      <button>modify</button>
+      <button @click="updatePost">update</button>
       <button @click="deletePost">delete</button>
   </div>
   </div>
@@ -38,6 +38,14 @@ export default {
             const response = await axios.post(`${this.$baseURL}/board/delete`, {id: this.index});
             console.log(response);
             this.$router.push('/board');
+        },
+        updatePost() {
+            this.$router.push({
+                name: 'Modify',
+                params: {
+                    contentId: this.index
+                }
+            })
         }
     }
 

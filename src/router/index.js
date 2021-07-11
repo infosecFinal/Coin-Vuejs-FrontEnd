@@ -5,6 +5,7 @@ import ChatRoom from '../views/ChatRoom.vue'
 import Read from '@/components/board/Read.vue'
 import Create from '@/components/board/Create.vue'
 import Detail from '@/components/board/Detail.vue'
+import Modify from '@/components/board/Modify.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/board/detail/:contentId',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/board/create/:contentId',
+    name: 'Modify',
+    component: Modify
   }
 ]
 
