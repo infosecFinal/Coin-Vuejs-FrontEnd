@@ -7,12 +7,13 @@
         :per-page="perPage"
         align="center"
       ></b-pagination>
-      <b-button @click="writeContent">Write</b-button>
+      <b-button @click="writeContent" class="float-right">Write</b-button>
   </div>
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions} from 'vuex'
+import {fetchData} from '@/service'
 
 export default {
     name: 'Board',
@@ -37,19 +38,18 @@ export default {
                 }
             ],
             currentPage: 1,
-            perPage: 10
+            perPage: 10,
+            items: []
         }
     },
-    created() {
-        this.fetchData();
-        console.log("items: ", this.items.length)
+    async created() {
+        const resp = await fetchData();
+        console.log(resp);
+        this.items = resp.data.list;
     },
     computed: {
-        ...mapState({
-            items: $state => $state.board.writelist
-        }),
         rows() {
-            return this.items.length
+            return this.items.length;
         }
     },
     methods: {

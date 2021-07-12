@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import {insertData, updateData, fetchDataById} from '@/service'
 
 export default {
     name: 'Create',
@@ -28,13 +28,13 @@ export default {
             data: {}
         }
     },
-    created() {
+    async created() {
         if(this.content_id !== undefined) {
-            this.data = this.$store.state.board.writelist.filter(items => items.id === this.content_id)[0];
-            this.user_id = this.data.user_id;
-            this.title = this.data.title;
-            this.content = this.data.content;
-            console.log(this.content);
+            const resp = await fetchDataById(this.content_id);
+            console.log(resp);
+            this.user_id = resp.data.data.user_id;
+            this.title = resp.data.data.title;
+            this.content = resp.data.data.content
         }
     },
     methods: {
@@ -43,30 +43,24 @@ export default {
                 path: '/board/free'
             })
         },
-        insert() {
-            axios.post(`${this.$baseURL}/board/insert`, {
+        async insert() {
+            await insertData({
                 user_id: this.user_id,
                 title: this.title,
                 content: this.content
-            }).then((response) => {
-                console.log(response);
-                this.$router.push({
-                    path: '/board/free'
-                })
+            });
+            this.$router.push({
+                path: '/board/free'
             })
         },
-        update() {
-            console.log('update')
-            console.log(this.content_id);
-            axios.post(`${this.$baseURL}/board/update`, {
+        async update() {
+            await updateData({
                 id: this.content_id,
                 title: this.title,
                 content: this.content
-            }).then((response) => {
-                console.log(response);
-                this.$router.push({
-                    path: '/board/free'
-                })
+            });
+            this.$router.push({
+                path: '/board/free'
             })
         }
     }

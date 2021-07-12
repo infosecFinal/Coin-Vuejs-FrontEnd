@@ -31,39 +31,25 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import axios from 'axios';
+import {fetchDataById, deleteData} from '@/service'
 
 export default {
     name: "ContentDetail",
     data() {
         return {
             id: Number(this.$route.params.contentId),
+            data: {}
         }
     },
-    created() {
-        this.fetchDataById(this.id);
-    },
-    computed: {
-        data() {
-            return this.$store.state.board.post;
-        }
+    async created() {
+        const resp = await fetchDataById(this.id);
+        this.data = resp.data.data;
+        
     },
     methods: {
-        ...mapActions('board', [
-            'fetchDataById'
-        ]),
         async deleteData() {
-            await axios.post(`${this.$baseURL}/board/delete`, {id: this.id})
-            .then((response) => {
-                if(response.data === 1) {
-                    this.$store.state.board.writelist = this.$store.state.board.writelist.filter(item => item.id !== this.id)
-                }
-                console.log(this.$store.state.board.writelist)
-            })
-            this.$router.push({
-                path: '/board/free'
-            });
+            await deleteData(this.id);
+            this.$router.push('/board/free')
         },
         modifyData() {
             this.$router.push({

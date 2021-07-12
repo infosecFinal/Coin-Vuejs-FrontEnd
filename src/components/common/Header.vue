@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<b-navbar toggleable="lg" type="dark" variant="info">
-			<b-navbar-brand href="#"><img src='../../assets/logo.png' style="width: 50px; height: 50px;"></b-navbar-brand>
+			<b-navbar-brand to='/'><img src='../../assets/logo.png' style="width: 50px; height: 50px;"></b-navbar-brand>
 
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
