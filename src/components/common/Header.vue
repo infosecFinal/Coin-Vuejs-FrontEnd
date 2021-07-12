@@ -8,6 +8,8 @@
 			<b-collapse is-nav id="nav_collapse">
 				<b-navbar-nav>
 					<b-nav-item href='#'>notice</b-nav-item>
+					<b-nav-item to='/login'>login</b-nav-item>
+					<b-nav-item to='/register'>register</b-nav-item>
 					<b-nav-item to='/board/free'>board</b-nav-item>
 					<b-nav-item to='/chatroom'>chatroom</b-nav-item>
 				</b-navbar-nav>
@@ -18,6 +20,7 @@
 </template>
 
 <script>
+import request from './request.js'
 export default {
     name: "Header"
 }
