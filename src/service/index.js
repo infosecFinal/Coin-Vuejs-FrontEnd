@@ -24,3 +24,7 @@ export const deleteData = (id) => {
         id: id
     })
 }
+
+export const findData = (category, to_find) => {
+    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);
+}

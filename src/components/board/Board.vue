@@ -1,24 +1,53 @@
 <template>
   <div>
+      <b-container fluid class="text-light text-center">
+          <b-row>
+              <b-col>
+              </b-col>
+              <b-col col lg="3">
+                  <b-input-group>
+                      <b-form-select
+                      v-model="category"
+                    :options="['title','content','user_id']"
+                    :value="null">
+                  </b-form-select>
+                      <b-form-input v-model="to_find" @keyup.enter="find"></b-form-input>
+                          <b-input-group-append>
+                              <b-button text="Button" variant="success" @click="find">Find</b-button>
+                          </b-input-group-append>
+                  </b-input-group>
+              </b-col>
+          </b-row>
+      <b-row>
+          <b-col>
       <b-table striped hover :items="items" :per-page="perPage" :current-page="currentPage" :fields="fields" @row-clicked="rowClick"></b-table>
+      </b-col>
+      </b-row>
       <b-pagination
         v-model="currentPage"
         :total-rows="rows"
         :per-page="perPage"
         align="center"
       ></b-pagination>
-      <b-button @click="writeContent" class="float-right">Write</b-button>
+      <b-row align-h="end">
+          <b-col cols="4">
+      <b-button @click="writeContent" offset-md="4">Write</b-button>
+      </b-col>
+      </b-row>
+      </b-container>
+      
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-import {fetchData} from '@/service'
+import {fetchData, findData} from '@/service'
 
 export default {
     name: 'Board',
     data() {
         return {
+            to_find: '',
+            category: 'title',
             fields: [
                 {
                     key: 'id',
@@ -53,9 +82,6 @@ export default {
         }
     },
     methods: {
-        ...mapActions('board',[
-            'fetchData'
-        ]),
         rowClick(item) {
             console.log("params: ", item.id)
             this.$router.push({
@@ -66,6 +92,11 @@ export default {
             this.$router.push({
                 path: '/board/free/create'
             })
+        },
+        async find() {
+            const resp = await findData(this.category, this.to_find);
+            console.log(resp);
+            this.items = resp.data.list;
         }
     }
 }
