@@ -22,9 +22,18 @@ export const updateData = (data) => {
 export const deleteData = (id) => {
     return axios.post(`${baseURL}/board/delete`,{
         id: id
+<<<<<<< HEAD
     })
 }
 
 export const findData = (category, to_find) => {
     return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);
+=======
+    })   
+}
+
+export const insertUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/register`, data)
+>>>>>>> 75e18ed521c73d93b53d98d3bb3ace62527f2497
 }
