@@ -22,5 +22,10 @@ export const updateData = (data) => {
 export const deleteData = (id) => {
     return axios.post(`${baseURL}/board/delete`,{
         id: id
-    })
+    })   
+}
+
+export const insertUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/register`, data)
 }

@@ -6,6 +6,8 @@ import Board from '@/components/board/Board.vue'
 import ContentDetail from '@/components/board/ContentDetail.vue'
 import Create from '@/components/board/Create.vue'
 
+import Login from '@/components/account/Login.vue'
+import Register from '@/components/account/Register.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -43,6 +45,16 @@ const routes = [
     path: '/board/free/create/:contentId?',
     name: 'Create',
     component: Create
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 
