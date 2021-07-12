@@ -2,10 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import ChatRoom from '../views/ChatRoom.vue'
-import Read from '@/components/board/Read.vue'
+// import Read from '@/components/board/Read.vue'
 import Create from '@/components/board/Create.vue'
 import Detail from '@/components/board/Detail.vue'
 import Modify from '@/components/board/Modify.vue'
+import Board from '@/components/board/Board.vue'
 
 Vue.use(VueRouter)
 
@@ -20,10 +21,15 @@ const routes = [
     name: 'ChatRoom',
     component: ChatRoom
   },
+  // {
+  //   path: '/board',
+  //   name: 'Read',
+  //   component: Read,
+  // },
   {
-    path: '/board',
-    name: 'Read',
-    component: Read,
+    path: '/board/free',
+    name: 'Board',
+    component: Board
   },
   {
     path: '/board/create',

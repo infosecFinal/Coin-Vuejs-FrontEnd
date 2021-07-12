@@ -1,15 +1,20 @@
 <template>
-  <header>
-		<h1><router-link to='/'><img alt="Vue logo" src="../../assets/logo.png" width="80"></router-link></h1>
-		<div class="menuWrap">
-			<ul class="menu">
-				<li><router-link to='/board'>board</router-link></li>
-				<li><router-link to='/chatroom'>ChatRoom</router-link></li>
-				<li><a href="javascript:;">menu3</a></li>
-				<li><a href="javascript:;">menu4</a></li>
-			</ul>
-		</div>
-	</header>
+	<div>
+		<b-navbar toggleable="lg" type="dark" variant="info">
+			<b-navbar-brand href="#"><img src='../../assets/logo.png' style="width: 50px; height: 50px;"></b-navbar-brand>
+
+			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+			<b-collapse is-nav id="nav_collapse">
+				<b-navbar-nav>
+					<b-nav-item href='#'>notice</b-nav-item>
+					<b-nav-item to='/board/free'>board</b-nav-item>
+					<b-nav-item href='#'>menu3</b-nav-item>
+				</b-navbar-nav>
+			</b-collapse>
+
+		</b-navbar>
+	</div>
 </template>
 
 <script>
