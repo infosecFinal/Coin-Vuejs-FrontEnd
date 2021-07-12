@@ -9,7 +9,7 @@
 				<b-navbar-nav>
 					<b-nav-item href='#'>notice</b-nav-item>
 					<b-nav-item to='/board/free'>board</b-nav-item>
-					<b-nav-item href='#'>menu3</b-nav-item>
+					<b-nav-item to='/chatroom'>chatroom</b-nav-item>
 				</b-navbar-nav>
 			</b-collapse>
 

@@ -1,6 +1,13 @@
 <template>
   <div>
-      <b-table striped hover :items="items" :fields="fields"></b-table>
+      <b-table striped hover :items="items" :per-page="perPage" :current-page="currentPage" :fields="fields" @row-clicked="rowClick"></b-table>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        align="center"
+      ></b-pagination>
+      <b-button @click="writeContent">Write</b-button>
   </div>
 </template>
 
@@ -28,22 +35,38 @@ export default {
                     key: 'created_at',
                     label: '작성일'
                 }
-            ]
+            ],
+            currentPage: 1,
+            perPage: 10
         }
     },
     created() {
         this.fetchData();
-        console.log(this.items)
+        console.log("items: ", this.items.length)
     },
     computed: {
         ...mapState({
             items: $state => $state.board.writelist
-        })
+        }),
+        rows() {
+            return this.items.length
+        }
     },
     methods: {
         ...mapActions('board',[
             'fetchData'
         ]),
+        rowClick(item) {
+            console.log("params: ", item.id)
+            this.$router.push({
+                path: `/board/free/detail/${item.id}`
+            })
+        },
+        writeContent() {
+            this.$router.push({
+                path: '/board/free/create'
+            })
+        }
     }
 }
 </script>

@@ -3,7 +3,8 @@ import axios from 'axios';
 const baseURL = "http://localhost:8083";
 
 const state = {
-    writelist: []
+    writelist: [],
+    post: {}
 };
 const actions = {
     fetchData: ({state}) => {
@@ -14,6 +15,14 @@ const actions = {
                 console.log("list: "+state.writelist.length);
             });
     },
+    fetchDataById: ({state}, payload) => {
+        axios.get(`${baseURL}/board/${payload}`)
+            .then((result) => {
+                state.post = result.data.data;
+                console.log("data:", state.post);    
+            })
+    }
+
 
 }
 

@@ -1,36 +1,73 @@
 <template>
   <div>
-      <input v-model="user_id" placeholder="글쓴이"/>
-      <input v-model="title" placeholder="제목"/>
-      <textarea v-model="content" placeholder="내용"/>
-      <button @click="write"><router-link to='board'>작성</router-link></button>
+      <b-input v-model="user_id" placeholder="write writer" :readonly="content_id? true:false"></b-input>
+      <b-input v-model="title" placeholder="write title"></b-input>
+      <b-form-textarea
+      id="textarea"
+      v-model="content"
+      placeholder="write Content"
+      rows="3"
+      max-rows="6"
+    ></b-form-textarea>
+    <b-button @click="content_id ? update() : insert()">Save</b-button>
+    <b-button @click="cancle">Cancle</b-button>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
 import axios from 'axios';
+
 export default {
     name: 'Create',
     data() {
         return {
-            user_id:'',
-            title:'',
-            content:''
+            content_id: Number(this.$route.params.contentId),
+            user_id: '',
+            title: '',
+            content: '',
+            data: {}
+        }
+    },
+    created() {
+        if(this.content_id !== undefined) {
+            this.data = this.$store.state.board.writelist.filter(items => items.id === this.content_id)[0];
+            this.user_id = this.data.user_id;
+            this.title = this.data.title;
+            this.content = this.data.content;
+            console.log(this.content);
         }
     },
     methods: {
-        ...mapMutations('board', [
-            'writeData'
-        ]),
-        async write() {
-            const response = await axios.post(`${this.$baseURL}/board/insert`,{
-                user_id : this.user_id,
-                title : this.title,
-                content : this.content
-            });
-            console.log(response);
-            this.$router.push('/board')
+        cancle() {
+            this.$router.push({
+                path: '/board/free'
+            })
+        },
+        insert() {
+            axios.post(`${this.$baseURL}/board/insert`, {
+                user_id: this.user_id,
+                title: this.title,
+                content: this.content
+            }).then((response) => {
+                console.log(response);
+                this.$router.push({
+                    path: '/board/free'
+                })
+            })
+        },
+        update() {
+            console.log('update')
+            console.log(this.content_id);
+            axios.post(`${this.$baseURL}/board/update`, {
+                id: this.content_id,
+                title: this.title,
+                content: this.content
+            }).then((response) => {
+                console.log(response);
+                this.$router.push({
+                    path: '/board/free'
+                })
+            })
         }
     }
 }
