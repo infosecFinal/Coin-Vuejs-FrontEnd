@@ -78,7 +78,7 @@
                                     <div class="col-md-8">
                                         <label class="text-black"> 성별 <span
                                                 class="text-danger">*</span>
-                                            <input type="radio" v-model="user_gender" name="user_gender" value="남자" checked>남자
+                                            <input type="radio" v-model="user_gender" name="user_gender" value="남자">남자
                                             <input type="radio" v-model="user_gender" name="user_gender" value="여자">여자
                                         </label>
                                     </div>
@@ -133,12 +133,12 @@ export default {
                 user_gender: this.user_gender
             });
             if(resp.data.data !== null) {
-                alert('회원가입이 완료되었습니다.',this.user_id,'님 환영합니다!')
+                alert('회원가입이 완료되었습니다. '+this.user_id+'님 환영합니다!')
                 this.$router.push({
                     path: '/login'
-                })
+                });
             }
-            else alert('정보를 다시 확인해주세요');
+            else alert('정보를 다시 확인해주세요.')
         },
         async userDuplicate() {
             const resp = await getUserIDList({
