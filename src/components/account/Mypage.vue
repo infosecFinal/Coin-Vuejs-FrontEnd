@@ -20,15 +20,18 @@
                 <h2 class="h3 mb-5 text-black">Mypage</h2>
             </div>
 
-            <div class="col-lg-2 navibar">
-                <ul>
-                    <li><b-link to="/mypage">개인정보</b-link></li>
-                    <li><b-link to="/mypage/delete">회원탈퇴</b-link></li>
-                </ul>
+            <div class="col-lg-2">
+            <b-nav vertical class="w-15">
+                <b-nav-item to="/mypage">개인정보</b-nav-item>
+                <b-nav-item to="/mypage/delete">회원탈퇴</b-nav-item>
+            </b-nav>
             </div>
+
+
+
             <div class="col-lg-10" style="padding-left:40px;">
                <div class="bg-light rounded p-3">
-                   <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-primary">수정하기</a>를 눌러주세요.
+                   <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
                    </p>
                </div>
                 <div class="container">
@@ -54,7 +57,7 @@
                                         <input class="form-control" id="login_pw" name="login_pw" type="password">
                                     </div>
                                     <div style="float:right;">
-                                        <input type="button" class="mb-0" id="upwCheckBtn" style="color:#75b239; background-color:#ffffff; border:0; outline:0;" value="수정하기">
+                                        <input type="button" class="text-decoration-none"  id="upwCheckBtn" style="color:#75b239; background-color:#ffffff; border:0; outline:0;" value="수정하기">
                                     </div>
                                 </div>
                             </form>

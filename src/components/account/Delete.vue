@@ -18,44 +18,50 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-12">
-                <h2 class="h3 mb-5 text-black" style="padding-left: 230px;">Delete account</h2>
+                <h2 class="h3 mb-5 text-black">Delete account</h2>
             </div>
-            <div class="col-lg-2 navibar">
-                <ul>
-                    <li><b-link to="/mypage">개인정보</b-link></li>
-                    <li><b-link to="/mypage/delete">회원탈퇴</b-link></li>
-                </ul>
+              <div class="col-lg-2">
+            <b-nav vertical class="w-15">
+                <b-nav-item to="/mypage">개인정보</b-nav-item>
+                <b-nav-item to="/mypage/delete">회원탈퇴</b-nav-item>
+            </b-nav>
             </div>
             <div class="col-lg-10" style="padding-left:40px;">
                 <div class="bg-light rounded p-3">
-                    <p class="mb-0"> 계정을 삭제를 원하시면 비밀번호 입력 후, <a class="text-primary">회원탈퇴</a>를 눌러주세요.
+                    <p class="mb-0"> 계정을 삭제를 원하시면 비밀번호 입력 후, <a class="text-decoration-none">회원탈퇴</a>를 눌러주세요.
                     </p>
                 </div>
                 <br>
                 <form name="deleteform" action="#" method="post">
                     <div class="p-3 p-lg-5 border">
                         <div class="form-group" style="padding-left: 250px;">
+
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label class="text-black">아이디</label>
-                                    <p th:text="${id}"
-                                    class="form-control"  id="login_id" name="login_id"></p>
+                                    <input disabled
+                                    class="form-control" id="login_id" name="login_id"
+                                    v-model="getLoginId">
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="login_pw" class="text-black">비밀번호</label>
-                                    <input type="password" class="form-control" id="login_pw" name="login_pw">
+                                    <input type="password" class="form-control" id="login_pw" name="login_pw" v-model="login_pw">
                                 </div>
                             </div>
                             <div>
                                 <div class="form-group row"></div>
                             </div>
-
+                            <br>
                             <div class="form-group row">
-                                <div class="col-md-5" style="padding-left: 75px;">
-                                    <input type="button" id="userDeleteBtn" onclick=userDelete() class="btn btn-primary btn-lg btn-block" value="회원탈퇴">
-                                </div>
+                                <div class="col-md-3">
+                                            <b-button id="DeleteBtn"                                
+                                            @click="userDelete"
+                                             class="btn btn-primary btn-lg btn-block" variant="primary">
+                                             회원탈퇴</b-button>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -68,3 +74,38 @@
     <br>
 </div>
 </template>
+
+<script>
+import { deleteUser } from '@/service'
+import {mapGetters } from 'vuex'
+
+export default {
+    name: 'Delete',
+    data() {
+        return{
+        
+        login_pw:'' 
+        }  
+    },
+    computed: {
+        ...mapGetters('account',[
+            'getLoginId'
+        ])
+    },
+    methods: {
+        async userDelete(){
+            const resp = await deleteUser({
+                login_id: this.setId(this.login_id),
+                login_pw: this.login_pw
+            });
+
+            if(resp.data.data !== null){
+                alert('계정이 삭제되었습니다!')
+                this.$router.push({
+                    path: '/'
+                })
+            }
+        }
+    }
+}
+</script>
