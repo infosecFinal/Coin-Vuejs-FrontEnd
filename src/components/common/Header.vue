@@ -8,7 +8,7 @@
 			<b-collapse is-nav id="nav_collapse">
 				<b-navbar-nav>
 					<b-nav-item href='#'>notice</b-nav-item>
-					<b-nav-item to='/login'>login</b-nav-item>
+					<b-nav-item to='/login'>{{page}}</b-nav-item>
 					<b-nav-item to='/register'>register</b-nav-item>
 					<b-nav-item to='/board/free'>board</b-nav-item>
 					<b-nav-item to='/chatroom'>chatroom</b-nav-item>
@@ -20,9 +20,25 @@
 </template>
 
 <script>
-import request from './request.js'
+import {mapGetters} from 'vuex'
+// import request from './request.js'
 export default {
-    name: "Header"
+    name: "Header",
+	data() {
+		return {
+		page: 'login'
+		}
+	},
+	computed: {
+		...mapGetters('account', [
+			'getLoginState'
+		])
+	},
+	updated() {
+		console.log("id: ",this.login_id)
+		if(this.login_id !== undefined) this.page='mypage';
+		
+	}
 }
 </script>
 

@@ -26,13 +26,15 @@
                                 <div class="form-group row">
                                     <div class="col-lg-7">
                                         <label for="login_id" class="text-black">아이디</label>
-                                        <input type="text" class="form-control" id="login_id" name="login_id">
+                                        <input type="text" class="form-control" id="login_id" name="login_id"
+                                        v-model="login_id">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-7">
                                         <label for="login_pw" class="text-black">비밀번호</label>
-                                        <input type="password" class="form-control" id="login_pw" name="login_pw">
+                                        <input type="password" class="form-control" id="login_pw" name="login_pw"
+                                        v-model="login_pw">
                                     </div>
                                 </div>
 
@@ -40,7 +42,9 @@
 
                                  <div class="form-group row"  style="padding-left: 50px;">
                                         <div class="col-md-3">
-                                            <input type="button" id="LoginBtn" onclick=approveUser() class="btn btn-primary btn-lg btn-block"
+                                            <input type="button" id="LoginBtn" 
+                                            @click="approveUser"
+                                             class="btn btn-primary btn-lg btn-block"
                                                    value="로그인">
                                         </div>
 
@@ -63,13 +67,34 @@
 </template>
 
 
-// <script>
-//   import { mdbInput, mdbBtn } from 'mdbvue';
-//   export default {
-//     name: 'Basic',
-//     components: {
-//       mdbInput,
-//       mdbBtn
-//     }
-//   }
-// </script>
+<script>
+import { checkUser } from '@/service'
+import {mapMutations} from 'vuex'
+
+export default {
+    data() {
+        return{
+        login_id:'',
+        login_pw:'' 
+        }       
+    },
+    methods: {
+        ...mapMutations('account',[
+            'setId'
+        ]),
+        async approveUser() {
+            const resp = await checkUser({
+                login_id: this.login_id,
+                login_pw: this.login_pw
+            });
+            if(resp.data.data !== null) {
+                this.setId(this.login_id);
+                this.$router.push({
+                    path: '/board/free'
+                })
+            }
+            else alert('fail');
+        },
+    }
+}
+</script>

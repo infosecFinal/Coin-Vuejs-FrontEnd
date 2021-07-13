@@ -73,8 +73,8 @@ export default {
     },
     async created() {
         const resp = await fetchData();
-        console.log(resp);
         this.items = resp.data.list;
+        
     },
     computed: {
         rows() {

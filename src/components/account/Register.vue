@@ -20,8 +20,8 @@
                                         <label for="user_id" class="text-black"> 아이디 <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="user_id" name="user_id"
                                                required="required">
-                                        <p class="btn"  id="userDuplicateBtn" onclick= userDuplicateBtn() style="float: right; color:#75b239; padding:0px; margin:0px;">
-                                            중복확인</p>
+                                        <p class="btn" id="userDuplicateBtn" onclick= userDuplicateBtn() style="float: right; color:#75b239; padding:0px; margin:0px;">중복확인
+                                            </p>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -35,7 +35,7 @@
                                     <div class="col-md-8">
                                         <label for="user_name" class="text-black"> 이름 <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="user_name" name="user_name"
-                                               required="required">
+                                               required="required" v-model="name">{{name}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -76,7 +76,6 @@
                                 <br>
                                 <br>
                                 <br>
-
                             <div class="form-group row">
                                     <div class="col-lg-6" style="padding-left: 150px;">
                                         <input type="button" id="userRegiBtn" onclick=registerUser() class="btn btn-primary btn-lg btn-block"
@@ -97,12 +96,15 @@
 </template>
 
 // <script>
-//   import { mdbInput, mdbBtn } from 'mdbvue';
-//   export default {
-//     name: 'Basic',
-//     components: {
-//       mdbInput,
-//       mdbBtn
-//     }
-//   }
-// </script>
+
+
+export default{
+    name: 'Register',
+    data(){
+        return{
+            name: 'asd'
+        }
+    }
+
+}
+</script>
