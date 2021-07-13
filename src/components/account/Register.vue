@@ -15,14 +15,14 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 wrapmid">
                     <h2 class="h3 mb-5 text-black">Register</h2>
                 </div>
                 <div class="col-md-12">
 
                     <form name="regiform" action="#" method="post">
 
-                        <div class="p-3 p-lg-5 border">
+                        <div class="p-3 p-lg-5 border table">
                             <div class="form-group" style="padding-left: 250px;">
                                 <div class="form-group row">
                                     <div class="col-md-8">
@@ -133,12 +133,12 @@ export default {
                 user_gender: this.user_gender
             });
             if(resp.data.data !== null) {
-                alert('회원가입이 완료되었습니다.',this.user_id,'님 환영합니다!')
+                alert('회원가입이 완료되었습니다. '+this.user_id+'님 환영합니다!')
                 this.$router.push({
                     path: '/login'
-                })
+                });
             }
-            else alert('정보를 다시 확인해주세요');
+            else alert('정보를 다시 확인해주세요')
         },
         async userDuplicate() {
             const resp = await getUserIDList({
@@ -152,3 +152,22 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.table {
+   max-width: 900px; 
+   left:0; 
+   right:0; 
+   margin-left:10%; 
+   margin-right:10%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:0%; 
+   margin-bottom:0%;
+   }
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+</style>
