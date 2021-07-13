@@ -11,9 +11,13 @@ export const fetchDataById = (id) => {
 }
 
 export const insertData = (data) => {
-    console.log(data);
-    return axios.post(`${baseURL}/board/insert`, data)
+    return axios.post(`${baseURL}/board/insert`, data);
 }
+
+export const insertFile = (data, board_id) => {
+    return axios.post(`${baseURL}/file/upload?board_id=${board_id}`, data);
+}
+
 
 export const updateData = (data) => {
     return axios.post(`${baseURL}/board/update`, data)
@@ -24,6 +28,7 @@ export const deleteData = (id) => {
         id: id
     })
 }
+
 
 export const findData = (category, to_find) => {
     return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);   
@@ -37,5 +42,17 @@ export const insertUser = (data) => {
 export const checkUser = (data) => {
     console.log(data);
     return axios.post(`${baseURL}/account/login`, data)
+
+}
+
+export const getUserIDList = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/validation`, data)
+
+}
+
+export const deleteUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/delete`, data)
 
 }

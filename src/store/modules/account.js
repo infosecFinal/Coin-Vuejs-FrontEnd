@@ -15,7 +15,8 @@ const mutations = {
 
 const getters = {
     getLoginState: state => state.login_id,
-    getPage: state => state.page
+    getPage: state => state.page,
+    getLoginId: state => state.login_id
 }
 
 export default{
