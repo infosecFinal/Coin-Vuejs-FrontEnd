@@ -39,3 +39,15 @@ export const checkUser = (data) => {
     return axios.post(`${baseURL}/account/login`, data)
 
 }
+
+export const getUserIDList = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/validation`, data)
+
+}
+
+export const deleteUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/delete`, data)
+
+}
