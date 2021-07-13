@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<b-navbar toggleable="lg" type="dark" variant="info">
+		<b-navbar toggleable="sm" type="danger" variant="light">
 			<b-navbar-brand to='/'><img src='../../assets/logo.png' style="width: 50px; height: 50px;"></b-navbar-brand>
+			<h1>CoinNet</h1>
 
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 

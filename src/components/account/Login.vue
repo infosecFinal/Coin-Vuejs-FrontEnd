@@ -49,17 +49,15 @@
 
                             <br>
 
-                                 <div class="form-group row"  style="padding-left: 50px;">
+                                 <div class="form-group row">
                                         <div class="col-md-3">
-                                            <input type="button" id="LoginBtn" 
+                                            <b-button id="LoginBtn" 
                                             @click="approveUser"
-                                             class="btn btn-primary btn-lg btn-block"
-                                                   value="로그인">
+                                             class="btn btn-primary btn-lg btn-block" variant="primary" >로그인</b-button>
                                         </div>
 
                                      <div class="col-md-3">
-                                         <a href="register" style="padding:0"><p class="btn btn-primary btn-lg btn-block">
-                                             회원가입</p></a>
+                                         <b-button href = "/register" variant="primary" class="btn btn-primary btn-lg btn-block">회원가입</b-button>
                                      </div>
                                  </div>
                             </div>
