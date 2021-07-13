@@ -78,7 +78,7 @@
                                     <div class="col-md-8">
                                         <label class="text-black"> 성별 <span
                                                 class="text-danger">*</span>
-                                            <input type="radio" v-model="user_gender" name="user_gender" value="남자" checked>남자
+                                            <input type="radio" v-model="user_gender" name="user_gender" value="남자">남자
                                             <input type="radio" v-model="user_gender" name="user_gender" value="여자">여자
                                         </label>
                                     </div>
