@@ -113,5 +113,5 @@ export default {
 </script>
 
 <style>
-
+.sr-only {display: none;}
 </style>
