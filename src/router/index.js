@@ -10,6 +10,7 @@ import Login from '@/components/account/Login.vue'
 import Register from '@/components/account/Register.vue'
 import Mypage from '@/components/account/Mypage.vue'
 import Delete from '@/components/account/Delete.vue'
+import Update from '@/components/account/Update.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -68,6 +69,11 @@ const routes = [
     path: '/mypage/delete',
     name: 'Delete',
     component: Delete
+  },
+  {
+    path: '/mypage/update',
+    name: 'Update',
+    component: Update
   }
 ]
 

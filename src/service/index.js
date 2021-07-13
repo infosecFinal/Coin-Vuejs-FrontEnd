@@ -56,3 +56,10 @@ export const deleteUser = (data) => {
     return axios.post(`${baseURL}/account/delete`, data)
 
 }
+
+export const updateUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/mypage/update`, data)
+
+}
+
