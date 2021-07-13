@@ -1,4 +1,4 @@
-# coin-vue-frontend
+# coin-vue-frontend - hchc
 
 ## Project setup
 ```
