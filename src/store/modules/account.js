@@ -1,6 +1,6 @@
 const state = {
     login_id:'',
-    page:'login'
+    page:'Login'
 };
 
 const mutations = {

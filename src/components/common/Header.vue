@@ -5,13 +5,16 @@
 
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-			<b-collapse is-nav id="nav_collapse">
+			<b-collapse is-nav id="nav_collapse" class="collapse navbar-collapse justify-content-end">
 				<b-navbar-nav>
-					<b-nav-item href='#'>notice</b-nav-item>
-					<b-nav-item :to="getLoginState ?'/register':'/login'">{{getPage}}</b-nav-item>
-					<b-nav-item to='/register'>register</b-nav-item>
-					<b-nav-item to='/board/free'>board</b-nav-item>
-					<b-nav-item to='/chatroom'>chatroom</b-nav-item>
+					<b-nav-item to='/'>Home</b-nav-item>
+					<b-nav-item :to="getLoginState ?'/mypage':'/login'">{{getPage}}</b-nav-item>
+					<b-nav-item to='/register'>Register</b-nav-item>
+					<b-nav-item-dropdown text="Board">
+						<b-dropdown-item href="#">Notice</b-dropdown-item>
+						<b-dropdown-item to="/board/free">Free</b-dropdown-item>
+					</b-nav-item-dropdown>
+					<b-nav-item to='/chatroom'>Chatroom</b-nav-item>
 				</b-navbar-nav>
 			</b-collapse>
 
@@ -26,7 +29,7 @@ export default {
     name: "Header",
 	data() {
 		return {
-		page: 'login'
+		page: 'Login'
 		}
 	},
 	computed: {

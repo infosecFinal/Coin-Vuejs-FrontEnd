@@ -8,6 +8,8 @@ import Create from '@/components/board/Create.vue'
 
 import Login from '@/components/account/Login.vue'
 import Register from '@/components/account/Register.vue'
+import Mypage from '@/components/account/Mypage.vue'
+import Delete from '@/components/account/Delete.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -56,6 +58,16 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: { unauthorized : true }
+  },
+  {
+    path: '/mypage',
+    name: 'Mypage',
+    component: Mypage
+  },
+  {
+    path: '/mypage/delete',
+    name: 'Delete',
+    component: Delete
   }
 ]
 

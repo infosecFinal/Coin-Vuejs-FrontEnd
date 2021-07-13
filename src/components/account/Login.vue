@@ -1,7 +1,16 @@
 <template>
   <!-- Default form login -->
 <div class="site-wrap">
-
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <strong class="text-black">Login</strong>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
 
     <div class="site-section">
@@ -90,7 +99,7 @@ export default {
             });
             if(resp.data.data !== null) {
                 this.setId(this.login_id);
-                this.setPage('mypage');
+                this.setPage('Mypage');
                 this.$router.push({
                     path: '/board/free'
                 })
