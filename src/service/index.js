@@ -14,11 +14,6 @@ export const insertData = (data) => {
     return axios.post(`${baseURL}/board/insert`, data);
 }
 
-export const insertFile = (data, board_id) => {
-    return axios.post(`${baseURL}/file/upload?board_id=${board_id}`, data);
-}
-
-
 export const updateData = (data) => {
     return axios.post(`${baseURL}/board/update`, data)
 }
