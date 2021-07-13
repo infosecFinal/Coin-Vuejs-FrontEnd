@@ -37,4 +37,5 @@ export const insertUser = (data) => {
 export const checkUser = (data) => {
     console.log(data);
     return axios.post(`${baseURL}/account/login`, data)
+
 }
