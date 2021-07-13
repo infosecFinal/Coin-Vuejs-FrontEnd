@@ -80,7 +80,8 @@ export default {
     },
     methods: {
         ...mapMutations('account',[
-            'setId'
+            'setId',
+            'setPage'
         ]),
         async approveUser() {
             const resp = await checkUser({
@@ -89,6 +90,7 @@ export default {
             });
             if(resp.data.data !== null) {
                 this.setId(this.login_id);
+                this.setPage('mypage');
                 this.$router.push({
                     path: '/board/free'
                 })

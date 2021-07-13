@@ -8,7 +8,7 @@
 			<b-collapse is-nav id="nav_collapse">
 				<b-navbar-nav>
 					<b-nav-item href='#'>notice</b-nav-item>
-					<b-nav-item to='/login'>{{page}}</b-nav-item>
+					<b-nav-item :to="getLoginState ?'/register':'/login'">{{getPage}}</b-nav-item>
 					<b-nav-item to='/register'>register</b-nav-item>
 					<b-nav-item to='/board/free'>board</b-nav-item>
 					<b-nav-item to='/chatroom'>chatroom</b-nav-item>
@@ -31,13 +31,9 @@ export default {
 	},
 	computed: {
 		...mapGetters('account', [
-			'getLoginState'
+			'getLoginState',
+			'getPage'
 		])
-	},
-	updated() {
-		console.log("id: ",this.login_id)
-		if(this.login_id !== undefined) this.page='mypage';
-		
 	}
 }
 </script>
