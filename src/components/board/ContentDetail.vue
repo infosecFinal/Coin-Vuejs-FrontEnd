@@ -12,10 +12,10 @@
               </div>
               <div class="content-detail-content-info-right">
                   <div class="content-detail-content-info-right-user">
-                      writer: {{data.user_id}}
+                      작성자 : {{data.user_id}}
                   </div>
                   <div class="content-detail-content-info-right-created">
-                      posted_at: {{data.created_at}}
+                      작성 시간 : {{data.created_at}}
                   </div>
               </div>
           </div>

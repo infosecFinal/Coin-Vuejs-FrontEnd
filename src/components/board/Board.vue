@@ -5,7 +5,7 @@
           <b-row>
               <b-col>
               </b-col>
-              <b-col col lg="3">
+              <b-col col lg="5">
                   <b-input-group>
                       <b-form-select
                       v-model="category"
@@ -14,7 +14,7 @@
                   </b-form-select>
                       <b-form-input v-model="to_find" @keyup.enter="find"></b-form-input>
                           <b-input-group-append>
-                              <b-button text="Button" variant="success" @click="find">Find</b-button>
+                              <b-button text="Button" variant="outline-secondary" @click="find">Find</b-button>
                           </b-input-group-append>
                   </b-input-group>
               </b-col>
@@ -31,8 +31,8 @@
         align="center"
       ></b-pagination>
       <b-row align-h="end">
-          <b-col cols="4">
-      <b-button @click="writeContent" offset-md="4">Write</b-button>
+          <b-col cols="2">
+      <b-button variant="outline-secondary" @click="writeContent" offset-md="4">Write</b-button>
       </b-col>
       </b-row>
       </b-container>
@@ -52,24 +52,33 @@ export default {
             fields: [
                 {
                     key: 'id',
-                    label: '글 번호'
+                    label: '글 번호',
+                    sortable: true
                 },
                 {
                     key: 'user_id',
-                    label: '글쓴이'
+                    label: '글쓴이',
+                    sortable: true
                 },
                 {
                     key: 'title',
-                    label: '제목'
+                    label: '제목',
+                    sortable: true
                 },
                 {
                     key: 'created_at',
-                    label: '작성일'
+                    label: '작성일',
+                    sortable: true
                 }
             ],
+            
             currentPage: 1,
             perPage: 10,
-            items: []
+            items: [
+                { isActive: true, key: 'id', label: '글 번호'},
+                { isActive: true, key: 'user_id', label: '글쓴이'},
+                { isActive: true, key: 'title', label: '제목'},
+                { isActive: true, key: 'created_at', label: '작성일'}]
         }
     },
     async created() {
