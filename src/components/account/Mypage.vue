@@ -124,7 +124,7 @@
 
 
 <script>
-import { getUserInfo  } from '@/service'
+import { getUserInfo, checkUser  } from '@/service'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -150,7 +150,10 @@ export default {
                 login_email:this.login_email,
                 login_gender:this.login_gender
         });
-    },
+        if(resp.data.data !== null){
+               
+                }
+            },
         async upwUpdateConfirm(){
             const resp = await checkUser({
                 login_id: this.getLoginId,

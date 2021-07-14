@@ -25,7 +25,6 @@
 
 <script>
 import {mapGetters} from 'vuex'
-// import request from './request.js'
 export default {
     name: "Header",
 	data() {
