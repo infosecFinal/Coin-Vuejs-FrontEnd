@@ -12,10 +12,15 @@ import MessageForm from '@/components/chat/MessageForm.vue'
 import MessageList from '@/components/chat/MessageList.vue'
 import Stomp from 'webstomp-client';
 import SockJS from 'sockjs-client';
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 
 export default {
     name: 'ChatRoom',
+    data() {
+      return {
+        socket: null
+      }
+    },
     components: {
         MessageForm,
         MessageList
@@ -23,16 +28,21 @@ export default {
     computed: {
         ...mapState({
             msgs: $state => $state.stomp.msgs
-        })
+        }),
+        ...mapGetters('account', ['getLoginState'])
     },
     created() {
+        if(!this.getLoginState) {
+          alert('로그인 후 이용해주세요');
+          this.$router.go(-1);
+        }
         this.connect();
     },
     methods: {
       connect() {
         const serverURL = "http://localhost:8083";
-        var socket = new SockJS(serverURL+'/gs-guide-websocket');
-        this.stompClient = Stomp.over(socket);
+        this.socket = new SockJS(serverURL+'/gs-guide-websocket');
+        this.stompClient = Stomp.over(this.socket);
         console.log(`���� ������ �õ��մϴ�. ���� �ּ�: ${serverURL}`)
         this.stompClient.connect({}, frame=>{
           this.connected = true;
@@ -55,6 +65,9 @@ export default {
           var container = document.getElementById("container");
           container.scrollTop = container.scrollHeight+50;
       }
+    },
+    destroyed() {
+      this.socket.close();
     }
 }
 </script>

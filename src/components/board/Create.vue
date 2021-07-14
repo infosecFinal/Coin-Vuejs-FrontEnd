@@ -1,6 +1,6 @@
 <template>
   <div>
-      <b-input v-model="user_id" placeholder="write writer" :readonly="content_id? true:false"></b-input>
+      <b-input :value="content_id ? user_id : getLoginId" readonly></b-input>
       <b-input v-model="title" placeholder="write title"></b-input>
       <b-form-textarea
       id="textarea"
@@ -23,13 +23,13 @@
 <script>
 import {insertData, updateData, fetchDataById} from '@/service'
 import {insertFile} from '@/service/file/file.js'
+import {mapGetters} from 'vuex'
 
 export default {
     name: 'Create',
     data() {
         return {
             content_id: Number(this.$route.params.contentId),
-            user_id: '',
             title: '',
             content: '',
             file1: null,
@@ -47,6 +47,11 @@ export default {
             this.content = resp.data.data.content
         }
     },
+    computed: {
+        ...mapGetters('account', [
+            'getLoginId'
+        ])
+    },
     methods: {
         cancle() {
             this.$router.push({
@@ -55,7 +60,7 @@ export default {
         },
         async insert() {
             const resp = await insertData({
-                user_id: this.user_id,
+                user_id: this.getLoginId,
                 title: this.title,
                 content: this.content
             });
@@ -66,11 +71,15 @@ export default {
             })
         },
         async update() {
-            await updateData({
+            console.log(this.user_id);
+            console.log(this.title);
+            const resp = await updateData({
+                id: this.content_id,
                 user_id: this.user_id,
                 title: this.title,
                 content: this.content
             });
+            console.log(resp);
             if(this.file1 !== null) this.fileUpload();
             this.$router.push({
                 path: '/board/free'
