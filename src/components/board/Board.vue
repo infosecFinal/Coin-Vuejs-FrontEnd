@@ -43,6 +43,7 @@
 
 <script>
 import {fetchData, findData} from '@/service'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'Board',
@@ -88,21 +89,26 @@ export default {
         
     },
     computed: {
+        ...mapGetters('account', [
+            'getLoginState'
+        ]),
         rows() {
             return this.items.length;
         }
     },
     methods: {
         rowClick(item) {
-            console.log("params: ", item.id)
             this.$router.push({
                 path: `/board/free/detail/${item.id}`
             })
         },
         writeContent() {
-            this.$router.push({
+            if(!this.getLoginState) alert('로그인 후 글쓰기 가능합니다.') 
+            else{
+                this.$router.push({
                 path: '/board/free/create'
-            })
+                })
+            }
         },
         async find() {
             const resp = await findData(this.category, this.to_find);

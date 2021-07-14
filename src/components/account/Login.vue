@@ -82,7 +82,8 @@ export default {
     methods: {
         ...mapMutations('account',[
             'setId',
-            'setPage'
+            'setPage',
+            'setLoginState'
         ]),
         async approveUser() {
             const resp = await checkUser({
@@ -92,6 +93,7 @@ export default {
             if(resp.data.data !== null) {
                 this.setId(this.login_id);
                 this.setPage('Mypage');
+                this.setLoginState(true);
                 this.$router.push({
                     path: '/board/free'
                 })
