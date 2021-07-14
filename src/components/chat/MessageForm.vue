@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 
 export default {
     name: 'MessageForm',
@@ -21,6 +22,9 @@ export default {
             message:''
         }
     },
+    computed: {
+      ...mapGetters('account', ['getLoginId'])
+    },
     methods: {
         sendMessage() {
             this.send();
@@ -28,11 +32,11 @@ export default {
             this.message = '';
         },
         send() {
-          console.log(this.client.connected);
+          console.log("Connected: ",this.client.connected);
           console.log("Send Message: " + this.message);
           if(this.client && this.client.connected) {
             const msg = {
-              name: "test",
+              name: this.getLoginId,
               msg: this.message
             };
             console.log(msg);
