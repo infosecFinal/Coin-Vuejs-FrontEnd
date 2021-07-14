@@ -21,10 +21,10 @@
             </div>
 
             <div class="col-lg-2">
-            <b-nav vertical class="w-15">
-                <b-nav-item to="/mypage">개인정보</b-nav-item>
-                <b-nav-item to="/mypage/delete">회원탈퇴</b-nav-item>
-            </b-nav>
+                <b-nav vertical class="w-15">
+                    <b-nav-item to="/mypage">개인정보</b-nav-item>
+                    <b-nav-item to="/mypage/delete">회원탈퇴</b-nav-item>
+                </b-nav>
             </div>
 
 
@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <div class="col-md-25">
                                         <label class="text-black">비밀번호</label>
-                                        <input
+                                        <input type="password"
                                         class="form-control" id="login_pw" name="login_pw"
                                         v-model="login_pw">
                                     </div>
@@ -72,7 +72,7 @@
                                         <label class="text-black">이름</label>
                                         <input disabled
                                         class="form-control" id="login_name" name="login_name"
-                                        v-model="getLoginId">
+                                        v-model="userInfoPrint">
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                         <label class="text-black">휴대폰 번호</label>
                                         <input disabled
                                         class="form-control" id="login_phone" name="login_phone"
-                                        v-model="getLoginId">
+                                        v-model="userInfoPrint">
                                     </div>
                                 </div>
 
@@ -90,7 +90,7 @@
                                         <label class="text-black">주소</label>
                                         <input disabled
                                         class="form-control" id="login_address" name="login_address"
-                                        v-model="getLoginId">
+                                        v-model="userInfoPrint">
                                     </div>
                                 </div>
 
@@ -99,7 +99,7 @@
                                         <label class="text-black">이메일</label>
                                         <input disabled
                                         class="form-control" id="login_email" name="login_email"
-                                        v-model="getLoginId">
+                                        v-model="userInfoPrint">
                                     </div>
                             </div>
                             <div class="form-group">
@@ -107,7 +107,7 @@
                                         <label class="text-black">성별</label>
                                         <input disabled
                                         class="form-control" id="login_gender" name="login_gender"
-                                        v-model="getLoginId">
+                                        v-model="userInfoPrint">
                                     </div>
                             </div>
 
@@ -124,14 +124,17 @@
 
 
 <script>
-import { checkUser } from '@/service'
+import { getUserInfo  } from '@/service'
 import { mapGetters } from 'vuex'
 
 export default {
     name: 'Mypage',
     data() {
         return{
-        login_pw:'' 
+        login_name:'',
+        login_address:'',
+        login_email:'',
+        login_gender:'' 
         }  
     },
     computed: {
@@ -140,12 +143,21 @@ export default {
         ])
     },
     methods: {
+        async userInfoPrint(){
+            const resp = await getUserInfo({
+                login_name:this.login_name,
+                login_address:this.login_address,
+                login_email:this.login_email,
+                login_gender:this.login_gender
+        });
+    },
         async upwUpdateConfirm(){
             const resp = await checkUser({
+                login_id: this.getLoginId,
                 login_pw: this.login_pw
             });
 
-            if(resp.data.data === null){
+            if(resp.data.data !== null){
                 this.$router.push({
                     path: '/mypage/update'
                 })

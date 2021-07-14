@@ -52,6 +52,12 @@ export const deleteUser = (data) => {
 
 }
 
+export const getUserInfo = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/print`, data)
+
+}
+
 export const updateUser = (data) => {
     console.log(data);
     return axios.post(`${baseURL}/account/mypage/update`, data)

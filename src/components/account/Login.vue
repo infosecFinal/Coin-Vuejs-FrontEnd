@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
   <!-- Default form login -->
 <div class="site-wrap">
@@ -126,4 +124,4 @@ export default {
 }
 
 </style>
->>>>>>> 94e0ed07af092ada403a074997b4a9d0e4f18b9e
+
