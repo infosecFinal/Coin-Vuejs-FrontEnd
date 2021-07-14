@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import {insertData, updateData, fetchDataById, insertFile} from '@/service'
+import {insertData, updateData, fetchDataById} from '@/service'
+import {insertFile} from '@/service/file/file.js'
 
 export default {
     name: 'Create',
@@ -53,24 +54,24 @@ export default {
             })
         },
         async insert() {
-            if(this.file1 !== null) this.fileUpload();
-        
-            await insertData({
+            const resp = await insertData({
                 user_id: this.user_id,
                 title: this.title,
                 content: this.content
             });
+            console.log(resp);
+            if(this.file1 !== null) this.fileUpload();
             this.$router.push({
                 path: '/board/free'
             })
         },
         async update() {
-            if(this.file1 !== null) this.fileUpload();
             await updateData({
                 user_id: this.user_id,
                 title: this.title,
                 content: this.content
             });
+            if(this.file1 !== null) this.fileUpload();
             this.$router.push({
                 path: '/board/free'
             })

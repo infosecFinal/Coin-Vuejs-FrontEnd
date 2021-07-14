@@ -12,13 +12,19 @@
               </div>
               <div class="content-detail-content-info-right">
                   <div class="content-detail-content-info-right-user">
-                      작성자 : {{data.user_id}}
+                      writer : {{data.user_id}}
                   </div>
                   <div class="content-detail-content-info-right-created">
-                      작성 시간 : {{data.created_at}}
+                      Created_At : {{data.created_at}}
                   </div>
               </div>
+              
           </div>
+          <div class="content-detail-content-info" style="margin-top: 1rem">
+                  <ul>
+                      <li v-for="(file, idx) in files" :key="idx" @click="download(file)">{{file.origin_file_Name}}</li>
+                  </ul>
+              </div>
           <div class="content-detail-content" v-html="data.content">
               
           </div>
@@ -32,18 +38,23 @@
 
 <script>
 import {fetchDataById, deleteData} from '@/service'
+import { getFilesInfo, getFile } from '@/service/file/file.js';
 
 export default {
     name: "ContentDetail",
     data() {
         return {
             id: Number(this.$route.params.contentId),
-            data: {}
+            data: {},
+            files: []
         }
     },
     async created() {
-        const resp = await fetchDataById(this.id);
-        this.data = resp.data.data;
+        const data_resp = await fetchDataById(this.id);
+        const file_resp = await getFilesInfo(this.id);
+        this.data = data_resp.data.data;
+        this.files = file_resp.data.list;
+        console.log(this.files);
         
     },
     methods: {
@@ -55,6 +66,23 @@ export default {
             this.$router.push({
                 path:  `/board/free/create/${this.id}`,
             })
+        },
+        async download(file) {
+            await getFile(file.id);
+            const url = `http://localhost:8083/file/download/${file.id}`
+            const link = document.createElement('a');
+            // const contentDisposition = resp.headers['content-disposition'];
+            
+            // let fileName = 'undefined';
+            // if(contentDisposition) {
+            //     const [ fileNameMatch ] = contentDisposition.split(';').filter(str=>str.includes('fileName'));
+            //     if(fileNameMatch) [, fileName] = fileNameMatch.split('=');
+            // }
+            // fileName = decodeURI(fileName);
+            link.href = url;
+            document.body.appendChild(link);
+            console.log(link);
+            link.click();
         }
     }
 }

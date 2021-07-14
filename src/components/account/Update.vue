@@ -61,7 +61,7 @@
                                     </div>
 
                                     <div style="float:right;">
-                                        <b-button class="text-decoration-none" id="userDuplicateBtn" @click="upwUpdateConfirm" variant="link" style="float: right; color:#75b239; padding:0px; margin:0px;">수정하기
+                                        <b-button class="text-decoration-none" id="userDuplicateBtn" @click="upwUpdateConfirm" variant="link" style="float: right; color:#75b239; padding:0px; margin:0px;">수정완료
                                         </b-button>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <div class="col-md-25">
                                         <label class="text-black">휴대폰 번호</label>
-                                        <input disabled
+                                        <input
                                         class="form-control" id="login_phone" name="login_phone"
                                         v-model="getLoginId">
                                     </div>
@@ -88,7 +88,7 @@
                                 <div class="form-group">
                                     <div class="col-md-25">
                                         <label class="text-black">주소</label>
-                                        <input disabled
+                                        <input
                                         class="form-control" id="login_address" name="login_address"
                                         v-model="getLoginId">
                                     </div>
@@ -124,13 +124,14 @@
 
 
 <script>
-import { checkUser } from '@/service'
+import { updateUser } from '@/service'
 import { mapGetters } from 'vuex'
 
 export default {
-    name: 'Mypage',
+    name: 'Update',
     data() {
         return{
+        
         login_pw:'' 
         }  
     },
@@ -141,11 +142,12 @@ export default {
     },
     methods: {
         async upwUpdateConfirm(){
-            const resp = await checkUser({
+            const resp = await updateUser({
+                login_id: this.getLoginId,
                 login_pw: this.login_pw
             });
 
-            if(resp.data.data === null){
+            if(resp.data.data !== null){
                 this.$router.push({
                     path: '/mypage/update'
                 })
