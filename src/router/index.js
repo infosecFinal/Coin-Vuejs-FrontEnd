@@ -1,86 +1,66 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
-import ChatRoom from '../views/ChatRoom.vue'
-import Board from '@/components/board/Board.vue'
-import ContentDetail from '@/components/board/ContentDetail.vue'
-import Create from '@/components/board/Create.vue'
+import axios from 'axios';
 
-import Login from '@/components/account/Login.vue'
-import Register from '@/components/account/Register.vue'
-import Mypage from '@/components/account/Mypage.vue'
-import Delete from '@/components/account/Delete.vue'
-import Update from '@/components/account/Update.vue'
-Vue.use(VueRouter)
+const baseURL = 'http://localhost:8083';
 
-const routes = [
-  {
-    path: '/',
-    name: 'HelloWorld',
-    component: HelloWorld
-  }, 
-  {
-    path: '/chatroom',
-    name: 'ChatRoom',
-    component: ChatRoom
-  },
-  // {
-  //   path: '/board',
-  //   name: 'Read',
-  //   component: Read,
-  // },
-  {
-    path: '/board/free',
-    name: 'Board',
-    component: Board
-  },
-  {
-    path: '/board/free/create',
-    name: 'Create',
-    component: Create
-  },
-  {
-    path: '/board/free/detail/:contentId',
-    name: 'ContentDetail',
-    component: ContentDetail
-  },
-  {
-    path: '/board/free/create/:contentId?',
-    name: 'Create',
-    component: Create
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-    meta: { unauthorized : true }
-  },
-  {
-    path: '/mypage',
-    name: 'Mypage',
-    component: Mypage
-  },
-  {
-    path: '/mypage/delete',
-    name: 'Delete',
-    component: Delete
-  },
-  {
-    path: '/mypage/update',
-    name: 'Update',
-    component: Update
-  }
-]
+export const fetchData = () => {
+    return axios.get(`${baseURL}/board/lists`);
+}
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+export const fetchDataById = (id) => {
+    return axios.get(`${baseURL}/board/list/${id}`)
+}
 
-export default router
+export const insertData = (data) => {
+    return axios.post(`${baseURL}/board/insert`, data);
+}
+
+export const updateData = (data) => {
+    return axios.post(`${baseURL}/board/update`, data)
+}
+
+export const deleteData = (id) => {
+    return axios.post(`${baseURL}/board/delete`,{
+        id: id
+    })
+}
+
+
+export const findData = (category, to_find) => {
+    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);   
+}
+
+export const insertUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/register`, data)
+}
+
+export const checkUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/login`, data)
+
+}
+
+export const getUserIDList = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/validation`, data)
+
+}
+
+export const deleteUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/delete`, data)
+
+}
+
+export const getUserInfo = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/print`, data)
+
+}
+
+export const updateUser = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/mypage/update`, data)
+
+}
+
