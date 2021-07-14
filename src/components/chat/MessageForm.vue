@@ -44,5 +44,8 @@ export default {
 </script>
 
 <style>
-
+#textarea-no-resize {
+   max-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;}
+.list-group {
+   min-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;}
 </style>

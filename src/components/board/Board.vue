@@ -19,6 +19,7 @@
                   </b-input-group>
               </b-col>
           </b-row>
+      <pre> </pre>
       <b-row>
           <b-col>
       <b-table striped hover :items="items" :per-page="perPage" :current-page="currentPage" :fields="fields" @row-clicked="rowClick"></b-table>
@@ -49,7 +50,7 @@ export default {
         return {
             to_find: '',
             category: 'title',
-            fields: [
+            fields:[
                 {
                     key: 'id',
                     label: '글 번호',
@@ -113,5 +114,7 @@ export default {
 </script>
 
 <style>
-
+.sr-only {display: none;}
+.table {
+   max-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;}
 </style>

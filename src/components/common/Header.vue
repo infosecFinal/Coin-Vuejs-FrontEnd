@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<b-navbar toggleable="sm" type="danger" variant="light">
+	<div class="header-wrap">
+		<b-navbar toggleable="sm">
 			<b-navbar-brand to='/'><img src='../../assets/logo.png' style="width: 50px; height: 50px;"></b-navbar-brand>
 			<h1>CoinNet</h1>
 
@@ -48,6 +48,14 @@ header h1{position:absolute; top:0; left:100px;}
 header ul.menu:after{display:block; clear:both; content:'';}
 header ul.menu{position:absolute; top:20px; right:50px;}
 header ul.menu li{float:left; padding:10px 20px; list-style:none;}
-
 a{text-decoration:none; color:#333;}
+
+.header-wrap {
+  background-image: url(//www.toptal.com/designers/subtlepatterns/patterns/symphony.png);
+  /* background-position: bottom; */
+  /* animation: 4s linear 0s infinite bp; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
 </style>
