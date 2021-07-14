@@ -72,7 +72,7 @@
                                         <label class="text-black">이름</label>
                                         <input disabled
                                         class="form-control" id="login_name" name="login_name"
-                                        v-model="userInfoPrint">
+                                        v-model="login_name">
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                         <label class="text-black">휴대폰 번호</label>
                                         <input disabled
                                         class="form-control" id="login_phone" name="login_phone"
-                                        v-model="userInfoPrint">
+                                        v-model="login_phone">
                                     </div>
                                 </div>
 
@@ -90,7 +90,7 @@
                                         <label class="text-black">주소</label>
                                         <input disabled
                                         class="form-control" id="login_address" name="login_address"
-                                        v-model="userInfoPrint">
+                                        v-model="login_address">
                                     </div>
                                 </div>
 
@@ -99,7 +99,7 @@
                                         <label class="text-black">이메일</label>
                                         <input disabled
                                         class="form-control" id="login_email" name="login_email"
-                                        v-model="userInfoPrint">
+                                        v-model="login_email">
                                     </div>
                             </div>
                             <div class="form-group">
@@ -107,7 +107,7 @@
                                         <label class="text-black">성별</label>
                                         <input disabled
                                         class="form-control" id="login_gender" name="login_gender"
-                                        v-model="userInfoPrint">
+                                        v-model="login_gender">
                                     </div>
                             </div>
 
@@ -134,7 +134,8 @@ export default {
         login_name:'',
         login_address:'',
         login_email:'',
-        login_gender:'' 
+        login_gender:'',
+        login_phone:''
         }  
     },
     computed: {
@@ -142,16 +143,20 @@ export default {
             'getLoginId'
         ])
     },
+    created() {
+        this.userInfoPrint();
+    },
     methods: {
         async userInfoPrint(){
-            const resp = await getUserInfo({
-                login_name:this.login_name,
-                login_address:this.login_address,
-                login_email:this.login_email,
-                login_gender:this.login_gender
-        });
-        if(resp.data.data !== null){
-               
+            const resp = await getUserInfo(this.getLoginId);
+            console.log(resp);
+            if(resp.data.data !== null){
+               const userData = resp.data.data;
+               this.login_name = userData.user_name;
+               this.login_address = userData.user_address;
+               this.login_email = userData.user_email;
+               this.login_gender = userData.user_gender;
+               this.login_phone = userData.user_phone;
                 }
             },
         async upwUpdateConfirm(){

@@ -54,7 +54,7 @@ export const deleteUser = (data) => {
 
 export const getUserInfo = (data) => {
     console.log(data);
-    return axios.post(`${baseURL}/account/print`, data)
+    return axios.get(`${baseURL}/account/print/${data}`)
 
 }
 

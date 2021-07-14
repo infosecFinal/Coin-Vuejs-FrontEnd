@@ -90,6 +90,7 @@ export default {
                 login_id: this.login_id,
                 login_pw: this.login_pw
             });
+            console.log(resp);
             if(resp.data.data !== null) {
                 this.setId(this.login_id);
                 this.setPage('Mypage');
