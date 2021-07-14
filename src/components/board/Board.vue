@@ -4,6 +4,7 @@
       <b-container fluid class="text-light text-center">
           <b-row>
               <b-col>
+                  <b-button @click="fetch">전체보기</b-button>
               </b-col>
               <b-col col lg="5">
                   <b-input-group>
@@ -76,16 +77,11 @@ export default {
             
             currentPage: 1,
             perPage: 10,
-            items: [
-                { isActive: true, key: 'id', label: '글 번호'},
-                { isActive: true, key: 'user_id', label: '글쓴이'},
-                { isActive: true, key: 'title', label: '제목'},
-                { isActive: true, key: 'created_at', label: '작성일'}]
+            items: []
         }
     },
     async created() {
-        const resp = await fetchData();
-        this.items = resp.data.list;
+        this.fetch();
         
     },
     computed: {
@@ -113,6 +109,10 @@ export default {
         async find() {
             const resp = await findData(this.category, this.to_find);
             console.log(resp);
+            this.items = resp.data.list;
+        },
+        async fetch() {
+            const resp = await fetchData();
             this.items = resp.data.list;
         }
     }
