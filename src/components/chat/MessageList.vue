@@ -1,36 +1,36 @@
 <template>
   <div>
-      <div class="bg-light py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mb-0">
-                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
-                    <span class="text-black">Board</span>
-                    <span class="mx-2 mb-0">/</span>
-                    <strong class="text-black">Free</strong>
-                </div>
-            </div>
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+            <span class="text-black">Board</span>
+            <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Free</strong>
+          </div>
         </div>
-    </div>
-
-    <br>
-
-     <div class="container">
-    <div class="row justify-content-between">
-    <div class="col-md-12">
-      <h2 class="h3 mb-5 text-black">Chatroom</h2>
       </div>
     </div>
-     </div>
-  <div style="padding-bottom: 0.5em">
-    <div class='zindex'>
+
+    <br />
+
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-12">
+          <h2 class="h3 mb-5 text-black">Chatroom</h2>
+        </div>
+      </div>
+    </div>
+    <div style="padding-bottom: 0.5em">
+      <div class="zindex">
         <b-list-group>
           <b-list-group-item id="container" class="list-group mb-9 zindex">
             <p v-for="(msg, idx) in msgs" :key="idx">{{ msg.content }}</p>
           </b-list-group-item>
         </b-list-group>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -67,7 +67,7 @@ export default {
   overflow: hidden;
   width: 100%;
 }
- span {
+span {
   display: inline-block;
   text-indent: 0rem;
   position: relative;

@@ -31,13 +31,13 @@ export default {
         }),
         ...mapGetters('account', ['getLoginState'])
     },
-    created() {
-        if(!this.getLoginState) {
-          alert('로그인 후 이용해주세요');
-          this.$router.go(-1);
-        }
-        this.connect();
-    },
+    // created() {
+    //     if(!this.getLoginState) {
+    //       alert('로그인 후 이용해주세요');
+    //       this.$router.go(-1);
+    //     }
+    //     this.connect();
+    // },
     methods: {
       connect() {
         const serverURL = "http://localhost:8083";

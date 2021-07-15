@@ -26,13 +26,13 @@
                 <b-nav-item to="/mypage/delete">회원탈퇴</b-nav-item>
             </b-nav>
             </div>
-            <div class="col-lg-10" style="padding-left:40px;">
-                <div class="bg-light rounded p-3 table" style="width:870px">
+            <div class="col-lg-9 mid" style="padding-left:40px;">
+                <div class="bg-light p-3 " style=" width:800px; display:block; border-radius: 50px; margin: 0 auto;">
                     <p class="mb-0"> 계정을 삭제를 원하시면 비밀번호 입력 후, <a class="text-decoration-none">회원탈퇴</a>를 눌러주세요.
                     </p>
                 </div>
                 <br>
-                <div class="col-md-10">
+                <div class="col-md-10" style="display:block; margin: 0 auto;">
                 <form name="deleteform" action="#" method="post">
                     <div class="p-4 p-lg-4 border" style="background-color:#f1f5f8;  border-radius: 50px;">
                         <div class="form-group" style="padding-left: 250px; \" >
