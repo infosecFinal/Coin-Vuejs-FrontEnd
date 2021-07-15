@@ -122,6 +122,15 @@ export default {
         }       
     },
     methods: {
+        async userDuplicate() {
+            const resp = await getUserIDList({
+                user_id: this.user_id
+            });
+            if(resp.data.data != null){
+                alert('아이디를 변경하세요. 사용할 수 없는 아이디 입니다.')
+            }
+            else alert('사용할 수 있는 아이디입니다.')
+        },
         async registerUser() {
             const resp = await insertUser({
                 user_id: this.user_id,
@@ -138,16 +147,6 @@ export default {
                     path: '/login'
                 });
             }
-            else alert('정보를 다시 확인해주세요')
-        },
-        async userDuplicate() {
-            const resp = await getUserIDList({
-                user_id: this.user_id
-            });
-            if(resp.data.data != null){
-                alert('아이디를 변경하세요. 사용할 수 없는 아이디 입니다.')
-            }
-            else alert('사용할 수 있는 아이디입니다.')
         }
     }
 }

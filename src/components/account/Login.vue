@@ -78,7 +78,8 @@ export default {
     methods: {
         ...mapMutations('account',[
             'setId',
-            'setPage',
+            'setLogout',
+            'setMypage',
             'setLoginState'
         ]),
         async approveUser() {
@@ -88,14 +89,15 @@ export default {
             });
             if(resp.data.data !== null) {
                 this.setId(this.login_id);
-                this.setPage('Mypage');
+                this.setLogout('Logout');
+                this.setMypage('Mypage');
                 this.setLoginState(true);
                 this.$router.push({
                     path: '/board/free'
                 })
             }
             else alert('fail');
-        },
+        }
     }
 }
 </script>
