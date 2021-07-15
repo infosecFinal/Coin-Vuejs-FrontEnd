@@ -1,21 +1,36 @@
 <template>
+  <div>
+      <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <span class="text-black">Board</span>
+                    <span class="mx-2 mb-0">/</span>
+                    <strong class="text-black">Free</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+     <div class="container">
+    <div class="row justify-content-between">
+    <div class="col-md-12">
+      <h2 class="h3 mb-5 text-black">Chatroom</h2>
+      </div>
+    </div>
+     </div>
   <div style="padding-bottom: 0.5em">
     <div class='zindex'>
-        <h4 align="center">Chatting room</h4>
         <b-list-group>
           <b-list-group-item id="container" class="list-group mb-9 zindex">
             <p v-for="(msg, idx) in msgs" :key="idx">{{ msg.content }}</p>
           </b-list-group-item>
         </b-list-group>
     </div>
-    <css-doodle class="background1">
-      :doodle { @grid: 15 / 100vmax; background: #fff; cursor: pointer; }
-      :doodle(:hover) { --s: 1 ; } :after { content:
-      @pick(DOGE,BTC,ETH,ETC,XRP); font-size: 4vmax; color: #ececec; transform:
-      scale(@rand(.2, .9)); } transition: .5s cubic-bezier(.175, .885, .32,
-      1.275); transition-delay: @rand(650ms); transform:
-      translateY(calc(var(--s) * 100%)) rotate(calc(var(--s) * 360deg));
-    </css-doodle>
+  </div>
   </div>
 </template>
 
@@ -32,7 +47,7 @@ export default {
   top: 100px;
   left: auto;
   bottom: auto;
-  /* right: auto; */
+  right: auto;
 }
 .list-group {
   top: 300px;
@@ -52,16 +67,16 @@ export default {
   overflow: hidden;
   width: 100%;
 }
-/* span {
+ span {
   display: inline-block;
   text-indent: 0rem;
   position: relative;
-} */
-/* .abs1 {
+}
+.abs1 {
   position: absolute;
   margin-top: 130px;
   left: auto;
   bottom: auto;
   right: auto;
-} */
+}
 </style>

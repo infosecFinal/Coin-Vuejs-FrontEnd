@@ -38,7 +38,7 @@
                     <br>
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
                         <div>
-                            <image src="images/profile.jpg" width="200px" height="200px" style="border:2px solid #f3f3f3;"></image>
+                            <img src="images/profile.jpg" width="200px" height="200px" style="border:2px solid #f3f3f3;"/>
                         </div>
                         <div class="col-lg-7" style="padding-left: 50px; " >
 

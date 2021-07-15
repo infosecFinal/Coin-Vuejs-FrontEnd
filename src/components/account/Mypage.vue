@@ -35,10 +35,11 @@
                    </p>
                </div>
                 <div class="container">
+                    
                     <br>
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
                         <div>
-                            <image src="images/profile.jpg" width="200px" height="200px" style="border:2px solid #f3f3f3;"></image>
+                            <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3;"/>
                         </div>
                         <div class="col-lg-7" style="padding-left: 50px;">
 
@@ -139,13 +140,19 @@ export default {
         user_phone:''
         }  
     },
-    computed: {
-        ...mapGetters('account',[
-            'getLoginId'
-        ])
-    },
     created() {
         this.userInfoPrint();
+        if(!this.getLoginState) {
+          alert('로그인 후 이용해주세요');
+          this.$router.go(-1);
+        }
+        this.connect();
+    },
+    computed: {
+        ...mapGetters('account',[
+            'getLoginId',
+            'getLoginState'
+        ])
     },
     methods: {
         async userInfoPrint(){
@@ -163,8 +170,8 @@ export default {
             },
         async upwUpdateConfirm(){
             const resp = await checkUser({
-                _id: this.getLoginId,
-                login_pw: this.login_pw
+                login_id: this.getLoginId,
+                login_pw: this.user_pw
             });
 
             if(resp.data.data !== null){
