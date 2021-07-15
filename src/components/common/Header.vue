@@ -8,8 +8,7 @@
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-collapse
-        is-nav
+      <b-collapse is-nav
         id="nav_collapse"
         class="collapse navbar-collapse justify-content-end"
       >
@@ -84,10 +83,5 @@ a {
 
 .header-wrap {
   background-image: url(//www.toptal.com/designers/subtlepatterns/patterns/symphony.png);
-  /* background-position: bottom; */
-  /* animation: 4s linear 0s infinite bp; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
 }
 </style>
