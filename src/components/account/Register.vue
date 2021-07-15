@@ -24,6 +24,7 @@
 
                         <div class="p-3 p-lg-5 border table" style="background-color: #f1f5f8;  border-radius: 50px;">
                             <div class="form-group mid" style="padding-left: 250px;">
+                                <br>
                                 <div class="form-group row">
                                     <div class="col-md-8">
                                         <label for="user_id" class="text-black mid "> 아이디 <span class="text-danger">*</span></label>
@@ -78,12 +79,12 @@
                                     <div class="col-md-8">
                                         <label class="text-black"> 성별 <span
                                                 class="text-danger">*</span>
+                                                &nbsp;&nbsp;
                                             <input type="radio" v-model="user_gender" name="user_gender" value="남자">남자
                                             <input type="radio" v-model="user_gender" name="user_gender" value="여자">여자
                                         </label>
                                     </div>
                                 </div>
-                                <br>
                                 <br>
                                 <br>
                             <div class="form-group row ">
