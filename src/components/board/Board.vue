@@ -1,46 +1,44 @@
 <template>
   <div>
-    <css-doodle class="background">
-      :doodle { @grid: 15 / 100vmax; background: #fff; cursor: pointer; }
-      :doodle(:hover) { --s: 1 ; } :after { content:
-      @pick(DOGE,BTC,ETH,ETC,XRP); font-size: 4vmax; color: #ececec; transform:
-      scale(@rand(.2, .9)); } transition: .5s cubic-bezier(.175, .885, .32,
-      1.275); transition-delay: @rand(650ms); transform:
-      translateY(calc(var(--s) * 100%)) rotate(calc(var(--s) * 360deg));
-    </css-doodle>
-    <br />
-    <b-container
-      fluid
-      class="text-light text-center abs"
-    >
-         <br>
+    <!-- <css-doodle  class='backgrond'>
+          :doodle {
+              @grid: 18 / 100vmax;
+              background: #0a0c27;
+              }
+              --hue: calc(180 + 1.5 * @row * @col);
+              background: hsl(var(--hue), 50%, 70%);
+              margin: -.5px;
+              transition: @r(.5s) ease;
+              clip-path: polygon(@pick(
+                  '0 0, 100% 0, 100% 100%',
+                  '0 0, 100% 0, 0 100%',
+                  '0 0, 100% 100%, 0 100%',
+                  '100% 0, 100% 100%, 0 100%'
+                  ));
+      </css-doodle>       -->
+ 
+      <br>
+      <b-container fluid class="text-light text-center">
           <b-row>
               <b-col>
                   <b-button @click="fetch">전체보기</b-button>
               </b-col>
-              
-        <b-col col lg="5">
-          <b-input-group>
-            <b-form-select
-              v-model="category"
-              :options="['title', 'content', 'user_id']"
-              :value="null"
-            >
-            </b-form-select>
-            <b-form-input
-              style="backgroung-color:#fff;"
-              v-model="to_find"
-              @keyup.enter="find"
-            ></b-form-input>
-            <b-input-group-append>
-              <b-button text="Button" variant="outline-secondary" @click="find"
-                >Find</b-button
-              >
-            </b-input-group-append>
-          </b-input-group>
-        </b-col>
-      </b-row>
-      <pre></pre>
+              <b-col col lg="5">
+                  <b-input-group>
+                      <b-form-select
+                      v-model="category"
+                    :options="['title','content','user_id']"
+                    :value="null">
+                  </b-form-select>
+                      <b-form-input v-model="to_find" @keyup.enter="find"></b-form-input>
+                          <b-input-group-append>
+                              <b-button text="Button" variant="outline-secondary" @click="find">Find</b-button>
+                          </b-input-group-append>
+                  </b-input-group>
+              </b-col>
+          </b-row>
+      <pre> </pre>
+      
       <b-row>
         <b-col>
           <b-table
