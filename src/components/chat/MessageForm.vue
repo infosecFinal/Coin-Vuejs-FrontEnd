@@ -1,18 +1,20 @@
 <template>
   <b-row>
     <b-form-textarea
+      class="col-sm-5"
       id="textarea-no-resize"
       placeholder="채팅을 입력하세요."
       rows="3"
       v-model="message"
       no-resize
       @keyup.enter="sendMessage"
+      style="width:700px; background-color:#f1f5f8; "
     ></b-form-textarea>
   </b-row>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   name: "MessageForm",
@@ -29,29 +31,29 @@ export default {
       this.message = "";
     },
     computed: {
-      ...mapGetters('account', ['getLoginId'])
+      ...mapGetters("account", ["getLoginId"]),
     },
     methods: {
-        sendMessage() {
-            this.send();
-            this.$emit('scrollDown');
-            this.message = '';
-        },
-        send() {
-          console.log("Connected: ",this.client.connected);
-          console.log("Send Message: " + this.message);
-          if(this.client && this.client.connected) {
-            const msg = {
-              name: this.getLoginId,
-              msg: this.message
-            };
-            console.log(msg);
-            this.client.send("/app/hello",JSON.stringify(msg), {});
-          }
-        },
-    }
-  }
-}
+      sendMessage() {
+        this.send();
+        this.$emit("scrollDown");
+        this.message = "";
+      },
+      send() {
+        console.log("Connected: ", this.client.connected);
+        console.log("Send Message: " + this.message);
+        if (this.client && this.client.connected) {
+          const msg = {
+            name: this.getLoginId,
+            msg: this.message,
+          };
+          console.log(msg);
+          this.client.send("/app/hello", JSON.stringify(msg), {});
+        }
+      },
+    },
+  },
+};
 </script>
 
 <style>
