@@ -34,13 +34,13 @@
                    <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
                    </p>
                </div>
-                <div class="container">
+                <div class="container" >
                     <br>
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
                         <div>
                             <image src="images/profile.jpg" width="200px" height="200px" style="border:2px solid #f3f3f3;"></image>
                         </div>
-                        <div class="col-lg-7" style="padding-left: 50px;">
+                        <div class="col-lg-7" style="padding-left: 50px; " >
 
                                 <div class="form-group ">
                                     <div class="col-md-25">
