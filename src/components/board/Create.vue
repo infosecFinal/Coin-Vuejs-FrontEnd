@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="mid" style="display:block; margin: 0 auto;">
       <br><br>
     <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px;">
       <br><br>
-      <b-input :value="content_id ? user_id : getLoginId" readonly  style="width:700px; display:block; margin: 0 auto;"></b-input>
+      <b-input :value="content_id ? user_id : getLoginId" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
       <br>
-      <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto;"></b-form-input>
+      <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto; "></b-form-input>
       <br><br>
       <b-form-textarea
 
@@ -29,12 +29,12 @@
       drop-placeholder="Drop file here..."
       multiple
     ></b-form-file>
-    <div class="col" align="right" style="margin-right:50px;">
+    <div class="col" align="right" style="margin-right:70px;">
     <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
      &nbsp;
     <b-button pill variant="warning" @click="cancel">취소</b-button>
     </div>
-    <br>
+    <br><br>
   </div>
   </div>
 </template>
