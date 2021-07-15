@@ -32,7 +32,7 @@
     <div class="col" align="right" style="margin-right:50px;">
     <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
      &nbsp;
-    <b-button pill variant="warning" @click="cancle">취소</b-button>
+    <b-button pill variant="warning" @click="cancel">취소</b-button>
     </div>
     <br>
   </div>
@@ -73,7 +73,7 @@ export default {
         ])
     },
     methods: {
-        cancle() {
+        cancel() {
             this.$router.push({
                 path: '/board/free'
             })
@@ -118,7 +118,7 @@ export default {
                 formData.append('files', this.file1[i]);
                 console.log(i,": ", this.file1[i])
             }
-            const resp = await insertFile(formData,this.content_id?this.content_id:'new');
+            const resp = await insertFile(formData,this.content_id?this.content_id:'new')
             console.log(resp);
         }
     }

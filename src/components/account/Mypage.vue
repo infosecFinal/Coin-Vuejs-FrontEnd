@@ -41,6 +41,7 @@
                         <div>
                             <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3;"/>
                         </div>
+                    
                         <div class="col-lg-7" style="padding-left: 50px;">
 
                                 <div class="form-group ">
@@ -114,6 +115,7 @@
 
 
                         </div>
+                        
                     </div>
                 </div>
             </div>

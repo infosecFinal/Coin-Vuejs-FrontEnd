@@ -30,16 +30,13 @@
 
 
             <div class="col-lg-10" style="padding-left:40px;">
-               <div class="bg-light rounded p-3">
-                   <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
-                   </p>
-               </div>
+             
                 <div class="container">
-                    <br>
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
                         <div>
-                            <img src="images/profile.jpg" width="200px" height="200px" style="border:2px solid #f3f3f3;"/>
+                            <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3;"/>
                         </div>
+                        <div class="custom-file b-form-file is-invalid" id="__BVID__95__BV_file_outer_" style="margin: 50px;"><input type="file" multiple="multiple" class="custom-file-input is-invalid" id="__BVID__95" style="z-index: -5;"><label data-browse="Browse" class="custom-file-label" for="__BVID__95"><span class="d-block form-file-text" style="pointer-events: none;">Choose a file or drop it here...</span></label></div>
                         <div class="col-lg-7" style="padding-left: 50px;">
 
                                 <div class="form-group ">
