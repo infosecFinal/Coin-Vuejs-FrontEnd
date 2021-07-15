@@ -27,13 +27,11 @@
             </b-nav>
             </div>
 
-
-
-            <div class="col-lg-10" style="padding-left:40px;">
-               <div class="bg-light rounded p-3">
+               <div class="bg-light rounded p-3 table">
                    <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
                    </p>
                </div>
+               <div class="col-lg-10" style="padding-left:40px; background-color: #f1f5f8;  border-radius: 50px;">
                 <div class="container" >
                     <br>
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">

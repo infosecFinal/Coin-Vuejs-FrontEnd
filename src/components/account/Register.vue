@@ -15,7 +15,7 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mid" style="text-align:center">
+                <div class="col-md-12 mid" >
                     <h2 class="h3 mb-5 text-black ">Register</h2>
                 </div>
                 <div class="col-md-12 mid">

@@ -15,7 +15,7 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12" style="text-align:center">
+                <div class="col-md-12" >
                     <h2 class="h3 mb-5 text-black">Login</h2>
                 </div>
                 <div class="col-md-12">

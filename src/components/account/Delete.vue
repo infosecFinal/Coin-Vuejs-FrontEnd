@@ -27,7 +27,7 @@
             </b-nav>
             </div>
             <div class="col-lg-10" style="padding-left:40px;">
-                <div class="bg-light rounded p-3" style="width:870px">
+                <div class="bg-light rounded p-3 table" style="width:870px">
                     <p class="mb-0"> 계정을 삭제를 원하시면 비밀번호 입력 후, <a class="text-decoration-none">회원탈퇴</a>를 눌러주세요.
                     </p>
                 </div>
@@ -116,6 +116,26 @@ export default {
 
 
 <style scoped>
+.table {
+   max-width: 900px; 
+   left:0; 
+   right:0; 
+   margin-left:10%; 
+   margin-right:10%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:0%; 
+   margin-bottom:0%;
+   }
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+.mid{
+   min-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+}
+
 .input-field {
   font-family: inherit;
   font-size: 0.95rem;
