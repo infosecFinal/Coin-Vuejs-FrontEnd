@@ -15,20 +15,20 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 wrapmid">
-                    <h2 class="h3 mb-5 text-black">Register</h2>
+                <div class="col-md-12 mid wrapmid">
+                    <h2 class="h3 mb-5 text-black ">Register</h2>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mid">
 
-                    <form name="regiform" action="#" method="post">
+                    <form name="regiform" action="#" method="post" class="mid">
 
-                        <div class="p-3 p-lg-5 border table">
-                            <div class="form-group" style="padding-left: 250px;">
+                        <div class="p-3 p-lg-5 border table" style="background-color: #f1f5f8">
+                            <div class="form-group mid" style="padding-left: 250px;">
                                 <div class="form-group row">
                                     <div class="col-md-8">
-                                        <label for="user_id" class="text-black"> 아이디 <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="user_id" name="user_id"
-                                               required="required" v-model="user_id">
+                                        <label for="user_id" class="text-black mid "> 아이디 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control input-field" id="user_id" name="user_id"
+                                               required="required" v-model="user_id" style="border:none ">
 
                                         <b-button class="text-decoration-none" id="userDuplicateBtn" @click="userDuplicate" variant="link" style="float: right; color:#75b239; padding:0px; margin:0px;">중복확인
                                         </b-button>
@@ -36,32 +36,32 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-8">
-                                        <label for="user_pw" class="text-black"> 비밀번호 <span class="text-danger">*</span></label>
-                                        <input type="password" class="form-control" id="user_pw" name="user_pw"
-                                               required="required" v-model="user_pw">
+                                        <label for="user_pw" class="text-black "> 비밀번호 <span class="text-danger">*</span></label>
+                                        <input type="password" class="form-control input-field" id="user_pw" name="user_pw"
+                                               required="required" v-model="user_pw" style="border:none">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-8">
                                         <label for="user_name" class="text-black"> 이름 <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="user_name" name="user_name"
-                                               required="required" v-model="user_name">
+                                        <input type="text" class="form-control input-field" id="user_name" name="user_name"
+                                               required="required" v-model="user_name" style="border:none">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-8">
                                         <label for="user_phone" class="text-black"> 휴대폰 번호 <span
                                                 class="text-danger">*</span></label>
-                                        <input type="tel" class="form-control" id="user_phone" name="user_phone"
-                                               required="required" v-model="user_phone">
+                                        <input type="tel" class="form-control input-field" id="user_phone" name="user_phone"
+                                               required="required" v-model="user_phone" style="border:none">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-8">
                                         <label for="user_address" class="text-black"> 주소 <span
                                                 class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" id="user_address" name="user_address"
-                                               required="required" v-model="user_address">
+                                        <input type="email" class="form-control input-field" id="user_address" name="user_address"
+                                               required="required" v-model="user_address" style="border:none">
                                     </div>
                                 </div>
 
@@ -69,8 +69,8 @@
                                     <div class="col-md-8">
                                         <label for="user_email" class="text-black"> 이메일 <span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="user_email" name="user_email"
-                                               required="required" v-model="user_email">
+                                        <input type="text" class="form-control input-field" id="user_email" name="user_email"
+                                               required="required" v-model="user_email" style="border:none">
                                     </div>
                                 </div>
                                 <br>
@@ -86,9 +86,9 @@
                                 <br>
                                 <br>
                                 <br>
-                            <div class="form-group row">
-                                    <div class="col-lg-6" style="padding-left: 150px;">
-                                        <b-button id="userRegiBtn" @click="registerUser" variant="primary" class="btn btn-primary btn-lg btn-block" >회원가입</b-button>
+                            <div class="form-group row ">
+                                    <div class="col-lg-6 " style="padding-left: 150px;">
+                                        <b-button pill id="userRegiBtn" @click="registerUser" variant="warning" class="btn btn-primary btn-block wrapmid" >회원가입</b-button>
                                     </div>
                                 </div>
 
@@ -170,4 +170,23 @@ export default {
     text-align:center;
     vertical-align:middle;
 }
+.mid{
+   min-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+}
+
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
+}
+
 </style>

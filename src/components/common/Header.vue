@@ -31,8 +31,12 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { mapGetters } from "vuex";
 // import request from './request.js'
+=======
+import {mapGetters} from 'vuex'
+>>>>>>> f44338d59ce1164c3f387c4ea8cbc262e06a93c1
 export default {
   name: "Header",
   data() {
