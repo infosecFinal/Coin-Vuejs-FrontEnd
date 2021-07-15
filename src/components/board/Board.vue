@@ -1,6 +1,17 @@
 <template>
   <div>
-      <br>
+      <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <span class="text-black">Board</span>
+                    <span class="mx-2 mb-0">/</span>
+                    <strong class="text-black">Free</strong>
+                </div>
+            </div>
+        </div>
+    </div>
       <b-container fluid class="text-light text-center">
           <b-row>
               <b-col>
