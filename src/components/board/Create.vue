@@ -1,28 +1,39 @@
 <template>
   <div>
+    <div class="col-sm-7 table" style="background-color:#f1f5f8 ">
       <b-input :value="content_id ? user_id : getLoginId" readonly></b-input>
-      <b-input v-model="title" placeholder="write title"></b-input>
+      <br>
+      <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto;"></b-form-input>
+      <br><br>
       <b-form-textarea
+
       id="textarea"
       v-model="content"
       placeholder="write Content"
       rows="3"
       max-rows="6"
+      style="height:300px; width:700px; display:block; margin: 0 auto;"
     ></b-form-textarea>
     <div v-if="files">
             <span v-for="(file, idx) in files" :key=idx>{{file.origin_file_Name}}<button @click="deleteFileFromList(idx)">X</button>
                 <br>
             </span>
     </div>
-    <b-form-file
+      <b-form-file
+      style="margin:50px"
       v-model="file1"
       :state="Boolean(file1)"
       placeholder="Choose a file or drop it here..."
       drop-placeholder="Drop file here..."
       multiple
     ></b-form-file>
-    <b-button @click="content_id ? update() : insert()">Save</b-button>
-    <b-button @click="cancle">Cancle</b-button>
+    <div class="col" align="right" style="margin-right:50px;">
+    <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
+     &nbsp;
+    <b-button pill variant="warning" @click="cancle">취소</b-button>
+    </div>
+    <br>
+  </div>
   </div>
 </template>
 
@@ -113,5 +124,27 @@ export default {
 </script>
 
 <style>
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+.table {
+   max-width: 800px;
+   max-height: 1000px; 
+   left:0; 
+   right:0; 
+   margin-left:20%; 
+   margin-right:20%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:auto; 
+   margin-bottom:auto;
+   }
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
 
 </style>
