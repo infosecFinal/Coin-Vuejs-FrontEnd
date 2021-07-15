@@ -1,7 +1,7 @@
 <template>
   <div>
       <br><br>
-    <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px; ">
+    <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px;">
       <br><br>
       <b-input :value="content_id ? user_id : getLoginId" readonly  style="width:700px; display:block; margin: 0 auto;"></b-input>
       <br>

@@ -17,7 +17,7 @@
 
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-md-12">
+            <div class="col-md-12" >
                 <h2 class="h3 mb-5 text-black">Delete account</h2>
             </div>
               <div class="col-lg-2">
@@ -27,48 +27,51 @@
             </b-nav>
             </div>
             <div class="col-lg-10" style="padding-left:40px;">
-                <div class="bg-light rounded p-3">
+                <div class="bg-light rounded p-3" style="width:870px">
                     <p class="mb-0"> 계정을 삭제를 원하시면 비밀번호 입력 후, <a class="text-decoration-none">회원탈퇴</a>를 눌러주세요.
                     </p>
                 </div>
                 <br>
+                <div class="col-md-10">
                 <form name="deleteform" action="#" method="post">
-                    <div class="p-3 p-lg-5 border">
-                        <div class="form-group" style="padding-left: 250px;">
-
-                            <div class="form-group row">
-                                <div class="col-md-6">
+                    <div class="p-4 p-lg-4 border" style="background-color:#f1f5f8;  border-radius: 50px;">
+                        <div class="form-group" style="padding-left: 250px; \" >
+                            <div class="form-group row" style="display:block; margin: 0 auto;">
+                                <div class="col-md-7" style="border:none">
+                                    <br><br>
                                     <label class="text-black">아이디</label>
                                     <input disabled
-                                    class="form-control" id="login_id" name="login_id"
-                                    v-model="getLoginId">
+                                    class="form-control input-field" id="login_id" name="login_id"
+                                    v-model="getLoginId" style="border:none">
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-6">
+                            <div class="form-group row" style="display:block; margin: 0 auto;">
+                                <div class="col-md-7">
+                                    <br>
                                     <label for="login_pw" class="text-black">비밀번호</label>
-                                    <input type="password" class="form-control" id="login_pw" name="login_pw" v-model="login_pw">
+                                    <input type="password" class="form-control input-field" id="login_pw" name="login_pw" v-model="login_pw" style="border:none">
                                 </div>
                             </div>
                             <div>
-                                <div class="form-group row"></div>
+                                <div class="form-group row" style="display:block; margin: 0 auto;"></div>
                             </div>
-                            <br>
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                            <b-button id="DeleteBtn"                                
+                            <br><br>
+                            <div class="form-group row" style="display:block; margin: 0 auto;">
+                                <div class="col-md-5" style="display:block; margin: 0 auto;">
+                                            <b-button pill id="DeleteBtn"                                
                                             @click="userDelete"
-                                             class="btn btn-primary btn-lg btn-block" variant="primary">
+                                             class="btn btn-primary btn-block" variant="warning">
                                              회원탈퇴</b-button>
+                                             <br>
                                     </div>
+                                    <br>
                             </div>
                         </div>
                     </div>
                 </form>
+                </div>
             </div>
-
-
         </div>
     </div>
     <br>
@@ -109,3 +112,22 @@ export default {
     }
 }
 </script>
+
+
+
+<style scoped>
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
+}
+</style>
