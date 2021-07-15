@@ -15,7 +15,7 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 wrapmid">
+                <div class="col-md-12" style="text-align:center">
                     <h2 class="h3 mb-5 text-black">Login</h2>
                 </div>
                 <div class="col-md-12">
@@ -30,6 +30,7 @@
                             </div>
                             <br>
                             <div class="form-group" style="padding-left: 200px">
+                                <div class="row" style="width:700px; display:block; margin: 0 auto;">
                                 <div class="form-group row">                                            
                                     <div class="col-lg-7">
                                         <label for="login_id" class="text-black ">아이디</label>
@@ -42,15 +43,14 @@
                                         <input type="password" class="form-control input-field" id="login_pw" name="login_pw" v-model="login_pw" placeholder="PW" style="border:none">
                                     </div>
                                 </div>
+                                </div>
                             
                             <br>
-                                 <div class="form-group row">
-                                        <div class="col-md-3 wrapmid">
+                                 <div class="form-group row" style="display:block; margin: 0 auto;">
+                                        <div class="col-md-5 wrapmid">
                                             <b-button pill id="LoginBtn"  @click="approveUser" class="btn btn-block" variant="warning">로그인</b-button>
-                                        </div>
-
-                                     <div class="col-md-3 wrapmid">
-                                         <b-button pill href = "/register" variant="warning" class=" btn-block">회원가입</b-button>
+                                               &nbsp;
+                                            <b-button pill href = "/register" variant="warning" class=" btn-block">회원가입</b-button>
                                      </div>
                                  </div>
                             </div>
@@ -78,7 +78,8 @@ export default {
     methods: {
         ...mapMutations('account',[
             'setId',
-            'setPage',
+            'setLogout',
+            'setMypage',
             'setLoginState'
         ]),
         async approveUser() {
@@ -88,14 +89,15 @@ export default {
             });
             if(resp.data.data !== null) {
                 this.setId(this.login_id);
-                this.setPage('Mypage');
+                this.setLogout('Logout');
+                this.setMypage('Mypage');
                 this.setLoginState(true);
                 this.$router.push({
                     path: '/board/free'
                 })
             }
             else alert('fail');
-        },
+        }
     }
 }
 </script>

@@ -24,7 +24,6 @@ export const deleteData = (id) => {
     })
 }
 
-
 export const findData = (category, to_find) => {
     return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);   
 }
@@ -63,4 +62,3 @@ export const updateUser = (data) => {
     return axios.post(`${baseURL}/account/mypage/update`, data)
 
 }
-

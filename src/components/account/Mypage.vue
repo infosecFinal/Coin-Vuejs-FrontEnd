@@ -57,7 +57,7 @@
                                         <label class="text-black">비밀번호</label>
                                         <input type="password"
                                         class="form-control" id="login_pw" name="login_pw"
-                                        v-model="login_pw">
+                                        v-model="user_pw">
                                     </div>
 
                                     <div style="float:right;">
@@ -72,7 +72,7 @@
                                         <label class="text-black">이름</label>
                                         <input disabled
                                         class="form-control" id="login_name" name="login_name"
-                                        v-model="login_name">
+                                        v-model="user_name">
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                         <label class="text-black">휴대폰 번호</label>
                                         <input disabled
                                         class="form-control" id="login_phone" name="login_phone"
-                                        v-model="login_phone">
+                                        v-model="user_phone">
                                     </div>
                                 </div>
 
@@ -90,7 +90,7 @@
                                         <label class="text-black">주소</label>
                                         <input disabled
                                         class="form-control" id="login_address" name="login_address"
-                                        v-model="login_address">
+                                        v-model="user_address">
                                     </div>
                                 </div>
 
@@ -99,7 +99,7 @@
                                         <label class="text-black">이메일</label>
                                         <input disabled
                                         class="form-control" id="login_email" name="login_email"
-                                        v-model="login_email">
+                                        v-model="user_email">
                                     </div>
                             </div>
                             <div class="form-group">
@@ -107,7 +107,7 @@
                                         <label class="text-black">성별</label>
                                         <input disabled
                                         class="form-control" id="login_gender" name="login_gender"
-                                        v-model="login_gender">
+                                        v-model="user_gender">
                                     </div>
                             </div>
 
@@ -131,11 +131,12 @@ export default {
     name: 'Mypage',
     data() {
         return{
-        login_name:'',
-        login_address:'',
-        login_email:'',
-        login_gender:'',
-        login_phone:''
+        user_pw:'',
+        user_name:'',
+        user_address:'',
+        user_email:'',
+        user_gender:'',
+        user_phone:''
         }  
     },
     computed: {
@@ -152,16 +153,17 @@ export default {
             console.log(resp);
             if(resp.data.data !== null){
                const userData = resp.data.data;
-               this.login_name = userData.user_name;
-               this.login_address = userData.user_address;
-               this.login_email = userData.user_email;
-               this.login_gender = userData.user_gender;
-               this.login_phone = userData.user_phone;
+               this.user_pw = userData.user_pw;
+               this.user_name = userData.user_name;
+               this.user_address = userData.user_address;
+               this.user_email = userData.user_email;
+               this.user_gender = userData.user_gender;
+               this.user_phone = userData.user_phone;
                 }
             },
         async upwUpdateConfirm(){
             const resp = await checkUser({
-                login_id: this.getLoginId,
+                _id: this.getLoginId,
                 login_pw: this.login_pw
             });
 

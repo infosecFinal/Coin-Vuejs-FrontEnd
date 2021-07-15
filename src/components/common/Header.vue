@@ -13,12 +13,10 @@
         class="collapse navbar-collapse justify-content-end"
       >
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item :to="getLoginState ? '/mypage' : '/login'">{{
-            getPage
-          }}</b-nav-item>
-          <b-nav-item to="/register">Register</b-nav-item>
-          <b-nav-item-dropdown text="Board">
+        <b-nav-item to="/">Home</b-nav-item>
+			<b-nav-item :to="getLoginState ?'/':'/login'">{{getLogout}}</b-nav-item>
+			<b-nav-item :to="getLoginState ?'/mypage':'/register'">{{getMypage}} </b-nav-item>
+			<b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
             <b-dropdown-item to="/board/free">Free</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -29,19 +27,25 @@
   </div>
 </template>
 
+
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from 'vuex'
 export default {
-  name: "Header",
-  data() {
-    return {
-      page: "Login",
-    };
-  },
-  computed: {
-    ...mapGetters("account", ["getLoginState", "getPage"]),
-  },
-};
+    name: "Header",
+    data() {
+        return {
+        login: 'Login',
+        register: 'Register'
+        }
+    },
+    computed: {
+        ...mapGetters('account', [
+            'getLoginState',
+            'getLogout',
+            'getMypage'
+        ])
+    }
+}
 </script>
 
 <style scoped>

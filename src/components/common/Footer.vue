@@ -26,3 +26,23 @@ footer {
   margin: 200px 0 0 0;
 }
 </style>
+// footer{border-top:1px solid #35495e; text-align:center; font-size:16px; color:#000000; margin:200px 0 0 0;}
+// .background {
+//   font: 900 100px/0.65 system-ui;
+//   margin: 0;
+//   overflow: hidden;
+//   width: 100%;
+// }
+// span {
+//   display: inline-block;
+//   text-indent: 0rem;
+//   position: relative;
+// }
+// .abs {
+//   position: absolute;
+//   top: 100px;
+//   left: auto;
+//   bottom: auto;
+//   right: auto;
+// }
+// </style>
