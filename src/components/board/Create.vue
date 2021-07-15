@@ -143,5 +143,10 @@ export default {
     text-align:center;
     vertical-align:middle;
 }
+.custom-file, .custom-file-input {
+    position: relative;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+}
 
 </style>
