@@ -5,18 +5,34 @@
         ><img src="../../assets/logo.png" style="width: 50px; height: 50px;"
       /></b-navbar-brand>
       <h1>CoinNet</h1>
-
+      <div>
+        <b-button v-b-toggle.sidebar-1>side menu</b-button>
+        <b-sidebar id="sidebar-1" title="Sidebar" shadow>
+          <div class="px-3 py-2">
+            <b-dropdown-item to="/">Home</b-dropdown-item>
+            <b-dropdown-item to="/login">Login</b-dropdown-item>
+            <b-dropdown-item to="/register">Register</b-dropdown-item>
+            <b-dropdown-item to="/board/free">Board</b-dropdown-item>
+            <b-dropdown-item to="/chatroom">Chatroom</b-dropdown-item>
+          </div>
+        </b-sidebar>
+      </div>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-collapse is-nav
+      <b-collapse
+        is-nav
         id="nav_collapse"
         class="collapse navbar-collapse justify-content-end"
       >
         <b-navbar-nav>
-        <b-nav-item to="/">Home</b-nav-item>
-			<b-nav-item :to="getLoginState ?'/':'/login'">{{getLogout}}</b-nav-item>
-			<b-nav-item :to="getLoginState ?'/mypage':'/register'">{{getMypage}} </b-nav-item>
-			<b-nav-item-dropdown text="Board">
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item :to="getLoginState ? '/' : '/login'">{{
+            getLogout
+          }}</b-nav-item>
+          <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
+            >{{ getMypage }}
+          </b-nav-item>
+          <b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
             <b-dropdown-item to="/board/free">Free</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -27,25 +43,20 @@
   </div>
 </template>
 
-
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-    name: "Header",
-    data() {
-        return {
-        login: 'Login',
-        register: 'Register'
-        }
-    },
-    computed: {
-        ...mapGetters('account', [
-            'getLoginState',
-            'getLogout',
-            'getMypage'
-        ])
-    }
-}
+  name: "Header",
+  data() {
+    return {
+      login: "Login",
+      register: "Register",
+    };
+  },
+  computed: {
+    ...mapGetters("account", ["getLoginState", "getLogout", "getMypage"]),
+  },
+};
 </script>
 
 <style scoped>
