@@ -1,6 +1,7 @@
 const state = {
     login_id:'',
-    page:'Login',
+    login:'Login',
+    register:'Register',
     isLogin: false
 };
 
@@ -9,8 +10,11 @@ const mutations = {
         $state.login_id=$payload;
         console.log("id: ",$state.login_id)
     },
-    setPage: ($state, $payload) => {
-        $state.page=$payload;
+    setLogout: ($state, $payload) => {
+        $state.login=$payload;
+    },
+    setMypage: ($state, $payload) => {
+        $state.register=$payload;
     },
     setLoginState: ($state, chk) => {
         $state.isLogin = chk
@@ -19,7 +23,8 @@ const mutations = {
 
 const getters = {
     getLoginState: state => state.isLogin,
-    getPage: state => state.page,
+    getLogout: state => state.login,
+    getMypage: state => state.register,
     getLoginId: state => state.login_id
 }
 

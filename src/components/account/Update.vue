@@ -55,13 +55,13 @@
                                 <div class="form-group">
                                     <div class="col-md-25">
                                         <label class="text-black">비밀번호</label>
-                                        <input
+                                        <input type="password"
                                         class="form-control" id="login_pw" name="login_pw"
-                                        v-model="login_pw">
+                                        v-model="user_pw">
                                     </div>
 
                                     <div style="float:right;">
-                                        <b-button class="text-decoration-none" id="userDuplicateBtn" @click="upwUpdateConfirm" variant="link" style="float: right; color:#75b239; padding:0px; margin:0px;">수정완료
+                                        <b-button class="text-decoration-none" id="userDuplicateBtn" @click="upwUpdateFinish" variant="link" style="float: right; color:#75b239; padding:0px; margin:0px;">수정완료
                                         </b-button>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                         <label class="text-black">이름</label>
                                         <input disabled
                                         class="form-control" id="login_name" name="login_name"
-                                        v-model="getLoginId">
+                                        v-model="user_name">
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                         <label class="text-black">휴대폰 번호</label>
                                         <input
                                         class="form-control" id="login_phone" name="login_phone"
-                                        v-model="getLoginId">
+                                        v-model="user_phone">
                                     </div>
                                 </div>
 
@@ -90,7 +90,7 @@
                                         <label class="text-black">주소</label>
                                         <input
                                         class="form-control" id="login_address" name="login_address"
-                                        v-model="getLoginId">
+                                        v-model="user_address">
                                     </div>
                                 </div>
 
@@ -99,7 +99,7 @@
                                         <label class="text-black">이메일</label>
                                         <input disabled
                                         class="form-control" id="login_email" name="login_email"
-                                        v-model="getLoginId">
+                                        v-model="user_email">
                                     </div>
                             </div>
                             <div class="form-group">
@@ -107,7 +107,7 @@
                                         <label class="text-black">성별</label>
                                         <input disabled
                                         class="form-control" id="login_gender" name="login_gender"
-                                        v-model="getLoginId">
+                                        v-model="user_gender">
                                     </div>
                             </div>
 
@@ -124,32 +124,57 @@
 
 
 <script>
-import { updateUser } from '@/service'
+import { getUserInfo, updateUser } from '@/service'
 import { mapGetters } from 'vuex'
 
 export default {
     name: 'Update',
     data() {
         return{
-        
-        login_pw:'' 
-        }  
+        user_pw:'',
+        user_name:'',
+        user_address:'',
+        user_email:'',
+        user_gender:'',
+        user_phone:''
+        }
     },
     computed: {
         ...mapGetters('account',[
             'getLoginId'
         ])
     },
+    created() {
+        this.userInfoPrint();
+    },
     methods: {
-        async upwUpdateConfirm(){
+        async userInfoPrint(){
+            const resp = await getUserInfo(this.getLoginId);
+            console.log(resp);
+            if(resp.data.data !== null){
+               const userData = resp.data.data;
+               this.user_pw = userData.user_pw;
+               this.user_name = userData.user_name;
+               this.user_phone = userData.user_phone;
+               this.user_address = userData.user_address;
+               this.user_email = userData.user_email;
+               this.user_gender = userData.user_gender;
+                }
+            },
+        async upwUpdateFinish(){
             const resp = await updateUser({
-                login_id: this.getLoginId,
-                login_pw: this.login_pw
+                user_id: this.getLoginId,
+                user_pw: this.user_pw,
+                user_name: this.user_name,
+                user_phone:this.user_phone,
+                user_address:this.user_address,
+                user_email:this.user_email,
+                user_gender:this.user_gender
             });
 
             if(resp.data.data !== null){
                 this.$router.push({
-                    path: '/mypage/update'
+                    path: '/mypage'
                 })
             }
             else alert("비밀번호가 틀렸습니다.")
