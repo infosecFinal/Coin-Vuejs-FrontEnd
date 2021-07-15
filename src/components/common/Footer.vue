@@ -1,13 +1,13 @@
 <template>
 	<footer>
-	<!-- <css-doodle class="background">
+	<css-doodle class="background">
       :doodle { @grid: 15 / 100vmax; background: #fff; cursor: pointer; }
       :doodle(:hover) { --s: 1 ; } :after { content:
-      @pick(doge,btc,eth,etc,xrp); font-size: 4vmax; color: #000; transform:
+      @pick(doge,btc,eth,etc,xrp); font-size: 4vmax; color: #ececec; transform:
       scale(@rand(.2, .9)); } transition: .5s cubic-bezier(.175, .885, .32,
       1.275); transition-delay: @rand(650ms); transform:
       translateY(calc(var(--s) * 100%)) rotate(calc(var(--s) * 360deg));
-    </css-doodle> -->
+    </css-doodle>
 		<pre> </pre>
 		<p> CopyRight CoinNet
 		</p>

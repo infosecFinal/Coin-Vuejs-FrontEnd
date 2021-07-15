@@ -15,12 +15,12 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mid wrapmid">
+                <div class="col-md-12 mid" style="text-align:center">
                     <h2 class="h3 mb-5 text-black ">Register</h2>
                 </div>
                 <div class="col-md-12 mid">
 
-                    <form name="regiform" action="#" method="post" class="mid">
+                    <form name="regiform" action="#" method="post"  style="text-align:center">
 
                         <div class="p-3 p-lg-5 border table" style="background-color: #f1f5f8">
                             <div class="form-group mid" style="padding-left: 250px;">
