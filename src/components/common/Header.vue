@@ -22,15 +22,11 @@
       <b-collapse
         is-nav
         id="nav_collapse"
-        class="collapse navbar-collapse justify-content-end"
-      >
+        class="collapse navbar-collapse justify-content-end">
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item :to="getLoginState ? '/' : '/login'">{{
-            getLogout
-          }}</b-nav-item>
-          <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
-            >{{ getMypage }}
+          <b-nav-item :to="getLoginState ? '' : '/login'">{{getLogout}}</b-nav-item>
+          <b-nav-item :to="getLoginState ? '/mypage' : '/register'">{{ getMypage }}
           </b-nav-item>
           <b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
@@ -55,7 +51,7 @@ export default {
   },
   computed: {
     ...mapGetters("account", ["getLoginState", "getLogout", "getMypage"]),
-  },
+  }
 };
 </script>
 

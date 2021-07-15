@@ -114,6 +114,7 @@
 
 
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -142,11 +143,11 @@ export default {
     },
     created() {
         this.userInfoPrint();
-        // if(!this.getLoginState) {
-        //   alert('로그인 후 이용해주세요');
-        //   this.$router.go(-1);
-        // }
-        // this.connect();
+        if(!this.getLoginState) {
+          alert('로그인 후 이용해주세요');
+          this.$router.go(-1);
+        }
+        this.connect();
     },
     computed: {
         ...mapGetters('account',[
