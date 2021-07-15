@@ -12,11 +12,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import {mapGetters} from 'vuex'
 
->>>>>>> f44338d59ce1164c3f387c4ea8cbc262e06a93c1
 export default {
   name: "MessageForm",
   props: ["client"],
@@ -31,22 +28,6 @@ export default {
       this.$emit("scrollDown");
       this.message = "";
     },
-<<<<<<< HEAD
-    send() {
-      console.log(this.client.connected);
-      console.log("Send Message: " + this.message);
-      if (this.client && this.client.connected) {
-        const msg = {
-          name: "test",
-          msg: this.message,
-        };
-        console.log(msg);
-        this.client.send("/app/hello", JSON.stringify(msg), {});
-      }
-    },
-  },
-};
-=======
     computed: {
       ...mapGetters('account', ['getLoginId'])
     },
@@ -69,8 +50,8 @@ export default {
           }
         },
     }
+ }
 }
->>>>>>> f44338d59ce1164c3f387c4ea8cbc262e06a93c1
 </script>
 
 <style>
