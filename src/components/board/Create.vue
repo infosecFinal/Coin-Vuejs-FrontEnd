@@ -126,11 +126,6 @@ export default {
 </script>
 
 <style>
-.wrapmid{
-    display:table-cell;
-    text-align:center;
-    vertical-align:middle;
-}
 .table {
    max-width: 800px;
    max-height: 1000px; 

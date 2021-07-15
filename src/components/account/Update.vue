@@ -181,3 +181,40 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.table {
+   max-width: 900px; 
+   left:0; 
+   right:0; 
+   margin-left:10%; 
+   margin-right:10%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:0%; 
+   margin-bottom:0%;
+   }
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+.mid{
+   min-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+}
+
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
+}
+</style>
