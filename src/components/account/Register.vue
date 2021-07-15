@@ -20,9 +20,9 @@
                 </div>
                 <div class="col-md-12 mid">
 
-                    <form name="regiform" action="#" method="post"  style="text-align:center">
+                    <form name="regiform" action="#" method="post">
 
-                        <div class="p-3 p-lg-5 border table" style="background-color: #f1f5f8">
+                        <div class="p-3 p-lg-5 border table" style="background-color: #f1f5f8;  border-radius: 50px;">
                             <div class="form-group mid" style="padding-left: 250px;">
                                 <div class="form-group row">
                                     <div class="col-md-8">

@@ -21,7 +21,7 @@
                 <div class="col-md-12">
 
                     <form name="loginform" action="#" method="post">
-                        <div class="p-4 p-lg-4 border table" style="background-color:#f1f5f8">
+                        <div class="p-4 p-lg-4 border table" style="background-color:#f1f5f8;  border-radius: 50px;">
                             <div style="padding-left: 200px; \">
                                 <select  id="login" class="login" name="login">
                                     <option value="user" selected> 회원 </option>
