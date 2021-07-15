@@ -29,7 +29,7 @@
 
 
 
-            <div class="col-lg-8" style=" display:block; margin: 0 auto;">
+            <div class="col-lg-8" style=" display:block; margin: 0 auto; ">
                <div class="bg-light rounded p-3 table mid">
                    <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
                    </p>
