@@ -6,8 +6,8 @@
       /></b-navbar-brand>
       <h1>CoinNet</h1>
       <div>
-        <b-button v-b-toggle.sidebar-1>side menu</b-button>
-        <b-sidebar id="sidebar-1" title="Sidebar" shadow>
+        <b-button circle variant="layout-warning" v-b-toggle.sidebar-1><img src="../../assets/menu.png" style="width: 25px; height: 25px;" alt="Image 1"/></b-button>
+        <b-sidebar id="sidebar-1" title=" " shadow width=20%>
           <div class="px-3 py-2">
             <b-dropdown-item to="/">Home</b-dropdown-item>
             <b-dropdown-item to="/login">Login</b-dropdown-item>
