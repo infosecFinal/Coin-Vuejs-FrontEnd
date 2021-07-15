@@ -26,7 +26,6 @@
             <b-dropdown-item to="/board/free">Free</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item to="/chatroom">Chatroom</b-nav-item>
-
           <div>
             <b-button circle variant="layout-warning" v-b-toggle.sidebar-right
               ><img
