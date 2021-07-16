@@ -5,20 +5,6 @@
         ><img src="../../assets/logo.png" style="width: 50px; height: 50px;"
       /></b-navbar-brand>
       <h1>CoinNet</h1>
-      <div>
-        <b-button circle variant="layout-warning" v-b-toggle.sidebar-1><img src="../../assets/menu.png" style="width: 25px; height: 25px;" alt="Image 1"/></b-button>
-        <b-sidebar id="sidebar-1" title=" " shadow width="200px">
-          <div class="px-3 py-2">
-            <b-dropdown-item to="/">Home</b-dropdown-item>
-            <b-dropdown-item to="/board/free">Board</b-dropdown-item>
-            <b-nav-item-dropdown text="Board">
-              <b-dropdown-item href="#">Notice</b-dropdown-item>
-              <b-dropdown-item to="/board/free">Free</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-dropdown-item to="/chatroom">Chatroom</b-dropdown-item>
-          </div>
-        </b-sidebar>
-      </div>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-collapse
