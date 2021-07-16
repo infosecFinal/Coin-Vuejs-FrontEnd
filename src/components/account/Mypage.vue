@@ -37,13 +37,13 @@
                 <div class="container">
                     
                     <br>
-                    <div class=" form-group row table mid" style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;">
+                    <div class="form-group row table mid" style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;">
                        <br><br>
                         <div>
                             <br><br>
                             <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3; display:block; margin: 0 auto;"/>
                         </div>
-                        <div class="col-lg-7 mid" style="display:block; margin: 0 auto;">
+                        <div class="col-lg-8 mid" style="display:block; margin: 0 auto;">
 
                                 <div class="form-group ">
                                     <div class="col-md-8" style="display:block; margin: 0 auto;">
@@ -53,7 +53,7 @@
                                         v-model="user_id">
                                     </div>
                                 </div>
-
+                        
                             <form name="umpform" class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-md-8" style="display:block; margin: 0 auto;">
@@ -148,7 +148,6 @@ export default {
           alert('로그인 후 이용해주세요');
           this.$router.go(-1);
         }
-        this.connect();
     },
     computed: {
         ...mapGetters('account',[
