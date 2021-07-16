@@ -5,7 +5,6 @@
         ><img src="../../assets/logo.png" style="width: 50px; height: 50px;"
       /></b-navbar-brand>
       <h1>CoinNet</h1>
-
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-collapse
@@ -100,5 +99,10 @@ a {
 
 .header-wrap {
   background-image: url(//www.toptal.com/designers/subtlepatterns/patterns/symphony.png);
+}
+.block {
+  width:100%;
+  border:none;
+  background-color: none;
 }
 </style>

@@ -24,41 +24,34 @@ export default {
       message: "",
     };
   },
-  methods: {
-    sendMessage() {
-      this.send();
-      this.$emit("scrollDown");
-      this.message = "";
-    },
-    computed: {
+  computed: {
       ...mapGetters("account", ["getLoginId"]),
     },
-    methods: {
-      sendMessage() {
+  methods: {
+    sendMessage() {
         this.send();
         this.$emit("scrollDown");
         this.message = "";
       },
-      send() {
-        console.log("Connected: ", this.client.connected);
-        console.log("Send Message: " + this.message);
-        if (this.client && this.client.connected) {
-          const msg = {
-            name: this.getLoginId,
-            msg: this.message,
+    send() {
+      console.log("Connected: ", this.client.connected);
+      console.log("Send Message: " + this.message);
+      if (this.client && this.client.connected) {
+        const msg = {
+          name: this.getLoginId,
+          msg: this.message,
           };
           console.log(msg);
           this.client.send("/app/hello", JSON.stringify(msg), {});
         }
       },
     },
-  },
-};
+  };
 </script>
 
 <style>
 #textarea-no-resize {
-  position: fixed;
+  position: relative;
   z-index: 2;
   max-width: 800px;
   left: 0;

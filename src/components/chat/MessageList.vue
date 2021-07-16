@@ -23,7 +23,7 @@
       </div>
     </div>
     <div style="padding-bottom: 0.5em">
-      <div class="zindex">
+      <div>
         <b-list-group>
           <b-list-group-item id="container" class="list-group mb-9 zindex">
             <p v-for="(msg, idx) in msgs" :key="idx">{{ msg.content }}</p>
@@ -42,7 +42,6 @@ export default {
 
 <style>
 .zindex {
-  z-index: 2;
   position: absolute;
   top: 100px;
   left: auto;
@@ -58,25 +57,5 @@ export default {
   overflow: scroll;
   overflow-x: auto;
   overflow-y: auto;
-}
-.background1 {
-  z-index: 1;
-  position: absolute;
-  font: 900 100px/0.65 system-ui;
-  margin: 0;
-  overflow: hidden;
-  width: 100%;
-}
-span {
-  display: inline-block;
-  text-indent: 0rem;
-  position: relative;
-}
-.abs1 {
-  position: absolute;
-  margin-top: 130px;
-  left: auto;
-  bottom: auto;
-  right: auto;
 }
 </style>
