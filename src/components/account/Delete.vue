@@ -98,15 +98,17 @@ export default {
     methods: {
         async userDelete(){
             const resp = await deleteUser({
-                login_id: this.setId(this.login_id),
+                login_id: this.getLoginId,
                 login_pw: this.login_pw
             });
 
-            if(resp.data.data !== null){
+            if(resp.data.data !== 0){
                 alert('계정이 삭제되었습니다!')
                 this.$router.push({
                     path: '/'
                 })
+            } else {
+                alert('게정 삭제 실패')
             }
         }
     }

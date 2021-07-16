@@ -3,7 +3,7 @@
       <br><br>
     <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px;">
       <br><br>
-      <b-input :value="content_id ? user_id : getLoginId" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
+      <b-input :value="user_id" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
       <br>
       <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto; "></b-form-input>
       <br><br>
@@ -29,8 +29,10 @@
       drop-placeholder="Drop file here..."
       multiple
     ></b-form-file>
+
     <div class="col" align="right" style="margin-right:70px;">
     <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
+
      &nbsp;
     <b-button pill variant="warning" @click="cancel">취소</b-button>
     </div>
@@ -40,7 +42,7 @@
 </template>
 
 <script>
-import {insertData, updateData, fetchDataById} from '@/service'
+import {insertData, updateData, fetchDataById, getUserInfo} from '@/service'
 import {insertFile, getFilesInfo, deleteFile} from '@/service/file/file.js'
 import {mapGetters} from 'vuex'
 
@@ -52,6 +54,7 @@ export default {
             title: '',
             content: '',
             file1: null,
+            user_id : '',
             data: {},
             files: [],
             formData: new FormData()
@@ -65,6 +68,10 @@ export default {
             this.title = resp.data.data.title;
             this.content = resp.data.data.content;
             this.files = files.data.list;
+        } else {
+            const resp = await getUserInfo();
+            console.log(resp);
+            this.user_id = resp.data.data.user_id;
         }
     },
     computed: {

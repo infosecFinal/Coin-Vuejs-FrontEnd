@@ -49,8 +49,8 @@
                                     <div class="col-md-8" style="display:block; margin: 0 auto;">
                                         <label class="text-black">아이디</label>
                                         <input disabled
-                                        class="form-control input-field" id="login_id" name="login_id"
-                                        v-model="getLoginId" style="border:none">
+                                        class="form-control" id="login_id" name="login_id"
+                                        v-model="user_id">
                                     </div>
                                 </div>
 
@@ -133,6 +133,7 @@ export default {
     name: 'Mypage',
     data() {
         return{
+        user_id: '',
         user_pw:'',
         user_name:'',
         user_address:'',
@@ -157,7 +158,7 @@ export default {
     },
     methods: {
         async userInfoPrint(){
-            const resp = await getUserInfo(this.getLoginId);
+            const resp = await getUserInfo();
             console.log(resp);
             if(resp.data.data !== null){
                const userData = resp.data.data;
@@ -167,6 +168,7 @@ export default {
                this.user_email = userData.user_email;
                this.user_gender = userData.user_gender;
                this.user_phone = userData.user_phone;
+               this.user_id = userData.user_id;
                 }
             },
         async upwUpdateConfirm(){
