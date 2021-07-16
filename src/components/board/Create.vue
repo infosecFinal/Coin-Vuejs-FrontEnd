@@ -70,8 +70,7 @@ export default {
             this.files = files.data.list;
         } else {
             const resp = await getUserInfo();
-            console.log(resp);
-            this.user_id = resp.data.data.user_id;
+            if(resp.data.code > 0) this.user_id = resp.data.data.user_id;
         }
     },
     computed: {
@@ -88,8 +87,7 @@ export default {
         async deleteFileFromList(idx) {
             let file = this.files[idx]
             this.files.splice(idx, 1);
-            const resp = await deleteFile(file);
-            console.log(resp);
+            await deleteFile(file);
         },
         async insert() {
             const resp = await insertData({
@@ -112,7 +110,7 @@ export default {
                 title: this.title,
                 content: this.content
             });
-            console.log(resp);
+            console.log("update response: ", resp);
             if(this.file1 !== null) this.fileUpload();
             this.$router.push({
                 path: '/board/free'
@@ -125,8 +123,8 @@ export default {
                 formData.append('files', this.file1[i]);
                 console.log(i,": ", this.file1[i])
             }
-            const resp = await insertFile(formData,this.content_id?this.content_id:'new')
-            console.log(resp);
+            await insertFile(formData,this.content_id?this.content_id:'new')
+            
         }
     }
 }

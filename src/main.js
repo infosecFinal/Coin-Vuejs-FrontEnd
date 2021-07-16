@@ -28,7 +28,7 @@ new Vue({
         if(VueCookies.get('access_token')) {
             const resp = await axios.get(`http://localhost:8083/account/valid`);
             console.log(resp.data.data);
-            if(resp.data.data === "valid") {
+            if(resp.data.code > 0) {
                 const user_info = await getUserInfo();
                 console.log(user_info);
                 this.$store.commit('account/setLoginState', true);

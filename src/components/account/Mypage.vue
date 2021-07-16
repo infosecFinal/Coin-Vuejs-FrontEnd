@@ -159,8 +159,8 @@ export default {
     methods: {
         async userInfoPrint(){
             const resp = await getUserInfo();
-            console.log(resp);
-            if(resp.data.data !== null){
+            console.log("user:", resp);
+            if(resp.data.code >  0){
                const userData = resp.data.data;
                this.user_pw = userData.user_pw;
                this.user_name = userData.user_name;
@@ -177,7 +177,7 @@ export default {
                 login_pw: this.user_pw
             });
 
-            if(resp.data.data !== null){
+            if(resp.data.code > 0){
                 this.$router.push({
                     path: '/mypage/update'
                 })

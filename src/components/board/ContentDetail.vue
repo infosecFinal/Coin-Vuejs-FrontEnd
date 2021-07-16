@@ -95,7 +95,6 @@ export default {
             // fileName = decodeURI(fileName);
             link.href = url;
             document.body.appendChild(link);
-            console.log(link);
             link.click();
         }
     }
