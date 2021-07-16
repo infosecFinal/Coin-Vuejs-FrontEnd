@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <div class="col-sm-7 table" style="background-color:#f1f5f8 ">
-      <b-input :value="user_id" readonly></b-input>
+  <div class="mid" style="display:block; margin: 0 auto;">
+      <br><br>
+    <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px;">
+      <br><br>
+      <b-input :value="user_id" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
       <br>
-      <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto;"></b-form-input>
+      <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto; "></b-form-input>
       <br><br>
       <b-form-textarea
 
@@ -27,12 +29,14 @@
       drop-placeholder="Drop file here..."
       multiple
     ></b-form-file>
-    <div class="col" align="right" style="margin-right:50px;">
-    <b-button pill variant="warning" @click="content_id ? update() : insert()">?���?</b-button>
+
+    <div class="col" align="right" style="margin-right:70px;">
+    <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
+
      &nbsp;
-    <b-button pill variant="warning" @click="cancle">취소</b-button>
+    <b-button pill variant="warning" @click="cancel">취소</b-button>
     </div>
-    <br>
+    <br><br>
   </div>
   </div>
 </template>
@@ -76,7 +80,7 @@ export default {
         ])
     },
     methods: {
-        cancle() {
+        cancel() {
             this.$router.push({
                 path: '/board/free'
             })
@@ -121,7 +125,7 @@ export default {
                 formData.append('files', this.file1[i]);
                 console.log(i,": ", this.file1[i])
             }
-            const resp = await insertFile(formData,this.content_id?this.content_id:'new');
+            const resp = await insertFile(formData,this.content_id?this.content_id:'new')
             console.log(resp);
         }
     }
@@ -129,11 +133,6 @@ export default {
 </script>
 
 <style>
-.wrapmid{
-    display:table-cell;
-    text-align:center;
-    vertical-align:middle;
-}
 .table {
    max-width: 800px;
    max-height: 1000px; 
@@ -150,6 +149,11 @@ export default {
     display:table-cell;
     text-align:center;
     vertical-align:middle;
+}
+.custom-file, .custom-file-input {
+    position: relative;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
 }
 
 </style>

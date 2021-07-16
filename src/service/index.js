@@ -62,3 +62,9 @@ export const updateUser = (data) => {
     return axios.post(`${baseURL}/account/mypage/update`, data)
 
 }
+
+export const uploadImage = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/mypage/update/upload`, data)
+
+}

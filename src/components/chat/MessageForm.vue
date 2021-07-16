@@ -1,18 +1,20 @@
 <template>
   <b-row>
     <b-form-textarea
+      class="col-sm-5"
       id="textarea-no-resize"
       placeholder="채팅을 입력하세요."
       rows="3"
       v-model="message"
       no-resize
       @keyup.enter="sendMessage"
+      style="width:700px; background-color:#f1f5f8; "
     ></b-form-textarea>
   </b-row>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   name: "MessageForm",
@@ -50,7 +52,7 @@ export default {
 
 <style>
 #textarea-no-resize {
-  position: fixed;
+  position: relative;
   z-index: 2;
   max-width: 800px;
   left: 0;

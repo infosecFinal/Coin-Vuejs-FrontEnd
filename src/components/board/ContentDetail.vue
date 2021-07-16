@@ -1,16 +1,19 @@
 <template>
   <div>
-      <b-card>
-          <div class="content-detail-content-info">
-              <div class="content-detail-content-info-left">
-                  <div class="content-detail-content-info-left-number">
+      <br><br>
+      <b-card class="mid" style="max-width: 1100px; background-color:#e9ecef; border-radius: 50px; border:none;">
+          <br>
+          <div class="row mid table">
+          <div class="content-detail-content-info table" style="background-color:#fff; border-radius: 50px; border:none;">
+              <div class="content-detail-content-info-left" >
+                  <div class="content-detail-content-info-left-number" >
                       {{id}}
                   </div>
                   <div class="content-detail-content-info-left-subject">
                       {{data.title}}
                   </div>
               </div>
-              <div class="content-detail-content-info-right">
+              <div class="content-detail-content-info-right" >
                   <div class="content-detail-content-info-right-user">
                       writer : {{data.user_id}}
                   </div>
@@ -20,17 +23,19 @@
               </div>
               
           </div>
-          <div class="content-detail-content-info" style="margin-top: 1rem">
+          <div class="content-detail-content-info mid2 table" style="background-color:#f1f5f8; border-radius: 50px; border:none;">
                   <ul>
                       <li v-for="(file, idx) in files" :key="idx" @click="download(file)">{{file.origin_file_Name}}</li>
                   </ul>
               </div>
-          <div class="content-detail-content" v-html="data.content">
+          <div class="content-detail-content mid table" v-html="data.content" style="background-color:#fff; border-radius: 50px; border:none;">
               
           </div>
+
           <div class="content-detail-button" v-if="user.user_id === data.user_id">
               <b-button variant="primary" @click="modifyData">Modify</b-button>
               <b-button variant="success" @click="deleteData">Delete</b-button>
+          </div>
           </div>
       </b-card>
   </div>
@@ -134,5 +139,58 @@ export default {
   border: 1px solid black;
   margin-top: 1rem;
   padding: 2rem;
+}
+
+.table {
+   max-width: 800px; 
+   left:0; 
+   right:0; 
+   margin-left:10%; 
+   margin-right:10%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:0%; 
+   margin-bottom:0%;
+   }
+
+.table2 {
+   max-width: 700px; 
+   left:0; 
+   right:0; 
+   margin-left:10%; 
+   margin-right:10%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:0%; 
+   margin-bottom:0%;
+   }
+
+
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+.mid{
+   min-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+}
+
+.mid2{
+   max-width: 600px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+}
+
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
 }
 </style>

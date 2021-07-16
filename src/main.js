@@ -6,12 +6,15 @@ import BootstrapVue from 'bootstrap-vue'
 import 'css-doodle'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import VueCookies from "vue-cookies"
 import axios from 'axios'
 import {getUserInfo} from '@/service'
+import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
+
+
 
 Vue.prototype.$baseURL = 'http://localhost:8083'
-
 Vue.use(BootstrapVue)
 Vue.use(VueCookies)
 Vue.config.productionTip = false

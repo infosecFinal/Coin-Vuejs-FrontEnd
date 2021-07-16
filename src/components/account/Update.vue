@@ -6,7 +6,9 @@
             <div class="row">
                 <div class="col-md-12 mb-0">
                     <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
-                    <strong class="text-black"> Mypage </strong>
+                    <a href="/mypage" class="text-black">Mypage</a>
+                    <span class="mx-2 mb-0">/</span>
+                    <strong class="text-black"> Update </strong>
                 </div>
             </div>
         </div>
@@ -17,7 +19,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-12">
-                <h2 class="h3 mb-5 text-black">Mypage</h2>
+                <h2 class="h3 mb-5 text-black">Update</h2>
             </div>
 
             <div class="col-lg-2">
@@ -27,19 +29,22 @@
             </b-nav>
             </div>
 
-
-
-            <div class="col-lg-10" style="padding-left:40px;">
-               <div class="bg-light rounded p-3">
+               <div class="bg-light rounded p-3 table">
                    <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
                    </p>
                </div>
-                <div class="container">
+               <div class="col-lg-10" style="padding-left:40px; background-color: #f1f5f8;  border-radius: 50px;">
+                   <br><br>
+                        <div>
+                            <br><br>
+                            <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3; display:block; margin: 0 auto;"/>
+                        </div>
+                <div class="container" >
                     <br>
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
                         <div>
-                            <image src="images/profile.jpg" width="200px" height="200px" style="border:2px solid #f3f3f3;"></image>
-                        </div>
+                            <b-form-file accept=".jpg, .png, .gif" v-model="file" class="mt-3" plain></b-form-file>
+                            </div>
                         <div class="col-lg-7" style="padding-left: 50px;">
 
                                 <div class="form-group ">
@@ -110,8 +115,6 @@
                                         v-model="user_gender">
                                     </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -124,7 +127,7 @@
 
 
 <script>
-import { getUserInfo, updateUser } from '@/service'
+import { getUserInfo, updateUser, uploadImage } from '@/service'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -136,16 +139,25 @@ export default {
         user_address:'',
         user_email:'',
         user_gender:'',
-        user_phone:''
+        user_phone:'',
+        user_image:'',
+        file: ""
         }
     },
     computed: {
         ...mapGetters('account',[
-            'getLoginId'
+            'getLoginId',
+            'getLoginState',
+            'getImagePath'
         ])
     },
     created() {
         this.userInfoPrint();
+        if(!this.getLoginState) {
+          alert('로그인 후 이용해주세요')
+          this.$router.go(-1);
+        }
+        this.connect();
     },
     methods: {
         async userInfoPrint(){
@@ -162,7 +174,7 @@ export default {
                 }
             },
         async upwUpdateFinish(){
-            const resp = await updateUser({
+            const resp1 = await updateUser({
                 user_id: this.getLoginId,
                 user_pw: this.user_pw,
                 user_name: this.user_name,
@@ -171,14 +183,61 @@ export default {
                 user_email:this.user_email,
                 user_gender:this.user_gender
             });
+            const resp2 = await uploadImage({
+                user_id:this.getLoginId,
+                user_image:this.file
+            });
+            if(resp2.data.data === null) {
+                this.setImgaePath("../../assets/profile.jpg")
+            }
+            else 
+                this.setImgaePath(this.file)
 
-            if(resp.data.data !== null){
+            if(resp1.data.data !== null){
                 this.$router.push({
                     path: '/mypage'
                 })
             }
-            else alert("비밀번호가 틀렸습니다.")
+            else alert("수정한 정보를 다시 확인해주세요.")
         }
     }
 }
 </script>
+
+<style scoped>
+.table {
+   max-width: 900px; 
+   left:0; 
+   right:0; 
+   margin-left:10%; 
+   margin-right:10%; 
+   top: 0; 
+   bottom:0; 
+   margin-top:0%; 
+   margin-bottom:0%;
+   }
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+.mid{
+   min-width: 800px; left:0; right:0; margin-left:auto; margin-right:auto; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+}
+
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
+}
+
+</style>
