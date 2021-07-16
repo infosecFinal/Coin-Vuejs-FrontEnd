@@ -19,6 +19,7 @@ export default {};
 
 <style scoped>
 footer {
+  pointer-events: none;
   border-top: 1px solid #35495e;
   text-align: center;
   font-size: 16px;
