@@ -5,12 +5,14 @@ import ChatRoom from '../views/ChatRoom.vue'
 import Board from '@/components/board/Board.vue'
 import ContentDetail from '@/components/board/ContentDetail.vue'
 import Create from '@/components/board/Create.vue'
-
 import Login from '@/components/account/Login.vue'
 import Register from '@/components/account/Register.vue'
 import Mypage from '@/components/account/Mypage.vue'
 import Delete from '@/components/account/Delete.vue'
 import Update from '@/components/account/Update.vue'
+import {getUserInfo} from '@/service'
+import store from '../store'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -81,6 +83,16 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  const resp = await getUserInfo();
+  console.log(resp);
+  if(resp.data.data.user_id !== null){
+  store.commit('account/setId', resp.data.data.user_id);
+  store.commit('account/setLoginState', true);
+  }
+  next();
 })
 
 export default router

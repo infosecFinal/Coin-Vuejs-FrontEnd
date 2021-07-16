@@ -16,18 +16,12 @@ import {mapGetters} from 'vuex'
 
 export default {
   name: "MessageForm",
-  props: ["client"],
+  props: ["client", "user"],
   data() {
     return {
       message: "",
     };
   },
-  methods: {
-    sendMessage() {
-      this.send();
-      this.$emit("scrollDown");
-      this.message = "";
-    },
     computed: {
       ...mapGetters('account', ['getLoginId'])
     },
@@ -42,7 +36,7 @@ export default {
           console.log("Send Message: " + this.message);
           if(this.client && this.client.connected) {
             const msg = {
-              name: this.getLoginId,
+              name: this.user,
               msg: this.message
             };
             console.log(msg);
@@ -51,7 +45,7 @@ export default {
         },
     }
   }
-}
+
 </script>
 
 <style>

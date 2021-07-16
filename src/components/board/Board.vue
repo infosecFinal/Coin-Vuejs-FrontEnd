@@ -114,7 +114,7 @@ export default {
     },
     async created() {
         this.fetch();
-        
+        console.log(this.$store.getters['account/getLoginId'])
     },
     computed: {
         ...mapGetters('account', [

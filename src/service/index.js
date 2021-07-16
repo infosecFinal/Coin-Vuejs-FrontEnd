@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials=true;
 const baseURL = 'http://localhost:8083';
 
 export const fetchData = () => {
@@ -51,9 +52,8 @@ export const deleteUser = (data) => {
 
 }
 
-export const getUserInfo = (data) => {
-    console.log(data);
-    return axios.get(`${baseURL}/account/print/${data}`)
+export const getUserInfo = () => {
+    return axios.get(`${baseURL}/account/print`)
 
 }
 

@@ -14,8 +14,8 @@
       >
         <b-navbar-nav>
         <b-nav-item to="/">Home</b-nav-item>
-			<b-nav-item :to="getLoginState ?'/':'/login'">{{getLogout}}</b-nav-item>
-			<b-nav-item :to="getLoginState ?'/mypage':'/register'">{{getMypage}} </b-nav-item>
+			<b-nav-item @click="loginActions">{{getLoginState?'Logout':'Login'}}</b-nav-item>
+			<b-nav-item :to="getLoginState ?'/mypage':'/register'">{{getLoginState?'MyPage':'Register'}} </b-nav-item>
 			<b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
             <b-dropdown-item to="/board/free">Free</b-dropdown-item>
@@ -29,7 +29,8 @@
 
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
+import VueCooKies from 'vue-cookies'
 export default {
     name: "Header",
     data() {
@@ -44,6 +45,28 @@ export default {
             'getLogout',
             'getMypage'
         ])
+    },
+    methods: {
+      ...mapMutations('account', [
+        'setLoginState',
+        'setId'
+      ]),
+      loginActions() {
+        console.log('abc');
+        if(this.getLoginState) {
+          VueCooKies.remove("access_token");
+          alert('·Î±×¾Æ¿ô');
+          this.setLoginState(false);
+          this.setId('');
+          this.$router.push({
+            path: '/'
+          })
+        } else {
+          this.$router.push({
+            path: '/login'
+          });
+        }
+      }
     }
 }
 </script>

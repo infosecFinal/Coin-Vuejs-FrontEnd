@@ -28,7 +28,7 @@
           <div class="content-detail-content" v-html="data.content">
               
           </div>
-          <div class="content-detail-button" v-if="getLoginId === data.user_id">
+          <div class="content-detail-button" v-if="user.user_id === data.user_id">
               <b-button variant="primary" @click="modifyData">Modify</b-button>
               <b-button variant="success" @click="deleteData">Delete</b-button>
           </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {fetchDataById, deleteData} from '@/service'
+import {fetchDataById, deleteData, getUserInfo} from '@/service'
 import { getFilesInfo, getFile } from '@/service/file/file.js';
 import {mapGetters} from 'vuex';
 
@@ -47,13 +47,16 @@ export default {
         return {
             id: Number(this.$route.params.contentId),
             data: {},
-            files: []
+            files: [],
+            user:''
         }
     },
     async created() {
         const data_resp = await fetchDataById(this.id);
         const file_resp = await getFilesInfo(this.id);
+        const user_resp = await getUserInfo();
         this.data = data_resp.data.data;
+        this.user = user_resp.data.data;
         this.files = file_resp.data.list;
         console.log(this.files);
         

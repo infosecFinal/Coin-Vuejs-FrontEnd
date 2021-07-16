@@ -67,6 +67,7 @@
 <script>
 import { checkUser } from '@/service'
 import {mapMutations} from 'vuex'
+import VueCookies from 'vue-cookies'
 
 export default {
     data() {
@@ -87,7 +88,11 @@ export default {
                 login_id: this.login_id,
                 login_pw: this.login_pw
             });
-            if(resp.data.data !== null) {
+            console.log(resp);
+            if(resp.data.data !== "fail") {
+                VueCookies.set('access_token', resp.data.data);
+                console.log(VueCookies.get('access_token'));
+            
                 this.setId(this.login_id);
                 this.setLogout('Logout');
                 this.setMypage('Mypage');
