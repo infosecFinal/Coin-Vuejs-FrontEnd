@@ -37,23 +37,23 @@
                 <div class="container">
                     
                     <br>
-                    <div class=" form-group row table mid" style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;">
+                    <div class="form-group row table mid" style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;">
                        <br><br>
                         <div>
                             <br><br>
                             <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3; display:block; margin: 0 auto;"/>
                         </div>
-                        <div class="col-lg-7 mid" style="display:block; margin: 0 auto;">
+                        <div class="col-lg-8 mid" style="display:block; margin: 0 auto;">
 
                                 <div class="form-group ">
                                     <div class="col-md-8" style="display:block; margin: 0 auto;">
                                         <label class="text-black">아이디</label>
                                         <input disabled
-                                        class="form-control input-field" id="login_id" name="login_id"
-                                        v-model="getLoginId" style="border:none">
+                                        class="form-control" id="login_id" name="login_id"
+                                        v-model="user_id">
                                     </div>
                                 </div>
-
+                        
                             <form name="umpform" class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-md-8" style="display:block; margin: 0 auto;">
@@ -133,6 +133,7 @@ export default {
     name: 'Mypage',
     data() {
         return{
+        user_id: '',
         user_pw:'',
         user_name:'',
         user_address:'',
@@ -147,7 +148,6 @@ export default {
           alert('로그인 후 이용해주세요');
           this.$router.go(-1);
         }
-        this.connect();
     },
     computed: {
         ...mapGetters('account',[
@@ -157,7 +157,7 @@ export default {
     },
     methods: {
         async userInfoPrint(){
-            const resp = await getUserInfo(this.getLoginId);
+            const resp = await getUserInfo();
             console.log(resp);
             if(resp.data.data !== null){
                const userData = resp.data.data;
@@ -167,6 +167,7 @@ export default {
                this.user_email = userData.user_email;
                this.user_gender = userData.user_gender;
                this.user_phone = userData.user_phone;
+               this.user_id = userData.user_id;
                 }
             },
         async upwUpdateConfirm(){

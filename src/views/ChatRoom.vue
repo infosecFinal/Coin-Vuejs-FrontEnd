@@ -43,12 +43,14 @@ import MessageList from '@/components/chat/MessageList.vue'
 import Stomp from 'webstomp-client';
 import SockJS from 'sockjs-client';
 import {mapState, mapGetters} from 'vuex'
+import {getUserInfo} from '@/service'
 
 export default {
     name: 'ChatRoom',
     data() {
       return {
-        socket: null
+        socket: null,
+        user_id: ''
       }
     },
     components: {
@@ -61,28 +63,32 @@ export default {
         }),
         ...mapGetters('account', ['getLoginState'])
     },
-    // created() {
-    //     if(!this.getLoginState) {
-    //       alert('로그인 후 이용해주세요');
-    //       this.$router.go(-1);
-    //     }
-    //     this.connect();
-    // },
+    async created() {
+        if(!this.getLoginState) {
+          alert('로그인 후 이용해주세요');
+          this.$router.go(-1);
+        }
+        const user = await getUserInfo();
+        console.log("user:",user);
+        this.user_id = user.data.data.user_id;
+        this.connect();
+    },
     methods: {
       connect() {
         const serverURL = "http://localhost:8083";
         this.socket = new SockJS(serverURL+'/gs-guide-websocket');
+        
         this.stompClient = Stomp.over(this.socket);
-        console.log(`���� ������ �õ��մϴ�. ���� �ּ�: ${serverURL}`)
+        // console.log(`���� ������ �õ��մϴ�. ���� �ּ�: ${serverURL}`)
         this.stompClient.connect({}, frame=>{
           this.connected = true;
           console.log('success connect socket', frame);
           this.stompClient.subscribe('/topic/greetings', res=>{
-            console.log('message from subs', res.body);
-            console.log(JSON.parse(res.body));
+            // console.log('message from subs', res.body);
+            // console.log(JSON.parse(res.body));
             // this.recvList.push(JSON.parse(res.body));
             this.$store.commit('stomp/pushMsg', JSON.parse(res.body));
-            console.log(this.recvList);
+            // console.log(this.recvList);
           });
         },
         error => {

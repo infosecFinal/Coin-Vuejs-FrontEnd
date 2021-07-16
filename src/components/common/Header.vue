@@ -14,11 +14,11 @@
       >
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item :to="getLoginState ? '' : '/login'">{{
-            getLogout
+          <b-nav-item @click="loginActions">{{
+            getLoginState?'Logout':'Login'
           }}</b-nav-item>
           <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
-            >{{ getMypage }}
+            >{{ getLoginState?'MyPage':'Register' }}
           </b-nav-item>
           <b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
@@ -49,19 +49,47 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+
+import {mapGetters, mapMutations} from 'vuex'
+import VueCooKies from 'vue-cookies'
 export default {
-  name: "Header",
-  data() {
-    return {
-      login: "Login",
-      register: "Register",
-    };
-  },
-  computed: {
-    ...mapGetters("account", ["getLoginState", "getLogout", "getMypage"]),
-  },
-};
+    name: "Header",
+    data() {
+        return {
+        login: 'Login',
+        register: 'Register'
+        }
+    },
+    computed: {
+        ...mapGetters('account', [
+            'getLoginState',
+            'getLogout',
+            'getMypage'
+        ])
+    },
+    methods: {
+      ...mapMutations('account', [
+        'setLoginState',
+        'setId'
+      ]),
+      loginActions() {
+        console.log('abc');
+        if(this.getLoginState) {
+          VueCooKies.remove("access_token");
+          alert('�α׾ƿ�');
+          this.setLoginState(false);
+          this.setId('');
+          this.$router.push({
+            path: '/'
+          })
+        } else {
+          this.$router.push({
+            path: '/login'
+          });
+        }
+      }
+    }
+}
 </script>
 
 <style scoped>

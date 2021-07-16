@@ -33,20 +33,24 @@
                    <p class="mb-0"> 정보수정을 원하시면 비밀번호 입력 후, <a class="text-decoration-none">수정하기</a>를 눌러주세요.
                    </p>
                </div>
-               <div class="col-lg-10" style="padding-left:40px; background-color: #f1f5f8;  border-radius: 50px;">
+               
+               <div class="col-lg-8" style="padding-left:40px; background-color: #f1f5f8;  border-radius: 50px;">
                    <br><br>
-                        <div>
-                            <br><br>
-                            <img src="../../assets/profile.jpg"  width="200px" height="200px" style="border:2px solid #f3f3f3; display:block; margin: 0 auto;"/>
-                        </div>
-                <div class="container" >
-                    <br>
-                    <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
-                        <div>
-                            <b-form-file accept=".jpg, .png, .gif" v-model="file" class="mt-3" plain></b-form-file>
-                            </div>
+                        
+                <div class="container">
+                    <div class="form-group row" style="padding:50px; border:1px solid #f3f3f3;">
+
                         <div class="col-lg-7" style="padding-left: 50px;">
 
+                            <div class="App container mt-5">
+     
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Upload Image:</label>
+      <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${previewImage})` }" @click="selectImage"></div>
+      <input accept=".jpg, .png, .gif" class="form-control" ref="fileInput" type="file" @input="pickFile">
+      </div>
+       
+    </div>
                                 <div class="form-group ">
                                     <div class="col-md-25">
                                         <label class="text-black">아이디</label>
@@ -115,6 +119,7 @@
                                         v-model="user_gender">
                                     </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -127,7 +132,9 @@
 
 
 <script>
-import { getUserInfo, updateUser, uploadImage } from '@/service'
+import "bootstrap/dist/css/bootstrap.min.css"
+
+import { getUserInfo, updateUser} from '@/service'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -141,7 +148,8 @@ export default {
         user_gender:'',
         user_phone:'',
         user_image:'',
-        file: ""
+        file: "",
+        previewImage: null
         }
     },
     computed: {
@@ -157,9 +165,23 @@ export default {
           alert('로그인 후 이용해주세요')
           this.$router.go(-1);
         }
-        this.connect();
     },
     methods: {
+          selectImage () {
+          this.$refs.fileInput.click()
+      },
+      pickFile () {
+        let input = this.$refs.fileInput
+        let file = input.files
+        if (file && file[0]) {
+          let reader = new FileReader
+          reader.onload = e => {
+            this.previewImage = e.target.result
+          }
+          reader.readAsDataURL(file[0])
+          this.$emit('input', file[0])
+        }
+      },
         async userInfoPrint(){
             const resp = await getUserInfo(this.getLoginId);
             console.log(resp);
@@ -171,6 +193,7 @@ export default {
                this.user_address = userData.user_address;
                this.user_email = userData.user_email;
                this.user_gender = userData.user_gender;
+               this.user_image = this.previewImage;
                 }
             },
         async upwUpdateFinish(){
@@ -181,17 +204,18 @@ export default {
                 user_phone:this.user_phone,
                 user_address:this.user_address,
                 user_email:this.user_email,
-                user_gender:this.user_gender
+                user_gender:this.user_gender,
+                user_image:this.previewImage
             });
-            const resp2 = await uploadImage({
-                user_id:this.getLoginId,
-                user_image:this.file
-            });
-            if(resp2.data.data === null) {
-                this.setImgaePath("../../assets/profile.jpg")
-            }
-            else 
-                this.setImgaePath(this.file)
+            // const resp2 = await uploadImage({
+            //     user_id:this.getLoginId,
+            //     user_image:this.
+            // });
+            // if(resp2.data.data === null) {
+            //     this.setImgaePath("../../assets/profile.jpg")
+            // }
+            // else 
+            //     this.setImgaePath(this.pickFile())
 
             if(resp1.data.data !== null){
                 this.$router.push({
@@ -238,6 +262,16 @@ export default {
   border-radius: 2rem;
   color: #252a32;
   background: #fff;
+}
+.imagePreviewWrapper {
+  background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    display: block;
+    cursor: pointer;
+    margin: 0 auto 30px;
+    background-size: contain;
+    background-position: center center;
 }
 
 </style>
