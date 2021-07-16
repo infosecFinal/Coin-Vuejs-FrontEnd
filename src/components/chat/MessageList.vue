@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-light py-3">
+    <!-- <div class="bg-light py-3">
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
@@ -11,24 +11,22 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <br />
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="row justify-content-between">
         <div class="col-md-12">
           <h2 class="h3 mb-5 text-black">Chatroom</h2>
         </div>
       </div>
-    </div>
-    <div style="padding-bottom: 0.5em">
+    </div> -->
+    <div style="padding-bottom: 5em">
       <div>
-        <b-list-group>
-          <b-list-group-item id="container" class="list-group mb-9 zindex">
+          <b-list-group-item id="container" class="list-group mb-10 zindex" style=" border-radius: 50px;">
             <p v-for="(msg, idx) in msgs" :key="idx">{{ msg.content }}</p>
           </b-list-group-item>
-        </b-list-group>
       </div>
     </div>
   </div>
@@ -49,13 +47,14 @@ export default {
   right: auto;
 }
 .list-group {
-  top: 300px;
-  height: 300px;
-  max-height: 300px;
+  top: 50px;
+  height: 400px;
+  max-height: 400px;
   max-width: 300px;
   margin-bottom: 10px;
   overflow: scroll;
   overflow-x: auto;
   overflow-y: auto;
+
 }
 </style>
