@@ -18,7 +18,7 @@
             getLoginState?'Logout':'Login'
           }}</b-nav-item>
           <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
-            >{{ getLoginState?'MyPage':'Register }}
+            >{{ getLoginState?'MyPage':'Register' }}
           </b-nav-item>
           <b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
