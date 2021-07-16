@@ -96,6 +96,7 @@ export default {
             link.href = url;
             document.body.appendChild(link);
             link.click();
+            link.remove();
         }
     }
 }
