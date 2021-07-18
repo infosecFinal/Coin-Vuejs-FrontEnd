@@ -28,19 +28,27 @@
           </b-nav>
         </div>
 
-        <div class="col-lg-8" style=" display:block; margin: 0 auto;">
-            <p class="mb-0 bg-light p-3"  style=" border-radius:50px; display:block; margin: 0 auto;">
-              정보수정을 원하시면 비밀번호 입력 후,
-              <a class="text-decoration-none">수정하기</a>를 눌러주세요.
-            </p>
+        <div class="col-lg-8" style="display: block; margin: 0 auto">
+          <p
+            class="mb-0 bg-light p-3"
+            style="border-radius: 50px; display: block; margin: 0 auto"
+          >
+            정보수정을 원하시면 비밀번호 입력 후,
+            <a class="text-decoration-none">수정하기</a>를 눌러주세요.
+          </p>
           <br />
           <div
-            class="form-group row "
-            style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;"
+            class="form-group row"
+            style="
+              background-color: #f1f5f8;
+              border-radius: 50px;
+              display: block;
+              margin: 0 auto;
+            "
           >
             <div class="form-group row">
               <div class="App container mt-4">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <br />
                   <label for="formFile" class="form-label">Upload Image:</label>
                   <div
@@ -51,7 +59,7 @@
                   <input
                     accept=".jpg, .png, .gif"
                     class="form-control col-md-8"
-                    style="display:block; margin: 0 auto; "
+                    style="display: block; margin: 0 auto"
                     ref="fileInput"
                     type="file"
                     @input="pickFile"
@@ -60,8 +68,8 @@
                   <br /><br />
                 </div>
               </div>
-              <div class="form-group ">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+              <div class="form-group">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">아이디</label>
                   <input
                     disabled
@@ -75,7 +83,7 @@
 
               <form name="umpform" class="form-horizontal">
                 <div class="form-group">
-                  <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <div class="col-md-8" style="display: block; margin: 0 auto">
                     <label class="text-black">비밀번호</label>
                     <input
                       type="password"
@@ -90,7 +98,7 @@
                       id="userDuplicateBtn"
                       @click="upwUpdateFinish"
                       variant="warning"
-                      style="float: right; margin-top:10px;"
+                      style="float: right; margin-top: 10px"
                       >수정완료
                     </b-button>
                   </div>
@@ -98,7 +106,7 @@
               </form>
 
               <div class="form-group">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">이름</label>
                   <input
                     disabled
@@ -111,7 +119,7 @@
               </div>
 
               <div class="form-group">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">휴대폰 번호</label>
                   <input
                     class="form-control input-field"
@@ -123,7 +131,7 @@
               </div>
 
               <div class="form-group">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">주소</label>
                   <input
                     class="form-control input-field"
@@ -131,12 +139,17 @@
                     name="login_address"
                     v-model="user_address"
                   />
-                  <b-button pill variant="warning" style="float:right; margin-top:10px;">찾기</b-button>
+                  <b-button
+                    pill
+                    variant="warning"
+                    style="float: right; margin-top: 10px"
+                    >찾기</b-button
+                  >
                 </div>
               </div>
 
               <div class="form-group">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">이메일</label>
                   <input
                     disabled
@@ -148,7 +161,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">성별</label>
                   <input
                     disabled
@@ -172,7 +185,7 @@
 <script>
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { getUserInfo, updateUser , uploadImage} from "@/service";
+import { getUserInfo, updateUser, uploadImage } from "@/service";
 import { mapGetters } from "vuex";
 
 export default {
@@ -188,7 +201,7 @@ export default {
       user_image: "",
       file: "",
       previewImage: null,
-      file_name: ""
+      file_name: "",
     };
   },
   computed: {
@@ -216,7 +229,7 @@ export default {
         reader.readAsDataURL(file[0]);
         this.$emit("input", file[0]);
         this.user_image = file.origin_file_Name;
-        console.log(this.user_image)
+        console.log(this.user_image);
       }
     },
     async userInfoPrint() {
@@ -240,29 +253,26 @@ export default {
         user_address: this.user_address,
         user_email: this.user_email,
         user_gender: this.user_gender,
-        user_image: this.user_image
+        user_image: this.user_image,
       });
 
       const resp2 = await uploadImage({
-          user_id:this.getLoginId,
-          user_image:this.user_image
+        user_id: this.getLoginId,
+        user_image: this.user_image,
       });
 
-      if(resp2.data.data === null) {
-          this.setImgaePath("../../assets/profile.jpg")
-      }
-      else
-          this.setImgaePath(this.user_image)
+      if (resp2.data.data === null) {
+        this.setImgaePath("../../assets/profile.jpg");
+      } else this.setImgaePath(this.user_image);
 
       if (resp1.data.data > 0) {
         this.$router.push({
           path: "/mypage",
         });
-      } else 
-      console.log(resp1)
+      } else console.log(resp1);
       alert("수정한 정보를 다시 확인해주세요.");
-    }
-  }
+    },
+  },
 };
 </script>
 

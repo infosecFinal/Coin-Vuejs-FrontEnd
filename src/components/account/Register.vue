@@ -15,21 +15,26 @@
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-md-12">
-          <h2 class="h3 mb-5 text-black ">Register</h2>
+          <h2 class="h3 mb-5 text-black">Register</h2>
         </div>
-        <div class="col-lg-8" style=" display:block; margin: 0 auto;">
+        <div class="col-lg-8" style="display: block; margin: 0 auto">
           <form name="regiform" action="#" method="post">
             <div
               class="p-3 p-lg-5 border table"
-              style="background-color: #f1f5f8;  border-radius: 50px;"
+              style="background-color: #f1f5f8; border-radius: 50px"
             >
               <div
                 class="form-group row"
-                style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;"
+                style="
+                  background-color: #f1f5f8;
+                  border-radius: 50px;
+                  display: block;
+                  margin: 0 auto;
+                "
               >
                 <br />
                 <div class="form-group">
-                  <div class="col-md-8" style="display:block; margin: 0 auto;">
+                  <div class="col-md-8" style="display: block; margin: 0 auto">
                     <label for="user_id" class="text-black">
                       아이디 <span class="text-danger">*</span></label
                     >
@@ -40,7 +45,7 @@
                       name="user_id"
                       required="required"
                       v-model="user_id"
-                      style="border:none "
+                      style="border: none"
                     />
 
                     <b-button
@@ -48,16 +53,21 @@
                       id="userDuplicateBtn"
                       @click="userDuplicate"
                       variant="link"
-                      style="float: right; color:#75b239; padding:0px; margin:0px;"
+                      style="
+                        float: right;
+                        color: #75b239;
+                        padding: 0px;
+                        margin: 0px;
+                      "
                       >중복확인
                     </b-button>
                   </div>
                   <div class="form-group">
                     <div
                       class="col-md-8"
-                      style="display:block; margin: 0 auto;"
+                      style="display: block; margin: 0 auto"
                     >
-                      <label for="user_pw" class="text-black ">
+                      <label for="user_pw" class="text-black">
                         비밀번호 <span class="text-danger">*</span></label
                       >
                       <input
@@ -67,14 +77,14 @@
                         name="user_pw"
                         required="required"
                         v-model="user_pw"
-                        style="border:none"
+                        style="border: none"
                       />
                     </div>
                   </div>
                   <div class="form-group">
                     <div
                       class="col-md-8"
-                      style="display:block; margin: 0 auto;"
+                      style="display: block; margin: 0 auto"
                     >
                       <label for="user_name" class="text-black">
                         이름 <span class="text-danger">*</span></label
@@ -86,14 +96,14 @@
                         name="user_name"
                         required="required"
                         v-model="user_name"
-                        style="border:none"
+                        style="border: none"
                       />
                     </div>
                   </div>
                   <div class="form-group">
                     <div
                       class="col-md-8"
-                      style="display:block; margin: 0 auto;"
+                      style="display: block; margin: 0 auto"
                     >
                       <label for="user_phone" class="text-black">
                         휴대폰 번호 <span class="text-danger">*</span></label
@@ -105,14 +115,14 @@
                         name="user_phone"
                         required="required"
                         v-model="user_phone"
-                        style="border:none"
+                        style="border: none"
                       />
                     </div>
                   </div>
                   <div class="form-group">
                     <div
                       class="col-md-8"
-                      style="display:block; margin: 0 auto;"
+                      style="display: block; margin: 0 auto"
                     >
                       <label for="user_address" class="text-black">
                         주소 <span class="text-danger">*</span></label
@@ -124,15 +134,25 @@
                         name="user_address"
                         required="required"
                         v-model="user_address"
-                        style="border:none"
+                        style="border: none"
                       />
+                      <window-popup v-model="open"
+                        >팝업창의 내용입니다.</window-popup
+                      >
+                      <b-button
+                        @click="open = true"
+                        pill
+                        variant="warning"
+                        style="float: right; margin-top: 10px"
+                        >찾기</b-button
+                      >
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div
                       class="col-md-8"
-                      style="display:block; margin: 0 auto;"
+                      style="display: block; margin: 0 auto"
                     >
                       <label for="user_email" class="text-black">
                         이메일 <span class="text-danger">*</span></label
@@ -144,7 +164,7 @@
                         name="user_email"
                         required="required"
                         v-model="user_email"
-                        style="border:none"
+                        style="border: none"
                       />
                     </div>
                   </div>
@@ -152,7 +172,7 @@
                   <div class="form-group">
                     <div
                       class="col-md-8"
-                      style="display:block; margin: 0 auto;"
+                      style="display: block; margin: 0 auto"
                     >
                       <label class="text-black">
                         성별 <span class="text-danger">*</span>
@@ -175,14 +195,17 @@
                   <br />
                   <br />
                   <div class="form-group">
-                    <div class="col-lg-6"  style="display:block; margin: 0 auto;">
+                    <div
+                      class="col-lg-6"
+                      style="display: block; margin: 0 auto"
+                    >
                       <b-button
                         pill
                         id="userRegiBtn"
                         @click="registerUser"
                         variant="warning"
                         class="btn btn-primary btn-block wrapmid"
-                        style="display:block; margin: 0 auto;"
+                        style="display: block; margin: 0 auto"
                         >회원가입</b-button
                       >
                     </div>
@@ -200,9 +223,11 @@
 
 <script>
 import { insertUser, getUserIDList } from "@/service";
+import WindowPopup from "./AddressPopup.vue";
 
 export default {
   name: "Register",
+  components: { WindowPopup },
   data() {
     return {
       user_id: "",
@@ -212,6 +237,7 @@ export default {
       user_address: "",
       user_email: "",
       user_gender: "",
+      open: false,
     };
   },
   methods: {

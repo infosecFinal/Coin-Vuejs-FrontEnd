@@ -25,62 +25,69 @@
             <b-nav-item to="/mypage/delete">회원탈퇴</b-nav-item>
           </b-nav>
         </div>
-        <div class="col-lg-8" style="display:block; margin: 0 auto;">
-          <p class="mb-0 bg-light p-3" style=" border-radius: 50px; display:block; margin: 0 auto;">
+        <div class="col-lg-8" style="display: block; margin: 0 auto">
+          <p
+            class="mb-0 bg-light p-3"
+            style="border-radius: 50px; display: block; margin: 0 auto"
+          >
             계정을 삭제를 원하시면 비밀번호 입력 후,
             <a class="text-decoration-none">회원탈퇴</a>를 눌러주세요.
           </p>
           <br />
-            <form name="deleteform" action="#" method="post">
+          <form name="deleteform" action="#" method="post">
+            <div
+              class="p-4 p-lg-4"
+              style="
+                background-color: #f1f5f8;
+                border-radius: 50px;
+                border: none;
+              "
+            >
               <div
-                class="p-4 p-lg-4"
-                style="background-color:#f1f5f8;  border-radius: 50px; border:none;"
+                class="col-md-7 col-sm-7"
+                style="border: none; display: block; margin: 0 auto"
               >
-                  <div
-                    class="col-md-7 col-sm-7"
-                    style="border:none; display:block; margin: 0 auto;"
-                  >
-                    <br /><br />
-                    <label class="text-black">아이디</label>
-                    <input
-                      disabled
-                      class="form-control input-field"
-                      id="login_id"
-                      name="login_id"
-                      v-model="getLoginId"
-                      style="border:none"
-                    />
-                  </div>
-                    <div
-                      class="col-md-7 col-sm-7"
-                      style="border:none display:block; margin: 0 auto;"
-                    >
-                      <br />
-                      <label for="login_pw" class="text-black">비밀번호</label>
-                      <input
-                        type="password"
-                        class="form-control input-field"
-                        id="login_pw"
-                        name="login_pw"
-                        v-model="login_pw"
-                        style="border:none"
-                      />
-                    </div>
-                  <br /><br />
-                  <b-button
-                    pill
-                    id="DeleteBtn"
-                    @click="userDelete"
-                    class="btn btn-primary btn-block"
-                    variant="warning"
-                    style="display:block; margin: 0 auto;"
-                  >
-                    회원탈퇴</b-button
-                  >
-                  <br />
-                  <br />
+                <br /><br />
+                <label class="text-black">아이디</label>
+                <input
+                  disabled
+                  class="form-control input-field"
+                  id="login_id"
+                  name="login_id"
+                  v-model="getLoginId"
+                  style="border: none"
+                />
               </div>
-            </form>
+              <div
+                class="col-md-7 col-sm-7"
+                style="border:none display:block; margin: 0 auto;"
+              >
+                <br />
+                <label for="login_pw" class="text-black">비밀번호</label>
+                <input
+                  type="password"
+                  class="form-control input-field"
+                  id="login_pw"
+                  name="login_pw"
+                  v-model="login_pw"
+                  style="border: none"
+                />
+              </div>
+              <br /><br />
+              <b-button
+                pill
+                id="DeleteBtn"
+                @click="userDelete"
+                class="btn btn-primary btn-block"
+                variant="warning"
+                style="display: block; margin: 0 auto"
+              >
+                회원탈퇴</b-button
+              >
+              <br />
+              <br />
+            </div>
+          </form>
         </div>
       </div>
     </div>
