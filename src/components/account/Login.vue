@@ -66,7 +66,7 @@
               <br />
               <div
                 class="content-detail-button"
-                style="border:none; display:block; margin: 0 auto; float: center;"
+                style="border:none; text-align:center;"
               >
                 <b-button
                   pill
