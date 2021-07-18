@@ -64,7 +64,6 @@
                         type="file"
                         @input="pickFile"
                       />
-
                       <br><br>
                     </div>
                   </div>
@@ -97,7 +96,7 @@
                       </div>
 
                       <div style="float:right;">
-                        <b-button
+                        <b-button enctype = "multipart / form-data"
                           class="text-decoration-none"
                           id="userDuplicateBtn"
                           @click="upwUpdateFinish"
@@ -189,7 +188,7 @@
 <script>
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { getUserInfo, updateUser } from "@/service";
+import { getUserInfo, updateUser , uploadImage} from "@/service";
 import { mapGetters } from "vuex";
 
 export default {
@@ -205,6 +204,7 @@ export default {
       user_image: "",
       file: "",
       previewImage: null,
+      file_name: ""
     };
   },
   computed: {
@@ -231,6 +231,8 @@ export default {
         };
         reader.readAsDataURL(file[0]);
         this.$emit("input", file[0]);
+        this.user_image = file.origin_file_Name;
+        console.log(this.user_image)
       }
     },
     async userInfoPrint() {
@@ -244,37 +246,39 @@ export default {
         this.user_address = userData.user_address;
         this.user_email = userData.user_email;
         this.user_gender = userData.user_gender;
-        this.user_image = this.previewImage;
       }
     },
     async upwUpdateFinish() {
       const resp1 = await updateUser({
-        user_id: this.getLoginId,
         user_pw: this.user_pw,
         user_name: this.user_name,
         user_phone: this.user_phone,
         user_address: this.user_address,
         user_email: this.user_email,
         user_gender: this.user_gender,
-        user_image: this.previewImage,
+        user_image: this.user_image
       });
-      // const resp2 = await uploadImage({
-      //     user_id:this.getLoginId,
-      //     user_image:this.
-      // });
-      // if(resp2.data.data === null) {
-      //     this.setImgaePath("../../assets/profile.jpg")
-      // }
-      // else
-      //     this.setImgaePath(this.pickFile())
 
-      if (resp1.data.data !== null) {
+      const resp2 = await uploadImage({
+          user_id:this.getLoginId,
+          user_image:this.user_image
+      });
+
+      if(resp2.data.data === null) {
+          this.setImgaePath("../../assets/profile.jpg")
+      }
+      else
+          this.setImgaePath(this.user_image)
+
+      if (resp1.data.data > 0) {
         this.$router.push({
           path: "/mypage",
         });
-      } else alert("수정한 정보를 다시 확인해주세요.");
-    },
-  },
+      } else 
+      console.log(resp1)
+      alert("수정한 정보를 다시 확인해주세요.");
+    }
+  }
 };
 </script>
 

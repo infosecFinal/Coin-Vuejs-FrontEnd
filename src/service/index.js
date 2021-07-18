@@ -30,24 +30,19 @@ export const findData = (category, to_find) => {
 }
 
 export const insertUser = (data) => {
-    console.log(data);
     return axios.post(`${baseURL}/account/register`, data)
 }
 
 export const checkUser = (data) => {
-    console.log(data);
     return axios.post(`${baseURL}/account/login`, data)
-
 }
 
 export const getUserIDList = (data) => {
-    console.log(data);
     return axios.post(`${baseURL}/account/validation`, data)
 
 }
 
 export const deleteUser = (data) => {
-    console.log(data);
     return axios.post(`${baseURL}/account/delete`, data)
 
 }
@@ -64,7 +59,7 @@ export const updateUser = (data) => {
 }
 
 export const uploadImage = (data) => {
-    console.log(data);
+    console.log("uploadImage() : "+data);
     return axios.post(`${baseURL}/account/mypage/update/upload`, data)
 
 }

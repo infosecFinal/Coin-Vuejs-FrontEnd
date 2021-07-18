@@ -89,7 +89,6 @@ export default {
                 login_id: this.login_id,
                 login_pw: this.login_pw
             });
-            console.log(resp);
             if(resp.data.code > 0) {
                 VueCookies.set('access_token', resp.data.data);
                 console.log(VueCookies.get('access_token'));
@@ -102,7 +101,7 @@ export default {
                     path: '/board/free'
                 })
             }
-            else alert('fail');
+            else alert('로그인 실패. 다시 입력해주세요');
         }
     }
 }
