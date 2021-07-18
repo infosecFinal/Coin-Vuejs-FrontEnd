@@ -49,8 +49,9 @@
           v-if="user.user_id === data.user_id"
           style="border:none; float: right;"
         >
-          <b-button pill variant="warning" @click="modifyData">Modify</b-button>
-          <b-button pill variant="warning" @click="deleteData">Delete</b-button>
+          <b-button pill variant="warning" @click="modifyData">수정</b-button>
+          &nbsp;
+          <b-button pill variant="warning" @click="deleteData">삭제</b-button>
         </div>
       </div>
     </b-card>
