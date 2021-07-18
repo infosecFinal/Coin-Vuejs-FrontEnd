@@ -80,7 +80,8 @@
 
 <script>
 import { deleteUser } from '@/service'
-import {mapGetters } from 'vuex'
+import {mapGetters, mapMutations } from 'vuex'
+import VueCookies from 'vue-cookies'
 
 export default {
     name: 'Delete',
@@ -96,14 +97,22 @@ export default {
         ])
     },
     methods: {
+        ...mapMutations('account', [
+            'setId',
+            'setLoginState'
+        ]),
         async userDelete(){
+            console.log("id:", this.getLoginId)
             const resp = await deleteUser({
                 login_id: this.getLoginId,
                 login_pw: this.login_pw
             });
-
-            if(resp.data.data !== 0){
+            console.log(resp.data);
+            if(resp.data.code > 0){
                 alert('계정이 삭제되었습니다!')
+                VueCookies.remove("access_token");
+                this.setId('');
+                this.setLoginState(false);
                 this.$router.push({
                     path: '/'
                 })

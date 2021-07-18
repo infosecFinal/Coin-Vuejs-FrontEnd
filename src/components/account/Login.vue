@@ -90,7 +90,7 @@ export default {
                 login_pw: this.login_pw
             });
             console.log(resp);
-            if(resp.data.data !== "fail") {
+            if(resp.data.code > 0) {
                 VueCookies.set('access_token', resp.data.data);
                 console.log(VueCookies.get('access_token'));
             

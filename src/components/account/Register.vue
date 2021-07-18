@@ -127,7 +127,8 @@ export default {
             const resp = await getUserIDList({
                 user_id: this.user_id
             });
-            if(resp.data.data != null){
+            console.log(resp);
+            if(resp.data.code >  0){
                 alert('아이디를 변경하세요. 사용할 수 없는 아이디 입니다.')
             }
             else alert('사용할 수 있는 아이디입니다.')
@@ -142,7 +143,7 @@ export default {
                 user_email: this.user_email,
                 user_gender: this.user_gender
             });
-            if(resp.data.data !== null) {
+            if(resp.data.code > 0) {
                 alert('회원가입이 완료되었습니다. '+this.user_id+'님 환영합니다!')
                 this.$router.push({
                     path: '/login'

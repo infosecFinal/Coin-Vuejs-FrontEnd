@@ -134,12 +134,12 @@ export default {
         },
         async find() {
             const resp = await findData(this.category, this.to_find);
-            console.log(resp);
-            this.items = resp.data.list;
+            if(resp.data.code > 0) this.items = resp.data.list;
+            
         },
         async fetch() {
             const resp = await fetchData();
-            this.items = resp.data.list;
+            if(resp.data.code > 0) this.items = resp.data.list;
         }
     }
 }
