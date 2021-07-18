@@ -15,7 +15,7 @@
       <b-container fluid class="text-light text-center">
           <b-row>
               <b-col>
-                  <b-button @click="fetch">전체보기</b-button>
+                  <b-button variant="warning" @click="fetch">전체보기</b-button>
               </b-col>
               <b-col col lg="5">
                   <b-input-group>
@@ -26,7 +26,7 @@
                   </b-form-select>
                       <b-form-input v-model="to_find" @keyup.enter="find"></b-form-input>
                           <b-input-group-append>
-                              <b-button text="Button" variant="outline-secondary" @click="find">Find</b-button>
+                              <b-button text="Button" variant="warning" @click="find">Find</b-button>
                           </b-input-group-append>
                   </b-input-group>
               </b-col>
@@ -55,9 +55,9 @@
       ></b-pagination>
       <b-row align-h="end">
         <b-col cols="2">
-          <b-button
+          <b-button pill
             style="backgroung-color:#fff;"
-            variant="outline-secondary"
+            variant="warning"
             @click="writeContent"
             offset-md="4"
             >Write</b-button
