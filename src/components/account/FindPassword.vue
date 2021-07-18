@@ -22,7 +22,6 @@
 				<p>
                     <label class="text-black">아이디</label>
                 <input
-                  type="password"
                   class="form-control input-field"
                   id="member_id" 
                   name="member_id" 
@@ -34,7 +33,6 @@
 				<p>
                     <label class="text-black">이메일</label>
                 <input 
-                  type="password"
                   class="form-control input-field"
                   id="member_email" 
                   name="member_email" 
