@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+            <a href="/">Home</a> <span class="mx-2 mb-0">/</span>
             <a href="/mypage" class="text-black">Mypage</a>
             <span class="mx-2 mb-0">/</span>
             <strong class="text-black"> Update </strong>
@@ -139,7 +139,11 @@
                     name="login_address"
                     v-model="user_address"
                   />
+                  <window-popup v-model="open"
+                    >팝업창의 내용입니다.</window-popup
+                  >
                   <b-button
+                    @click="open = true"
                     pill
                     variant="warning"
                     style="float: right; margin-top: 10px"
@@ -187,9 +191,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { getUserInfo, updateUser, uploadImage } from "@/service";
 import { mapGetters } from "vuex";
+import WindowPopup from "./AddressPopup.vue";
 
 export default {
   name: "Update",
+  components: { WindowPopup },
   data() {
     return {
       user_pw: "",
@@ -202,6 +208,7 @@ export default {
       file: "",
       previewImage: null,
       file_name: "",
+      open: false
     };
   },
   computed: {

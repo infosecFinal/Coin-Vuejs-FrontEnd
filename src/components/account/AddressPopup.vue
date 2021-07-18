@@ -150,35 +150,6 @@ export default {
 };
 </script>
 <style>
-p {
-  font-size: 12px;
-  font-family: 굴림;
-  text-decoration: none;
-  color: black;
-}
-td {
-  font-size: 12px;
-  font-family: 굴림;
-  text-decoration: none;
-  color: black;
-}
-a:link {
-  font-size: 12px;
-  font-family: 굴림;
-  text-decoration: none;
-  color: black;
-}
-a:visited {
-  font-size: 12px;
-  font-family: 굴림;
-  text-decoration: none;
-  color: black;
-}
-a:hover {
-  font-size: 12px;
-  text-decoration: blink;
-  color: red;
-}
 table {
   border-collapse: separate;
   text-indent: initial;
@@ -205,25 +176,6 @@ table {
   font-family: tahoma, arial;
   color: #ffffff;
   border-color: #3186bd;
-}
-input:not([type="image" i]) {
-  box-sizing: border-box;
-}
-input[type="button" i] {
-  appearance: auto;
-  user-select: none;
-  white-space: pre;
-  align-items: flex-start;
-  text-align: center;
-  cursor: default;
-  color: -internal-light-dark(black, white);
-  background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-  box-sizing: border-box;
-  padding: 1px 6px;
-  border-width: 2px;
-  border-style: outset;
-  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-  border-image: initial;
 }
 input {
   text-rendering: auto;
