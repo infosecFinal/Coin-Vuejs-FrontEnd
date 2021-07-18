@@ -63,3 +63,9 @@ export const uploadImage = (data) => {
     return axios.post(`${baseURL}/account/mypage/update/upload`, data)
 
 }
+
+export const updatePw = (data) => {
+    console.log(data);
+    return axios.post(`${baseURL}/account/findpw`, data)
+
+}

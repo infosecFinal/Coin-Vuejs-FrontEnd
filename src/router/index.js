@@ -10,6 +10,7 @@ import Register from '@/components/account/Register.vue'
 import Mypage from '@/components/account/Mypage.vue'
 import Delete from '@/components/account/Delete.vue'
 import Update from '@/components/account/Update.vue'
+import FindPassword from '@/components/account/FindPassword.vue'
 import {getUserInfo} from '@/service'
 import store from '../store'
 
@@ -76,9 +77,20 @@ const routes = [
     path: '/mypage/update',
     name: 'Update',
     component: Update
-  }
-]
+  },
+  // {
+  //   path: '/mypage/update',
+  //   name: 'Update2',
+  //   component: Update2
+  // },
+  {
 
+    path: '/findpw',
+    name: 'FindPassword',
+    component: FindPassword
+  }
+  
+]
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
