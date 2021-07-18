@@ -29,9 +29,10 @@
         </div>
 
         <div class="col-lg-8" style=" display:block; margin: 0 auto;">
-          <div 
-                lass="bg-light p-3 table mid" 
-                style="width:700px; border-radius: 50px; display:block; margin: 0 auto;">
+          <div
+            lass="bg-light p-3 table mid"
+            style="width:700px; border-radius: 50px; display:block; margin: 0 auto;"
+          >
             <p class="mb-0">
               정보수정을 원하시면 비밀번호 입력 후,
               <a class="text-decoration-none">수정하기</a>를 눌러주세요.
@@ -39,144 +40,130 @@
           </div>
           <br />
           <div
-              class="form-group row "
-              style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;"
-            >
-              <div class="form-group row"
-              >
-                  <div class="App container mt-4">
-                    <div class="col-md-8"
-                    style="display:block; margin: 0 auto; ">
-                    <br>
-                      <label for="formFile" class="form-label"
-                        >Upload Image:</label
-                      >
-                      <div
-                        class="imagePreviewWrapper"
-                        :style="{ 'background-image': `url(${previewImage})` } "
-                        @click="selectImage"
-                      ></div>
-                      <input
-                        accept=".jpg, .png, .gif"
-                        class="form-control col-md-8"
-                        style="display:block; margin: 0 auto; "
-                        ref="fileInput"
-                        type="file"
-                        @input="pickFile"
-                      />
+            class="form-group row "
+            style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;"
+          >
+            <div class="form-group row">
+              <div class="App container mt-4">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <br />
+                  <label for="formFile" class="form-label">Upload Image:</label>
+                  <div
+                    class="imagePreviewWrapper"
+                    :style="{ 'background-image': `url(${previewImage})` }"
+                    @click="selectImage"
+                  ></div>
+                  <input
+                    accept=".jpg, .png, .gif"
+                    class="form-control col-md-8"
+                    style="display:block; margin: 0 auto; "
+                    ref="fileInput"
+                    type="file"
+                    @input="pickFile"
+                  />
 
-                      <br><br>
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                      <label class="text-black">아이디</label>
-                      <input
-                        disabled
-                        class="form-control input-field2 row"
-                        id="login_id"
-                        name="login_id"
-                        v-model="getLoginId"
-                      />
-                    </div>
-                  </div>
+                  <br /><br />
+                </div>
+              </div>
+              <div class="form-group ">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <label class="text-black">아이디</label>
+                  <input
+                    disabled
+                    class="form-control input-field2 row"
+                    id="login_id"
+                    name="login_id"
+                    v-model="getLoginId"
+                  />
+                </div>
+              </div>
 
-                  <form name="umpform" class="form-horizontal">
-                    <div class="form-group">
-                      <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                        <label class="text-black">비밀번호</label>
-                        <input
-                          type="password"
-                          class="form-control input-field"
-                          id="login_pw"
-                          name="login_pw"
-                          v-model="user_pw"
-                        />
-                      </div>
-
-                      <div style="float:right;">
-                        <b-button
-                          class="text-decoration-none"
-                          id="userDuplicateBtn"
-                          @click="upwUpdateFinish"
-                          variant="link"
-                          style="float: right; color:#75b239;"
-                          >수정완료
-                        </b-button>
-                      </div>
-                    </div>
-                  </form>
-
-                  <div class="form-group">
-                    <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                      <label class="text-black">이름</label>
-                      <input
-                        disabled
-                        class="form-control input-field2"
-                        id="login_name"
-                        name="login_name"
-                        v-model="user_name"
-                      />
-                    </div>
+              <form name="umpform" class="form-horizontal">
+                <div class="form-group">
+                  <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                    <label class="text-black">비밀번호</label>
+                    <input
+                      type="password"
+                      class="form-control input-field"
+                      id="login_pw"
+                      name="login_pw"
+                      v-model="user_pw"
+                    />
+                    <b-button
+                      class="text-decoration-none"
+                      id="userDuplicateBtn"
+                      @click="upwUpdateFinish"
+                      variant="link"
+                      style="float: right; color:#75b239;  padding:0px; margin:0px;"
+                      >수정완료
+                    </b-button>
                   </div>
+                </div>
+              </form>
 
-                  <div class="form-group">
-                    <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                      <label class="text-black">휴대폰 번호</label>
-                      <input
-                        class="form-control input-field"
-                        id="login_phone"
-                        name="login_phone"
-                        v-model="user_phone"
-                      />
-                    </div>
-                  </div>
+              <div class="form-group">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <label class="text-black">이름</label>
+                  <input
+                    disabled
+                    class="form-control input-field2"
+                    id="login_name"
+                    name="login_name"
+                    v-model="user_name"
+                  />
+                </div>
+              </div>
 
-                  <div class="form-group">
-                    <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                      <label class="text-black">주소</label>
-                      <input
-                        class="form-control input-field"
-                        id="login_address"
-                        name="login_address"
-                        v-model="user_address"
-                      />
-                      <b-button>찾기</b-button>
-                    </div>
-                  </div>
+              <div class="form-group">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <label class="text-black">휴대폰 번호</label>
+                  <input
+                    class="form-control input-field"
+                    id="login_phone"
+                    name="login_phone"
+                    v-model="user_phone"
+                  />
+                </div>
+              </div>
 
-                  <div class="form-group">
-                    <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                      <label class="text-black">이메일</label>
-                      <input
-                        disabled
-                        class="form-control input-field2"
-                        id="login_email"
-                        name="login_email"
-                        v-model="user_email"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-8"
-                     style="display:block; margin: 0 auto; ">
-                      <label class="text-black">성별</label>
-                      <input
-                        disabled
-                        class="form-control input-field2"
-                        id="login_gender"
-                        name="login_gender"
-                        v-model="user_gender"
-                      />
-                    </div>
-                    <br><br>
-                  </div>
+              <div class="form-group">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <label class="text-black">주소</label>
+                  <input
+                    class="form-control input-field"
+                    id="login_address"
+                    name="login_address"
+                    v-model="user_address"
+                  />
+                  <b-button pill style="float:right;">찾기</b-button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <label class="text-black">이메일</label>
+                  <input
+                    disabled
+                    class="form-control input-field2"
+                    id="login_email"
+                    name="login_email"
+                    v-model="user_email"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-8" style="display:block; margin: 0 auto; ">
+                  <label class="text-black">성별</label>
+                  <input
+                    disabled
+                    class="form-control input-field2"
+                    id="login_gender"
+                    name="login_gender"
+                    v-model="user_gender"
+                  />
+                </div>
+                <br /><br />
+              </div>
             </div>
           </div>
         </div>
