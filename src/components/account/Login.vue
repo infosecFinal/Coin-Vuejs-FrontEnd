@@ -79,6 +79,14 @@
                 &nbsp;
                 <b-button
                   pill
+                  href="/findpw"
+                  variant="warning"
+                  class=" btn-block"
+                  >비밀번호찾기</b-button
+                >
+                &nbsp;
+                <b-button
+                  pill
                   href="/register"
                   variant="warning"
                   class=" btn-block"

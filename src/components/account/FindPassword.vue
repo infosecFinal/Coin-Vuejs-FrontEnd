@@ -1,25 +1,65 @@
 <template>
+<div class="site-wrap">
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">FindPassword</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-12">
+          <h2 class="h3 mb-5 text-black">FindPassword</h2>
+        </div>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4 w3-auto" style="width: 382px;height: 456.3px;">
-			<div class="w3-center w3-large w3-margin-top">
-				<h3>비밀번호 찾기</h3>
-			</div>
 			<div>
 				<p>
-					<label>아이디</label>
-					<input v-model="member_id" class="w3-input" type="text" id="id" name="id" placeholder="회원가입한 아이디를 입력하세요" required>
+                    <label class="text-black">아이디</label>
+                <input
+                  type="password"
+                  class="form-control input-field"
+                  id="member_id" 
+                  name="member_id" 
+                  v-model="member_id" 
+                  placeholder="회원가입한 아이디를 입력하세요"
+                  style="border:none" 
+                />
 				</p>
 				<p>
-					<label>이메일</label>
-					<input v-model="member_email" class="w3-input" type="text" id="email" name="email" placeholder="회원가입한 이메일주소를 입력하세요" required>
+                    <label class="text-black">이메일</label>
+                <input 
+                  type="password"
+                  class="form-control input-field"
+                  id="member_email" 
+                  name="member_email" 
+                  v-model="member_email" 
+                  placeholder="회원가입한 이메일주소를 입력하세요"
+                  style="border:none" 
+                />
 				</p>
 				<p class="w3-center">
-					<button type="button" @click="findPw" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">찾기</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">로그인으로</button>
-				</p>
+					<b-button pill type="button" @click="findPw" 
+                  variant="warning">임시 비밀번호 발급</b-button>
+                    &nbsp;
+                <b-button pill
+                  to="/login"
+                  variant="warning"
+                  class=" btn-block"
+                  >로그인</b-button
+                >
+				</p>                
 			</div>
 		</div>
 	</div>
+      </div>
+    </div>
+</div>
 </template>
 
 
@@ -44,7 +84,7 @@ export default {
             });
             console.log(resp)
 
-            if(resp != null){
+            if(resp.data.msg != 'fail'){
                 alert("이메일로 임시 비밀번호를 발송하였습니다.")
             }
             else
@@ -52,10 +92,7 @@ export default {
             }
         }
 }
-
 </script>
-
-
 
 <style>
 .mybtn{
@@ -74,5 +111,19 @@ export default {
   background: white;
   color: #212529;
   text-decoration: none;
+}
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
 }
 </style>
