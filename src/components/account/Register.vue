@@ -175,7 +175,7 @@
                   <br />
                   <br />
                   <div class="form-group">
-                    <div class="col-lg-6 ">
+                    <div class="col-lg-6"  style="display:block; margin: 0 auto;">
                       <b-button
                         pill
                         id="userRegiBtn"
