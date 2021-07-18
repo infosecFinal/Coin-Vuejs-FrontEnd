@@ -27,21 +27,16 @@
         </div>
 
         <div class="col-lg-8" style=" display:block; margin: 0 auto; ">
-          <div
-            class="bg-light p-3 table mid row"
-            style=" border-radius:50px; display:block; margin: 0 auto;"
-          >
-            <p class="mb-0">
+            <p class="mb-0 bg-light p-3" style=" border-radius:50px; display:block; margin: 0 auto;">
               정보수정을 원하시면 비밀번호 입력 후,
               <a class="text-decoration-none">수정하기</a>를 눌러주세요.
             </p>
-          </div>
           <br />
           <div
             class="form-group row "
             style="background-color: #f1f5f8;  border-radius: 50px; display:block; margin: 0 auto;"
           >
-            <br /><br />
+            <br />
             <div class="form-group row">
               <div class="col-md-8" style="display:block; margin: 0 auto; ">
                 <br /><br />
@@ -51,6 +46,7 @@
                   height="200px"
                   style="border:2px solid #f3f3f3; display:block; margin: 0 auto;"
                 />
+                <br><br><br>
               </div>
               <div class="form-group ">
                   <div class="col-md-8" style="display:block; margin: 0 auto; ">
@@ -81,11 +77,12 @@
                         style="border:none"
                       />
                       <b-button
+                        pill
                         class="text-decoration-none"
                         id="userDuplicateBtn"
                         @click="upwUpdateConfirm"
-                        variant="link"
-                        style="float: right; color:#75b239; padding:0px; margin:0px;"
+                        variant="warning"
+                        style="float: right; margin-top:10px;"
                         >수정하기
                       </b-button>
                     </div>

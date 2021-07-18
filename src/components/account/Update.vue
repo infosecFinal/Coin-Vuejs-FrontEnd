@@ -29,15 +29,10 @@
         </div>
 
         <div class="col-lg-8" style=" display:block; margin: 0 auto;">
-          <div
-            lass="bg-light p-3 table mid"
-            style="width:700px; border-radius: 50px; display:block; margin: 0 auto;"
-          >
-            <p class="mb-0">
+            <p class="mb-0 bg-light p-3"  style=" border-radius:50px; display:block; margin: 0 auto;">
               정보수정을 원하시면 비밀번호 입력 후,
               <a class="text-decoration-none">수정하기</a>를 눌러주세요.
             </p>
-          </div>
           <br />
           <div
             class="form-group row "
@@ -90,11 +85,12 @@
                       v-model="user_pw"
                     />
                     <b-button
+                      pill
                       class="text-decoration-none"
                       id="userDuplicateBtn"
                       @click="upwUpdateFinish"
-                      variant="link"
-                      style="float: right; color:#75b239;  padding:0px; margin:0px;"
+                      variant="warning"
+                      style="float: right; margin-top:10px;"
                       >수정완료
                     </b-button>
                   </div>
@@ -135,7 +131,7 @@
                     name="login_address"
                     v-model="user_address"
                   />
-                  <b-button pill style="float:right;">찾기</b-button>
+                  <b-button pill variant="warning" style="float:right; margin-top:10px;">찾기</b-button>
                 </div>
               </div>
 
