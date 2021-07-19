@@ -14,7 +14,6 @@
     </div>
     <br /><br />
     <container class="text-light text-center"  style=" display:block; margin: 0 auto; ">
-      <pre></pre>
       <div class="col-lg-8">
         <!-- <b-row> -->
           <!-- <b-col> -->
@@ -55,7 +54,7 @@
           </div> -->
           <br><br>
         <!-- </b-row> -->
-        <b-row >
+        <b-row style="float: none; margin:0 auto;">
           <!-- <b-col > -->
           <!-- <b-button pill class="col-md-1" variant="warning" @click="fetch" >전체보기</b-button> -->
           <!-- </b-col>
@@ -63,6 +62,7 @@
           <div class="col-md-8"  style=" display:block; margin: 0 auto; ">
             <b-button pill variant="warning" @click="fetch">전체보기</b-button>
             &nbsp; &nbsp;
+
             <b-form-select
               v-model="category"
               :options="['title', 'content', 'user_id']"
@@ -70,6 +70,8 @@
             >
             </b-form-select>
             <input v-model="to_find" @keyup.enter="find" />
+
+
             <!-- <b-input-group-append> -->
             &nbsp;&nbsp;
             <b-button pill text="Button" variant="warning" @click="find"
