@@ -100,7 +100,7 @@ export default {
       category: "title",
       fields: [
         {
-          key: "id",
+          key: "idx",
           label: "글 번호",
           sortable: true,
         },
@@ -140,6 +140,7 @@ export default {
     rowClick(item) {
       this.$router.push({
         path: `/board/free/detail/${item.id}`,
+        query: {"idx": `${item.idx}`}
       });
     },
     writeContent() {
@@ -156,7 +157,16 @@ export default {
     },
     async fetch() {
       const resp = await fetchData();
-      if (resp.data.code > 0) this.items = resp.data.list;
+      if (resp.data.code > 0) {
+        this.items = resp.data.list;
+        const len = this.items.length
+        this.items.map((item, idx) => {
+          console.log(item);
+          return item["idx"]=len - idx
+          })
+        console.log(this.items);
+        
+      }
     },
   },
 };

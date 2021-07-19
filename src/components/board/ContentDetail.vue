@@ -12,7 +12,7 @@
         >
           <div class="content-detail-content-info-left">
             <div class="content-detail-content-info-left-number">
-              {{ id }}
+              {{ $route.query.idx }}
             </div>
             <div class="content-detail-content-info-left-subject">
               {{ data.title }}

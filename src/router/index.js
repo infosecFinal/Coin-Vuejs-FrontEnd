@@ -48,7 +48,8 @@ const routes = [{
     {
         path: '/board/free/detail/:contentId',
         name: 'ContentDetail',
-        component: ContentDetail
+        component: ContentDetail,
+        props: true
     },
     {
         path: '/board/free/create/:contentId?',
