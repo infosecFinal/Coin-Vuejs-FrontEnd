@@ -3,7 +3,7 @@
       <br><br>
     <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px;">
       <br><br>
-      <b-input :value="content_id ? user_id : getLoginId" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
+      <b-input :value="user_id" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
       <br>
       <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto; "></b-form-input>
       <br><br>
@@ -29,8 +29,10 @@
       drop-placeholder="Drop file here..."
       multiple
     ></b-form-file>
+
     <div class="col" align="right" style="margin-right:70px;">
     <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
+
      &nbsp;
     <b-button pill variant="warning" @click="cancel">취소</b-button>
     </div>
@@ -40,7 +42,7 @@
 </template>
 
 <script>
-import {insertData, updateData, fetchDataById} from '@/service'
+import {insertData, updateData, fetchDataById, getUserInfo} from '@/service'
 import {insertFile, getFilesInfo, deleteFile} from '@/service/file/file.js'
 import {mapGetters} from 'vuex'
 
@@ -52,6 +54,7 @@ export default {
             title: '',
             content: '',
             file1: null,
+            user_id : '',
             data: {},
             files: [],
             formData: new FormData()
@@ -65,6 +68,9 @@ export default {
             this.title = resp.data.data.title;
             this.content = resp.data.data.content;
             this.files = files.data.list;
+        } else {
+            const resp = await getUserInfo();
+            if(resp.data.code > 0) this.user_id = resp.data.data.user_id;
         }
     },
     computed: {
@@ -81,8 +87,7 @@ export default {
         async deleteFileFromList(idx) {
             let file = this.files[idx]
             this.files.splice(idx, 1);
-            const resp = await deleteFile(file);
-            console.log(resp);
+            await deleteFile(file);
         },
         async insert() {
             const resp = await insertData({
@@ -105,7 +110,7 @@ export default {
                 title: this.title,
                 content: this.content
             });
-            console.log(resp);
+            console.log("update response: ", resp);
             if(this.file1 !== null) this.fileUpload();
             this.$router.push({
                 path: '/board/free'
@@ -118,14 +123,19 @@ export default {
                 formData.append('files', this.file1[i]);
                 console.log(i,": ", this.file1[i])
             }
-            const resp = await insertFile(formData,this.content_id?this.content_id:'new')
-            console.log(resp);
+            await insertFile(formData,this.content_id?this.content_id:'new')
+            
         }
     }
 }
 </script>
 
 <style>
+.wrapmid{
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
 .table {
    max-width: 800px;
    max-height: 1000px; 
