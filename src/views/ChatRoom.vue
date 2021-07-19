@@ -50,7 +50,8 @@ export default {
     data() {
       return {
         socket: null,
-        user_id: ''
+        user_id: '',
+        stompClient: null
       }
     },
     components: {

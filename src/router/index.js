@@ -109,11 +109,13 @@ const router = new VueRouter({
 
 router.beforeEach(async(to, from, next) => {
     const resp = await getUserInfo();
-    console.log(resp);
+    console.log("resp: ", resp);
+    
     if (resp.data.code > 0) {
         store.commit('account/setId', resp.data.data.user_id);
         store.commit('account/setLoginState', true);
     }
+    console.log("login id: ", store.state.account.login_id)
     next();
 })
 

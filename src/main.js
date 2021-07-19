@@ -16,7 +16,7 @@ import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueApexCharts)
 
-Vue.component('apexchart', VueApexCharts)
+Vue.component("apexchart", VueApexCharts)
 
 
 Vue.prototype.$baseURL = 'http://localhost:8083'
