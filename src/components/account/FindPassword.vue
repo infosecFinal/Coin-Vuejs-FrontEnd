@@ -27,7 +27,7 @@
                 border-radius: 50px;
                 border: none;
               ">
-            
+                <br>
                 <div
                   class="col-md-7 col-sm-7"
                   style="border:none display:block; margin: 0 auto;"
