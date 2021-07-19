@@ -37,10 +37,10 @@ export default {
           console.log("Send Message: " + this.message);
           if(this.client && this.client.connected) {
             const msg = {
-              name: this.user,
+              name: this.getLoginId,
               msg: this.message
             };
-            console.log(msg);
+            console.log("msg: ",msg);
             this.client.send("/app/hello",JSON.stringify(msg), {});
           }
         },
