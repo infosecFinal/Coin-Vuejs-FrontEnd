@@ -236,8 +236,7 @@ export default {
         };
         reader.readAsDataURL(file[0]);
         this.$emit("input", this.file);
-        this.user_image = `url(${previewImage})`;
-        console.log(user_image);
+
       }
     },
     async userInfoPrint() {

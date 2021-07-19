@@ -46,7 +46,7 @@
         <br><br><br>
         <div
           class="content-detail-button"
-          v-if="user.user_id === data.user_id"
+          v-if="user.user_id === data.user_id || getisAdmin"
           style="border:none; float: right;"
         >
           <b-button pill variant="warning" @click="modifyData">수정</b-button>
@@ -83,7 +83,7 @@ export default {
     console.log(this.files);
   },
   computed: {
-    ...mapGetters("account", ["getLoginId"]),
+    ...mapGetters("account", ["getLoginId", "getisAdmin"]),
   },
   methods: {
     async deleteData() {

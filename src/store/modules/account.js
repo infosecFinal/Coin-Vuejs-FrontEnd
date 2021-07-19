@@ -3,7 +3,8 @@ const state = {
     user_image:'',
     login:'Login',
     register:'Register',
-    isLogin: false
+    isLogin: false,
+    isAdmin: false
 };
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
     },
     setImgaePath: ($state, $payload) =>{
         $state.user_image = $payload
+    },
+    setAdmin: ($state, $payload) => {
+        $state.isAdmin = $payload;
     }
 };
 
@@ -30,7 +34,8 @@ const getters = {
     getLogout: state => state.login,
     getMypage: state => state.register,
     getLoginId: state => state.login_id,
-    getImagePath: state => state.user_image
+    getImagePath: state => state.user_image,
+    getisAdmin: state => state.isAdmin
 }
 
 export default{
