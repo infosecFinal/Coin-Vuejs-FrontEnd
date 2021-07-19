@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class='size_edit'>
     <pre></pre>
     <p>CopyRight CoinNet</p>
     <css-doodle class="background">
@@ -19,11 +19,23 @@ export default {};
 
 <style scoped>
 footer {
-  pointer-events: none;
+  /* pointer-events: none; */
   border-top: 1px solid #35495e;
   text-align: center;
   font-size: 16px;
   color: #000000;
   margin: 200px 0 0 0;
+}
+.background {
+  font: 900 100px/0.65 system-ui;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+  max-height: 300px;
+}
+span {
+  display: inline-block;
+  text-indent: 0rem;
+  position: relative;
 }
 </style>

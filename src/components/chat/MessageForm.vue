@@ -52,7 +52,6 @@ export default {
 <style>
 #textarea-no-resize {
   position: relative;
-  z-index: 2;
   max-width: 800px;
   left: 0;
   right: 0;
