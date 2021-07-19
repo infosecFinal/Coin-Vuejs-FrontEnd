@@ -24,7 +24,7 @@
     </div> -->
     <div style="padding-bottom: 5em">
       <div>
-          <b-list-group-item id="container" class="list-group mb-10" style=" border-radius: 50px;">
+          <b-list-group-item id="container" class="list-group mb-10" style=" border-radius: 50px; text-align:left; padding-top:30px; padding-left:40px;">
             <p v-for="(msg, idx) in msgs" :key="idx">{{ msg.content }}</p>
           </b-list-group-item>
       </div>
