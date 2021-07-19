@@ -27,11 +27,12 @@
                 border-radius: 50px;
                 border: none;
               ">
-              <p>
+            
                 <div
                   class="col-md-7 col-sm-7"
                   style="border:none display:block; margin: 0 auto;"
-                >
+                >  
+                <p>
                 <label class="text-black">아이디</label>
                 <input
                   class="form-control input-field"
