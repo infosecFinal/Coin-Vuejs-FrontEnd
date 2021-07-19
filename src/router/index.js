@@ -33,11 +33,6 @@ const routes = [{
         name: 'ChatRoom',
         component: ChatRoom
     },
-    // {
-    //   path: '/board',
-    //   name: 'Read',
-    //   component: Read,
-    // },
     {
         path: '/board/free',
         name: 'Board',
@@ -84,11 +79,6 @@ const routes = [{
         name: 'Update',
         component: Update
     },
-    // {
-    //   path: '/mypage/update',
-    //   name: 'Update2',
-    //   component: Update2
-    // },
     {
         path: '/findpw',
         name: 'FindPassword',
