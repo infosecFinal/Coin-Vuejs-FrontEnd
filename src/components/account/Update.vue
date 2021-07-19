@@ -53,7 +53,7 @@
                   <label for="formFile" class="form-label">Upload Image:</label>
                   <div
                     class="imagePreviewWrapper"
-                    :style="{ 'background-image': `url(${previewImage})` }"
+                    :style="{ 'background-image': `url(http://localhost:8083/file/download/${profile_img_idx})` }"
                     @click="selectImage"
                   ></div>
                   <input
@@ -225,7 +225,8 @@ export default {
     selectImage() {
       this.$refs.fileInput.click();
     },
-    pickFile() {
+    pickFile(e) {
+      console.log(e.target);
       let input = this.$refs.fileInput;
       let file = input.files;
       if (file && file[0]) {
@@ -234,9 +235,9 @@ export default {
           this.previewImage = e.target.result;
         };
         reader.readAsDataURL(file[0]);
-        this.$emit("input", file[0]);
-        this.user_image = file.origin_file_Name;
-        console.log(this.user_image);
+        this.$emit("input", this.file);
+        this.user_image = `url(${previewImage})`;
+        console.log(user_image);
       }
     },
     async userInfoPrint() {
