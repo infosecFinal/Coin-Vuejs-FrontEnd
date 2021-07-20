@@ -57,7 +57,7 @@
                           style="
                             border-top-right-radius: 50px;
                             border-bottom-right-radius: 50px;
-                            height: 47px; font-size:85%; width:75px;
+                            height: 47px; font-size:85%; width:85px;
                           "
                           >중복확인
                         </b-button>
@@ -138,7 +138,6 @@
                           name="user_address"
                           required="required"
                           v-model="user_address"
-                          style="border: none"
                         />
                         <window-popup v-model="open"
                           >팝업창의 내용입니다.</window-popup
@@ -150,10 +149,9 @@
                             style="
                               border-top-right-radius: 50px;
                               border-bottom-right-radius: 50px;
-                              height: 47px; font-size:85%; width:75px;
-                            "
-                            >검색</b-button
-                          >
+                              height: 47px; font-size:85%; width:85px;"
+                            >검색
+                            </b-button>
                         </span>
                       </div>
                     </div>
@@ -213,9 +211,8 @@
                         pill
                         id="userRegiBtn"
                         @click="registerUser"
-                        variant="warning"
-                        class="btn btn-primary btn-block wrapmid"
-                        style="display: block; margin: 0 auto"
+                        class="btn btn-warning btn-block wrapmid p-3"
+                        style="display: block; margin: 0 auto ; font-weight: bold ; text-align:center;"
                         >회원가입</b-button
                       >
                     </div>

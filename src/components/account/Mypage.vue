@@ -52,7 +52,7 @@
                     class="imagePreviewWrapper"
                     :style="{ 'background-image': `url(http://localhost:8083/file/profile/${getLoginId}?nocache=${rand})` }"
                   ></div>
-                <br /><br /><br />
+                <br />
               </div>
               <div class="form-group">
                 <div class="col-md-8" style="display: block; margin: 0 auto">
@@ -71,6 +71,8 @@
                 <div class="form-group">
                   <div class="col-md-8" style="display: block; margin: 0 auto">
                     <label class="text-black">비밀번호</label>
+
+                    <div class="col input-group">
                     <input
                       type="password"
                       class="form-control input-field"
@@ -79,15 +81,19 @@
                       v-model="user_pw"
                       style="border: none"
                     />
+                    <span class="input-group-btn">
                     <b-button
-                      pill
                       class="text-decoration-none"
                       id="userDuplicateBtn"
                       @click="upwUpdateConfirm"
                       variant="warning"
-                      style="float: right; margin-top: 10px"
+                      style="border-top-right-radius: 50px;
+                              border-bottom-right-radius: 50px;
+                              height: 47px; font-size:85%; width:85px;"
                       >수정하기
                     </b-button>
+                    </span>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -278,8 +284,8 @@ export default {
 }
 .imagePreviewWrapper {
   background-repeat: no-repeat;
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
   display: block;
   cursor: pointer;
   margin: 0 auto 30px;
