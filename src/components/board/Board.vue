@@ -93,7 +93,7 @@ import { fetchData, findData } from "@/service";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "Board",
+  name: 'Board',
   data() {
     return {
       to_find: "",
@@ -128,7 +128,7 @@ export default {
   },
   async created() {
     this.fetch();
-    console.log(this.$store.getters["account/getLoginId"]);
+    console.log(this.$store.getters["account/getLoginId"])
   },
   computed: {
     ...mapGetters("account", ["getLoginState"]),
@@ -164,8 +164,6 @@ export default {
           console.log(item);
           return item["idx"]=len - idx
           })
-        console.log(this.items);
-        
       }
     },
   },
