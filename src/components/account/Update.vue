@@ -62,7 +62,7 @@
                       <b-form-file
                       v-model="file1"
                     accept=".jpg, .png, .gif"
-                    class="form-control col-md-8"
+                    class="scol-md-8"
                     style="display: block; margin: 0 auto"
                     ref="fileInput"
                     @input="pickFile"

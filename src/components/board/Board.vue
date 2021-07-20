@@ -22,7 +22,8 @@
         <b-table
           striped
           hover
-          style="background-color:#fff; margin:auto;"
+          head-variant="th"
+          style="background-color:#e9ecef;; margin:auto; text-align:center;"
           :items="items"
           :per-page="perPage"
           :current-page="currentPage"
@@ -49,27 +50,37 @@
       </div>
 
       <br /><br />
-      <b-row style="float: none; margin:0 auto;">
-        <div class="col-md-8" style=" display:block; margin: 0 auto; ">
-          <b-button pill variant="warning" @click="fetch">전체보기</b-button>
-          &nbsp; &nbsp;
+      <!-- <b-row style="float: none; margin:0 auto;"> -->
+        <div class="col-md-7" style=" border-radius: 50px; display:block; margin: 0 auto; padding:20px;">
+          <!-- background-color:#e9ecef; -->
+          <span class="col">
+          <!-- <b-button pill variant="warning" style="float:left; margin-left:10px;" @click="fetch">전체보기</b-button> -->
+         
 
+          <span class="input-group">
+            <span class="input-group-btn">
+            <b-button variant="warning" style="float:left; margin-left:10px; border-top-left-radius: 50px;
+                            border-bottom-left-radius: 50px; width:90px;height:40px;" @click="fetch">전체보기</b-button>
+            </span>
           <b-form-select
             v-model="category"
             :options="['title', 'content', 'user_id']"
             :value="null"
+            style="width:80px; height:40px; border:none;"
           >
           </b-form-select>
-          <input v-model="to_find" @keyup.enter="find" />
-
+          <input v-model="to_find" style="border:none; width:200px; height:40px;" @keyup.enter="find" />
+          <span class="input-group-btn">
           <!-- <b-input-group-append> -->
-          &nbsp;&nbsp;
-          <b-button pill text="Button" variant="warning" @click="find"
-            >Find</b-button
+          <b-button style="float:right; margin-right:10px; border-top-right-radius: 50px;
+                            border-bottom-right-radius: 50px; height:40px; width:90px;" text="Button" variant="warning" @click="find"
+            >찾기</b-button
           >
+          </span>
           <!-- </b-input-group-append> -->
+          </span></span>
         </div>
-      </b-row>
+      <!-- </b-row> -->
       <br /><br /><br />
       <b-row align-h="end"> </b-row>
     </container>
@@ -207,7 +218,8 @@ span {
   display: block;
   margin: 0 auto;
 }
-.customPagination > li > a {
-  color: #ffc107;
-}
+
+th {
+    background-color: #ffc107;
+  }
 </style>

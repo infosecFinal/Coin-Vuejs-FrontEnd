@@ -27,7 +27,7 @@
           class="content-detail-content-info table"
           style="background-color:#f1f5f8; border-radius: 50px; border:none; margin: 0 auto; margin-bottom:20px; margin-top:20px;"
         > 
-        <div  style=" width:15%; background-color:#ffc107; border-top-left-radius: 40px; border-bottom-left-radius: 50px; font-weight: bold ; text-align:center; padding-top:1%;" >첨부파일</div>
+        <div  style=" width:15%; background-color:#ffc107; border-top-left-radius: 40px; border-bottom-left-radius: 50px; text-align:center; padding-top:0.5%;" >첨부파일</div>
           <ul>
             <li v-for="(file, idx) in files" :key="idx" @click="download(file)" style="padding-top:7px;">
              {{ file.origin_file_Name }}
