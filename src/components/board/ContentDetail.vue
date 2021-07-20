@@ -43,6 +43,12 @@
           style="background-color:#fff; border-radius: 50px; border:none; display:block; margin: 0 auto;"
         >
         </div>
+        <b-form-input v-model="text" placeholder="Enter Comment" @keyup.enter="postComment"></b-form-input>
+        <ul>
+        <li v-for="(comment, idx) in comments" :key="idx">
+          {{comment.content}}
+        </li>
+        </ul>
         <br><br><br>
         <div
           class="content-detail-button"
@@ -61,6 +67,7 @@
 <script>
 import { fetchDataById, deleteData, getUserInfo } from "@/service";
 import { getFilesInfo, getFile } from "@/service/file/file.js";
+import { insertComment, fetchComment } from "@/service/comment/comment.js";
 import { mapGetters } from "vuex";
 
 export default {
@@ -71,12 +78,15 @@ export default {
       data: {},
       files: [],
       user: "",
+      comments: []
     };
   },
   async created() {
     const data_resp = await fetchDataById(this.id);
     const file_resp = await getFilesInfo(this.id);
     const user_resp = await getUserInfo();
+    const cmt_resp = await fetchComment(this.id);
+    this.comments = cmt_resp.data.list;
     this.data = data_resp.data.data;
     this.user = user_resp.data.data;
     this.files = file_resp.data.list;
@@ -104,6 +114,20 @@ export default {
       link.click();
       link.remove();
     },
+    async postComment(e) {
+      console.log('insert cmt');
+      const resp = await insertComment({
+        board_id:this.id,
+        content:e.target.value,
+        user_id: this.getLoginId
+      });
+      if(resp.data.code < 1) alert('댓글 입력 실패')
+      else {
+        e.target.value=''
+        const resp = await fetchComment(this.id);
+        this.comments = resp.data.list
+      }
+    }
   },
 };
 </script>
