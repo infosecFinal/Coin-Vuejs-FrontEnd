@@ -13,81 +13,65 @@
       </div>
     </div>
     <br /><br />
-    <container class="text-light text-center"  style=" display:block; margin: 0 auto; ">
-      <div class="col-lg-8">
-        <!-- <b-row> -->
-          <!-- <b-col> -->
-            <div>
-            <b-table
-              striped
-              hover
-              style="background-color:#fff;"
-              :items="items"
-              :per-page="perPage"
-              :current-page="currentPage"
-              :fields="fields"
-              @row-clicked="rowClick"
-            ></b-table>
-            </div>
-          <!-- </b-col> -->
-        <!-- </b-row> -->
+    <container
+      class="text-light text-center col-lg-8 col-md-8"
+      style=" display:block; margin: 0 auto; background-color: #f1f5f8;
+              border-radius: 50px; border: none;">
+      <br /><br /><br />
+      <div>
+        <b-table
+          striped
+          hover
+          style="background-color:#fff; margin:auto;"
+          :items="items"
+          :per-page="perPage"
+          :current-page="currentPage"
+          :fields="fields"
+          @row-clicked="rowClick"
+          align="center"
+        ></b-table>
+        <br /><br /><br />
+        <div class="col-lg-10 col-md-11 col-sm-11" style="text-align:right;">
+          <b-button pill variant="warning" @click="writeContent" offset-md="3"
+            >Write</b-button
+          >
+        </div>
+        <br />
+
         <b-pagination
           variant="warning"
           v-model="currentPage"
           :total-rows="rows"
           :per-page="perPage"
           align="center"
+          class="customPagination"
         ></b-pagination>
-        <br>
-        <!-- <b-row align-h="end"> -->
-          <!-- <div class="col-md-8">
-          <div style="float:right;"> -->
-            <div class="col-md-10">
-            <b-button
-              pill
-              style="backgroung-color:#fff; float:right;"
-              variant="warning"
-              @click="writeContent"
-              offset-md="4"
-              >Write</b-button
-            >
-            </div>
-            <br />
-            <br />
-          <!-- </div>
-          </div> -->
-          <br><br>
-        <!-- </b-row> -->
-        <b-row style="float: none; margin:0 auto;">
-          <!-- <b-col > -->
-          <!-- <b-button pill class="col-md-1" variant="warning" @click="fetch" >전체보기</b-button> -->
-          <!-- </b-col>
-              <b-col  style="float:left;"> -->
-          <div class="col-md-8"  style=" display:block; margin: 0 auto; ">
-            <b-button pill variant="warning" @click="fetch">전체보기</b-button>
-            &nbsp; &nbsp;
-
-            <b-form-select
-              v-model="category"
-              :options="['title', 'content', 'user_id']"
-              :value="null"
-            >
-            </b-form-select>
-            <input v-model="to_find" @keyup.enter="find" />
-
-
-            <!-- <b-input-group-append> -->
-            &nbsp;&nbsp;
-            <b-button pill text="Button" variant="warning" @click="find"
-              >Find</b-button
-            >
-            <!-- </b-input-group-append> -->
-          </div>
-          <!-- </b-col> -->
-        </b-row>
-        <br /><br /><br />
-        <b-row align-h="end"> </b-row>
       </div>
+
+      <br /><br />
+      <b-row style="float: none; margin:0 auto;">
+        <div class="col-md-8" style=" display:block; margin: 0 auto; ">
+          <b-button pill variant="warning" @click="fetch">전체보기</b-button>
+          &nbsp; &nbsp;
+
+          <b-form-select
+            v-model="category"
+            :options="['title', 'content', 'user_id']"
+            :value="null"
+          >
+          </b-form-select>
+          <input v-model="to_find" @keyup.enter="find" />
+
+          <!-- <b-input-group-append> -->
+          &nbsp;&nbsp;
+          <b-button pill text="Button" variant="warning" @click="find"
+            >Find</b-button
+          >
+          <!-- </b-input-group-append> -->
+        </div>
+      </b-row>
+      <br /><br /><br />
+      <b-row align-h="end"> </b-row>
     </container>
   </div>
 </template>
@@ -97,7 +81,7 @@ import { fetchData, findData } from "@/service";
 import { mapGetters } from "vuex";
 
 export default {
-  name: 'Board',
+  name: "Board",
   data() {
     return {
       to_find: "",
@@ -105,12 +89,12 @@ export default {
       fields: [
         {
           key: "idx",
-          label: "글 번호",
+          label: "번호",
           sortable: true,
         },
         {
           key: "user_id",
-          label: "글쓴이",
+          label: "작성자",
           sortable: true,
         },
         {
@@ -132,7 +116,7 @@ export default {
   },
   async created() {
     this.fetch();
-    console.log(this.$store.getters["account/getLoginId"])
+    console.log(this.$store.getters["account/getLoginId"]);
   },
   computed: {
     ...mapGetters("account", ["getLoginState"]),
@@ -144,7 +128,7 @@ export default {
     rowClick(item) {
       this.$router.push({
         path: `/board/free/detail/${item.id}`,
-        query: {"idx": `${item.idx}`}
+        query: { idx: `${item.idx}` },
       });
     },
     writeContent() {
@@ -163,11 +147,11 @@ export default {
       const resp = await fetchData();
       if (resp.data.code > 0) {
         this.items = resp.data.list;
-        const len = this.items.length
+        const len = this.items.length;
         this.items.map((item, idx) => {
           console.log(item);
-          return item["idx"]=len - idx
-          })
+          return (item["idx"] = len - idx);
+        });
       }
     },
   },
@@ -222,5 +206,8 @@ span {
   background: #fff;
   display: block;
   margin: 0 auto;
+}
+.customPagination > li > a {
+  color: #ffc107;
 }
 </style>
