@@ -38,6 +38,7 @@
                     <label for="user_id" class="text-black">
                       아이디 <span class="text-danger">*</span></label
                     >
+                    <div class="col input-group">
                     <input
                       type="text"
                       class="form-control input-field"
@@ -47,20 +48,18 @@
                       v-model="user_id"
                       style="border: none"
                     />
-
+                    <span class="input-group-btn">
                     <b-button
                       class="text-decoration-none"
                       id="userDuplicateBtn"
                       @click="userDuplicate"
-                      variant="link"
-                      style="
-                        float: right;
-                        color: #75b239;
-                        padding: 0px;
-                        margin: 0px;
-                      "
+                      variant="warning"
+                      style="border-top-right-radius: 50px; border-bottom-right-radius: 50px;
+                           height: 47px;"
                       >중복확인
                     </b-button>
+                    </span>
+                  </div>
                   </div>
                   <div class="form-group">
                     <div
@@ -121,33 +120,40 @@
                   </div>
                   <div class="form-group">
                     <div
-                      class="col-md-8"
+                      class="col-md-8 "
                       style="display: block; margin: 0 auto"
                     >
                       <label for="user_address" class="text-black">
                         주소 <span class="text-danger">*</span></label
                       >
-                      <input
-                        type="email"
-                        class="form-control input-field"
-                        id="user_address"
-                        name="user_address"
-                        required="required"
-                        v-model="user_address"
-                        style="border: none"
-                      />
-                      <window-popup v-model="open"
-                        >팝업창의 내용입니다.</window-popup
-                      >
-                      <b-button
-                        @click="open = true"
-                        pill
-                        variant="warning"
-                        style="float: right; margin-top: 10px"
-                        >찾기</b-button
-                      >
+
+                      <div class="col input-group">
+                        <input
+                          type="email"
+                          class="form-control input-field"
+                          id="user_address"
+                          name="user_address"
+                          required="required"
+                          v-model="user_address"
+                          style="border: none; "
+                        />
+                        <window-popup v-model="open"
+                          >팝업창의 내용입니다.</window-popup
+                        >
+                        <span class="input-group-btn">
+                        <b-button
+                          @click="open = true"
+                          variant="warning"
+                          style="border-top-right-radius: 50px; border-bottom-right-radius: 50px;
+                           height: 47px;"
+                          >찾기</b-button
+                        >
+                        </span>
+                      </div>
                     </div>
                   </div>
+
+                 
 
                   <div class="form-group">
                     <div
@@ -237,7 +243,7 @@ export default {
       user_address: "",
       user_email: "",
       user_gender: "",
-      open: false
+      open: false,
     };
   },
   methods: {

@@ -17,6 +17,7 @@
       <div class="col-lg-8">
         <!-- <b-row> -->
           <!-- <b-col> -->
+            <div>
             <b-table
               striped
               hover
@@ -27,6 +28,7 @@
               :fields="fields"
               @row-clicked="rowClick"
             ></b-table>
+            </div>
           <!-- </b-col> -->
         <!-- </b-row> -->
         <b-pagination
@@ -40,6 +42,7 @@
         <!-- <b-row align-h="end"> -->
           <!-- <div class="col-md-8">
           <div style="float:right;"> -->
+            <div class="col-md-10">
             <b-button
               pill
               style="backgroung-color:#fff; float:right;"
@@ -48,6 +51,7 @@
               offset-md="4"
               >Write</b-button
             >
+            </div>
             <br />
             <br />
           <!-- </div>

@@ -4,26 +4,25 @@
     <b-card
       style="max-width: 1000px; background-color:#e9ecef; border-radius: 50px; border:none; display:block; margin: 0 auto;"
     >
-      <br /><br>
+      <br /><br />
       <div>
+        <div
+          style="display:block; margin: 0 auto; text-align:center; font-weight: bold ; font-size:200%;"
+        >
+          {{ data.title }}
+        </div>
 
+        <br /><br />
 
-        <div style="display:block; margin: 0 auto; text-align:center; font-weight: bold ; font-size:200%;">
-              {{ data.title }}
-            </div>
-
-      <br><br>
-
-          <div>
-            <div style="float:right; margin-right:10%;">
-              글 번호 : {{ $route.query.idx }}
-              <br>
-              작성자 : {{ data.user_id }}
-              <br>
-              작성일 : {{ data.created_at }}
-              <br><br>
-            </div>
+        <div>
+          <div style="float:right; margin-right:10%; font-weight: bold ;">
+            글 번호 : {{ $route.query.idx }}
+            <br />
+            작성자 : {{ data.user_id }}
+            <br />
+            작성일 : {{ data.created_at }} <br /><br />
           </div>
+        </div>
         <div
           class="content-detail-content-info table"
           style="background-color:#f1f5f8; border-radius: 50px; border:none; margin: 0 auto; margin-bottom:20px; margin-top:20px;"
@@ -38,53 +37,66 @@
           class="content-detail-content table"
           v-html="data.content"
           style="background-color:#fff; border-radius: 50px; border:none; display:block; margin: 0 auto;"
-        >
-        </div>
-        <br><br><br>
+        ></div>
+        <br /><br /><br />
         <div
           class="content-detail-button"
           v-if="user.user_id === data.user_id || getisAdmin"
           style="border:none; float: right;"
         >
-          <b-button pill variant="warning" @click="modifyData">글 수정</b-button>
+          <b-button pill variant="warning" @click="modifyData"
+            >글 수정</b-button
+          >
           &nbsp;
-          <b-button pill variant="warning" @click="deleteData">글 삭제</b-button>
+          <b-button pill variant="warning" @click="deleteData"
+            >글 삭제</b-button
+          >
         </div>
       </div>
     </b-card>
-    <br><br>
+    <br /><br />
 
-<div>
-  <br><br>
-  <b-card
-      style="max-width: 1000px; background-color:#f1f5f8; border-radius: 50px; border:none; display:block; margin: 0 auto;"
-    >
-     <!-- style="margin-top:3%; margin-left:3%; margin-right:3%; margin-bottom:3%;" -->
-    <div style="margin-top:3%;">
-    <b-form-input style=" width:95%; display:block; margin: 0 auto; border-radius: 50px;" placeholder="댓글입력" @keyup.enter="postComment"></b-form-input>
-        <br>
-        <div>
-        <ul id="comments">
-        <li class="p-1" style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;" v-for="(comment, idx) in itemsforList" :key="idx">
-             &nbsp;&nbsp;&nbsp;{{comment.user_id + " |  "+ comment.content}}&nbsp;&nbsp;&nbsp;
-        </li>
-        </ul>
-        <br>
-        <b-pagination
-          variant="warning"
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          align="center"
-          aria-controls="comments"
-          small
-        ></b-pagination>
-        <br>
+    <div>
+      <br /><br />
+      <b-card
+        style="max-width: 1000px; background-color:#f1f5f8; border-radius: 50px; border:none; display:block; margin: 0 auto;"
+      >
+        <!-- style="margin-top:3%; margin-left:3%; margin-right:3%; margin-bottom:3%;" -->
+        <div style="margin-top:3%;">
+          <b-form-input
+            style=" width:95%; display:block; margin: 0 auto; border-radius: 50px;"
+            placeholder="댓글입력"
+            @keyup.enter="postComment"
+          ></b-form-input>
+          <br />
+          <div>
+            <ul id="comments">
+              <li
+                class="p-1"
+                style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;"
+                v-for="(comment, idx) in itemsforList"
+                :key="idx"
+              >
+                &nbsp;&nbsp;&nbsp;{{
+                  comment.user_id + " |  " + comment.content
+                }}&nbsp;&nbsp;&nbsp;
+              </li>
+            </ul>
+            <br />
+            <b-pagination
+              variant="warning"
+              v-model="currentPage"
+              :total-rows="rows"
+              :per-page="perPage"
+              align="center"
+              aria-controls="comments"
+              small
+            ></b-pagination>
+            <br />
+          </div>
         </div>
+      </b-card>
     </div>
-  </b-card>
-</div>
-
   </div>
 </template>
 
@@ -125,10 +137,10 @@ export default {
     },
     itemsforList() {
       return this.comments.slice(
-        (this.currentPage-1)*this.perPage,
-          this.currentPage * this.perPage
-      )
-    }
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+    },
   },
   methods: {
     async deleteData() {
@@ -151,19 +163,19 @@ export default {
       link.remove();
     },
     async postComment(e) {
-      console.log('insert cmt');
+      console.log("insert cmt");
       const resp = await insertComment({
-        board_id:this.id,
-        content:e.target.value,
-        user_id: this.getLoginId
+        board_id: this.id,
+        content: e.target.value,
+        user_id: this.getLoginId,
       });
-      if(resp.data.code < 1) alert('댓글 입력 실패')
+      if (resp.data.code < 1) alert("댓글 입력 실패");
       else {
-        e.target.value=''
+        e.target.value = "";
         const resp = await fetchComment(this.id);
-        this.comments = resp.data.list
+        this.comments = resp.data.list;
       }
-    }
+    },
   },
 };
 </script>
@@ -181,7 +193,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  
 }
 .content-detail-content-info-right {
   width: 300px;
