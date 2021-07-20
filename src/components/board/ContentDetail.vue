@@ -85,7 +85,7 @@
 
 <script>
 import { fetchDataById, deleteData, getUserInfo } from "@/service";
-import { getFilesInfo, getFile } from "@/service/file/file.js";
+import { getFilesInfo } from "@/service/file/file.js";
 import { insertComment, fetchComment } from "@/service/comment/comment.js";
 import { mapGetters } from "vuex";
 
@@ -109,7 +109,6 @@ export default {
     this.data = data_resp.data.data;
     this.user = user_resp.data.data;
     this.files = file_resp.data.list;
-    console.log(this.files);
   },
   computed: {
     ...mapGetters("account", ["getLoginId", "getisAdmin"]),
@@ -125,8 +124,9 @@ export default {
       });
     },
     async download(file) {
-      await getFile(file.id);
-      const url = `http://localhost:8083/file/download/${file.id}`;
+      // const file_resp = await getFile(file.idx);
+      // console.log(file_resp);
+      const url = `http://localhost:8083/file/download/${file.idx}`;
       const link = document.createElement("a");
       link.href = url;
       document.body.appendChild(link);
