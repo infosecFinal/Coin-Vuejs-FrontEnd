@@ -64,14 +64,23 @@
     >
      <!-- style="margin-top:3%; margin-left:3%; margin-right:3%; margin-bottom:3%;" -->
     <div style="margin-top:3%;">
-    <b-form-input style=" width:95%; display:block; margin: 0 auto; border-radius: 50px;" v-model="text" placeholder="댓글입력" @keyup.enter="postComment"></b-form-input>
+    <b-form-input style=" width:95%; display:block; margin: 0 auto; border-radius: 50px;" placeholder="댓글입력" @keyup.enter="postComment"></b-form-input>
         <br>
         <div>
-        <ul>
-        <li class="p-1" style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;" v-for="(comment, idx) in comments" :key="idx">
-             &nbsp;&nbsp;&nbsp;{{user.user_id + " |  "+ comment.content}}&nbsp;&nbsp;&nbsp;
+        <ul id="comments">
+        <li class="p-1" style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;" v-for="(comment, idx) in itemsforList" :key="idx">
+             &nbsp;&nbsp;&nbsp;{{comment.user_id + " |  "+ comment.content}}&nbsp;&nbsp;&nbsp;
         </li>
         </ul>
+        <b-pagination
+          variant="warning"
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          align="center"
+          aria-controls="comments"
+          small
+        ></b-pagination>
         </div>
     </div>
   </b-card>
@@ -94,7 +103,9 @@ export default {
       data: {},
       files: [],
       user: "",
-      comments: []
+      comments: [],
+      perPage: 10,
+      currentPage: 1,
     };
   },
   async created() {
@@ -106,9 +117,19 @@ export default {
     this.data = data_resp.data.data;
     this.user = user_resp.data.data;
     this.files = file_resp.data.list;
+    console.log(this.comments.length);
   },
   computed: {
     ...mapGetters("account", ["getLoginId", "getisAdmin"]),
+    rows() {
+      return this.comments.length;
+    },
+    itemsforList() {
+      return this.comments.slice(
+        (this.currentPage-1)*this.perPage,
+          this.currentPage * this.perPage
+      )
+    }
   },
   methods: {
     async deleteData() {
