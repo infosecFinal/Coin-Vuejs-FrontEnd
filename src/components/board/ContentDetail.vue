@@ -55,9 +55,9 @@
           v-if="user.user_id === data.user_id || getisAdmin"
           style="border:none; float: right;"
         >
-          <b-button pill variant="warning" @click="modifyData">수정</b-button>
+          <b-button pill variant="warning" @click="modifyData">글 수정</b-button>
           &nbsp;
-          <b-button pill variant="warning" @click="deleteData">삭제</b-button>
+          <b-button pill variant="warning" @click="deleteData">글 삭제</b-button>
         </div>
       </div>
     </b-card>
@@ -68,14 +68,17 @@
   <b-card
       style="max-width: 1000px; background-color:#f1f5f8; border-radius: 50px; border:none; display:block; margin: 0 auto;"
     >
-    <div style="margin-top:3%; margin-left:3%; margin-right:3%; margin-bottom:3%;">
-    <b-form-input style=" width:100%; display:block; margin: 0 auto; " v-model="text" placeholder="댓글입력" @keyup.enter="postComment"></b-form-input>
+     <!-- style="margin-top:3%; margin-left:3%; margin-right:3%; margin-bottom:3%;" -->
+    <div style="margin-top:3%;">
+    <b-form-input style=" width:95%; display:block; margin: 0 auto; border-radius: 50px;" v-model="text" placeholder="댓글입력" @keyup.enter="postComment"></b-form-input>
         <br>
+        <div>
         <ul>
-        <li class="p-1" v-for="(comment, idx) in comments" :key="idx">
-          {{comment.content}}
+        <li class="p-1" style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;" v-for="(comment, idx) in comments" :key="idx">
+             &nbsp;&nbsp;&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
         </li>
         </ul>
+        </div>
     </div>
   </b-card>
 </div>
