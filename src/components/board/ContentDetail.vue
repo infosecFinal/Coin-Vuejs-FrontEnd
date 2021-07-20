@@ -43,12 +43,12 @@
           style="background-color:#fff; border-radius: 50px; border:none; display:block; margin: 0 auto;"
         >
         </div>
-        <b-form-input v-model="text" placeholder="Enter Comment" @keyup.enter="postComment"></b-form-input>
+        <!-- <b-form-input v-model="text" placeholder="Enter Comment" @keyup.enter="postComment"></b-form-input>
         <ul>
         <li v-for="(comment, idx) in comments" :key="idx">
           {{comment.content}}
         </li>
-        </ul>
+        </ul> -->
         <br><br><br>
         <div
           class="content-detail-button"
@@ -61,6 +61,25 @@
         </div>
       </div>
     </b-card>
+    <br><br>
+
+<div>
+  <br><br>
+  <b-card
+      style="max-width: 1000px; background-color:#f1f5f8; border-radius: 50px; border:none; display:block; margin: 0 auto;"
+    >
+    <div style="margin-top:3%; margin-left:3%; margin-right:3%; margin-bottom:3%;">
+    <b-form-input style=" width:100%; display:block; margin: 0 auto; " v-model="text" placeholder="댓글입력" @keyup.enter="postComment"></b-form-input>
+        <br>
+        <ul>
+        <li class="p-1" v-for="(comment, idx) in comments" :key="idx">
+          {{comment.content}}
+        </li>
+        </ul>
+    </div>
+  </b-card>
+</div>
+
   </div>
 </template>
 
@@ -159,6 +178,10 @@ export default {
   margin-top: 1rem;
   padding-top: 1rem;
   min-height: 500px;
+  padding-top: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
 }
 .content-detail-button {
   border: 1px solid black;
