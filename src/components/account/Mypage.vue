@@ -48,16 +48,10 @@
             <div class="form-group row">
               <div class="col-md-8" style="display: block; margin: 0 auto">
                 <br /><br />
-                <img
-                  src="../../assets/profile.jpg"
-                  width="200px"
-                  height="200px"
-                  style="
-                    border: 2px solid #f3f3f3;
-                    display: block;
-                    margin: 0 auto;
-                  "
-                />
+                <div
+                    class="imagePreviewWrapper"
+                    :style="{ 'background-image': `url(http://localhost:8083/file/profile/${getLoginId}?nocache=${rand})` }"
+                  ></div>
                 <br /><br /><br />
               </div>
               <div class="form-group">
@@ -192,6 +186,8 @@ export default {
       user_email: "",
       user_gender: "",
       user_phone: "",
+      previewImage: null,
+      rand : Math.random()
     };
   },
   created() {
@@ -279,5 +275,15 @@ export default {
   background: #fff;
   display: block;
   margin: 0 auto;
+}
+.imagePreviewWrapper {
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 500px;
+  display: block;
+  cursor: pointer;
+  margin: 0 auto 30px;
+  background-size: contain;
+  background-position: center center;
 }
 </style>
