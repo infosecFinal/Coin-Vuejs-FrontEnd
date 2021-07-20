@@ -43,12 +43,6 @@
           style="background-color:#fff; border-radius: 50px; border:none; display:block; margin: 0 auto;"
         >
         </div>
-        <!-- <b-form-input v-model="text" placeholder="Enter Comment" @keyup.enter="postComment"></b-form-input>
-        <ul>
-        <li v-for="(comment, idx) in comments" :key="idx">
-          {{comment.content}}
-        </li>
-        </ul> -->
         <br><br><br>
         <div
           class="content-detail-button"
@@ -75,7 +69,7 @@
         <div>
         <ul>
         <li class="p-1" style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;" v-for="(comment, idx) in comments" :key="idx">
-             &nbsp;&nbsp;&nbsp;{{comment.content}}&nbsp;&nbsp;&nbsp;
+             &nbsp;&nbsp;&nbsp;{{user.user_id + " |  "+ comment.content}}&nbsp;&nbsp;&nbsp;
         </li>
         </ul>
         </div>
