@@ -125,6 +125,7 @@ export default {
     const user_resp = await getUserInfo();
     const cmt_resp = await fetchComment(this.id);
     this.comments = cmt_resp.data.list;
+           this.comments = this.comments.reverse();
     this.data = data_resp.data.data;
     this.user = user_resp.data.data;
     this.files = file_resp.data.list;
@@ -173,7 +174,8 @@ export default {
       else {
         e.target.value = "";
         const resp = await fetchComment(this.id);
-        this.comments = resp.data.list;
+        this.comments = resp.data.list
+        this.comments = this.comments.reverse();
       }
     },
   },
