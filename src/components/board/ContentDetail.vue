@@ -99,14 +99,6 @@ export default {
       await getFile(file.id);
       const url = `http://localhost:8083/file/download/${file.id}`;
       const link = document.createElement("a");
-      // const contentDisposition = resp.headers['content-disposition'];
-
-      // let fileName = 'undefined';
-      // if(contentDisposition) {
-      //     const [ fileNameMatch ] = contentDisposition.split(';').filter(str=>str.includes('fileName'));
-      //     if(fileNameMatch) [, fileName] = fileNameMatch.split('=');
-      // }
-      // fileName = decodeURI(fileName);
       link.href = url;
       document.body.appendChild(link);
       link.click();
