@@ -6,27 +6,24 @@
     >
       <br /><br>
       <div>
-        <div
-          class="content-detail-content-info table"
-          style="background-color:#fff; border-radius: 50px; border:none; display:block; margin: 0 auto;"
-        >
-          <div class="content-detail-content-info-left">
-            <div class="content-detail-content-info-left-number">
-              {{ $route.query.idx }}
-            </div>
-            <div class="content-detail-content-info-left-subject">
+
+
+        <div style="display:block; margin: 0 auto; text-align:center; font-weight: bold ; font-size:200%;">
               {{ data.title }}
             </div>
-          </div>
-          <div class="content-detail-content-info-right">
-            <div class="content-detail-content-info-right-user">
-              writer : {{ data.user_id }}
+
+      <br><br>
+
+          <div>
+            <div style="float:right; margin-right:10%;">
+              글 번호 : {{ $route.query.idx }}
+              <br>
+              작성자 : {{ data.user_id }}
+              <br>
+              작성일 : {{ data.created_at }}
+              <br><br>
             </div>
-            <div class="content-detail-content-info-right-created">
-              Created_At : {{ data.created_at }}
-            </div>
           </div>
-        </div>
         <div
           class="content-detail-content-info table"
           style="background-color:#f1f5f8; border-radius: 50px; border:none; margin: 0 auto; margin-bottom:20px; margin-top:20px;"
@@ -72,6 +69,7 @@
              &nbsp;&nbsp;&nbsp;{{comment.user_id + " |  "+ comment.content}}&nbsp;&nbsp;&nbsp;
         </li>
         </ul>
+        <br>
         <b-pagination
           variant="warning"
           v-model="currentPage"
@@ -81,6 +79,7 @@
           aria-controls="comments"
           small
         ></b-pagination>
+        <br>
         </div>
     </div>
   </b-card>
@@ -182,6 +181,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  
 }
 .content-detail-content-info-right {
   width: 300px;
@@ -197,7 +197,7 @@ export default {
   padding-top: 1rem;
   min-height: 500px;
   padding-top: 3%;
-  padding-left: 3%;
+  padding-left: 5%;
   padding-right: 3%;
   padding-bottom: 3%;
 }
