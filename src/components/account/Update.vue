@@ -73,7 +73,7 @@
                   <label class="text-black">아이디</label>
                   <input
                     disabled
-                    class="form-control input-field2 row"
+                    class="form-control input-field2"
                     id="login_id"
                     name="login_id"
                     v-model="getLoginId"
