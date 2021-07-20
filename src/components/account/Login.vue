@@ -67,6 +67,7 @@
                     class="form-control input-field"
                     id="login_pw"
                     name="login_pw"
+                    v-on:keyup.enter="login"
                     v-model="login_pw"
                     placeholder="PW"
                     style="border: none"
@@ -77,11 +78,11 @@
                     variant="link"
                     class="text-decoration-none"
                     style="
-                        float: right;
-                        color: #75b239;
-                        padding: 0px;
-                        margin: 0px;
-                      "
+                      float: right;
+                      color: #75b239;
+                      padding: 0px;
+                      margin: 0px;
+                    "
                     >비밀번호찾기</b-button
                   >
                 </div>
@@ -91,6 +92,7 @@
                   style="border: none; text-align: center"
                 >
                   <b-button
+                    v-on:click="login"
                     pill
                     id="LoginBtn"
                     @click="approveUser"
@@ -98,8 +100,7 @@
                     variant="warning"
                     >로그인</b-button
                   >
-                  &nbsp;
-                  &nbsp;
+                  &nbsp; &nbsp;
                   <b-button
                     pill
                     href="/register"
@@ -136,6 +137,9 @@ export default {
       "setMypage",
       "setLoginState",
     ]),
+    login: function () {
+      this.approveUser();
+    },
     async approveUser() {
       const resp = await checkUser({
         login_id: this.login_id,
@@ -152,6 +156,7 @@ export default {
         this.$router.push({
           path: "/board/free",
         });
+        alert(this.login_id + "님 안녕하세요!");
       } else alert("로그인 실패. 다시 입력해주세요");
     },
   },
