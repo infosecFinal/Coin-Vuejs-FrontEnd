@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.withCredentials=true;
-const baseURL = 'http://localhost:8083';
+axios.defaults.withCredentials = true;
+const baseURL = 'http://localhost:8084';
 
 export const fetchData = () => {
     return axios.get(`${baseURL}/board/lists`);
@@ -20,13 +20,13 @@ export const updateData = (data) => {
 }
 
 export const deleteData = (id) => {
-    return axios.post(`${baseURL}/board/delete`,{
+    return axios.post(`${baseURL}/board/delete`, {
         id: id
     })
 }
 
 export const findData = (category, to_find) => {
-    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);   
+    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`);
 }
 
 export const insertUser = (data) => {
@@ -59,7 +59,7 @@ export const updateUser = (data) => {
 }
 
 export const uploadImage = (data) => {
-    console.log("uploadImage() : "+data);
+    console.log("uploadImage() : " + data);
     return axios.post(`${baseURL}/account/mypage/update/upload`, data)
 
 }
