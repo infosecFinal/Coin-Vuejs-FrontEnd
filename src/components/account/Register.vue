@@ -38,29 +38,31 @@
                     <label for="user_id" class="text-black">
                       아이디 <span class="text-danger">*</span></label
                     >
-                    <input
-                      type="text"
-                      class="form-control input-field"
-                      id="user_id"
-                      name="user_id"
-                      required="required"
-                      v-model="user_id"
-                      style="border: none"
-                    />
-
-                    <b-button
-                      class="text-decoration-none"
-                      id="userDuplicateBtn"
-                      @click="userDuplicate"
-                      variant="link"
-                      style="
-                        float: right;
-                        color: #75b239;
-                        padding: 0px;
-                        margin: 0px;
-                      "
-                      >중복확인
-                    </b-button>
+                    <div class="col input-group">
+                      <input
+                        type="text"
+                        class="form-control input-field"
+                        id="user_id"
+                        name="user_id"
+                        required="required"
+                        v-model="user_id"
+                        style="border: none"
+                      />
+                      <span class="input-group-btn">
+                        <b-button
+                          class="text-decoration-none"
+                          id="userDuplicateBtn"
+                          @click="userDuplicate"
+                          variant="warning"
+                          style="
+                            border-top-right-radius: 50px;
+                            border-bottom-right-radius: 50px;
+                            height: 47px; font-size:85%; width:85px;
+                          "
+                          >중복확인
+                        </b-button>
+                      </span>
+                    </div>
                   </div>
                   <div class="form-group">
                     <div
@@ -127,25 +129,31 @@
                       <label for="user_address" class="text-black">
                         주소 <span class="text-danger">*</span></label
                       >
-                      <input
-                        type="email"
-                        class="form-control input-field"
-                        id="user_address"
-                        name="user_address"
-                        required="required"
-                        v-model="user_address"
-                        style="border: none"
-                      />
-                      <window-popup v-model="open"
-                        >팝업창의 내용입니다.</window-popup
-                      >
-                      <b-button
-                        @click="open = true"
-                        pill
-                        variant="warning"
-                        style="float: right; margin-top: 10px"
-                        >찾기</b-button
-                      >
+
+                      <div class="col input-group">
+                        <input
+                          type="email"
+                          class="form-control input-field"
+                          id="user_address"
+                          name="user_address"
+                          required="required"
+                          v-model="user_address"
+                        />
+                        <window-popup v-model="open"
+                          >팝업창의 내용입니다.</window-popup
+                        >
+                        <span class="input-group-btn">
+                          <b-button
+                            @click="open = true"
+                            variant="warning"
+                            style="
+                              border-top-right-radius: 50px;
+                              border-bottom-right-radius: 50px;
+                              height: 47px; font-size:85%; width:85px;"
+                            >검색
+                            </b-button>
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -203,9 +211,8 @@
                         pill
                         id="userRegiBtn"
                         @click="registerUser"
-                        variant="warning"
-                        class="btn btn-primary btn-block wrapmid"
-                        style="display: block; margin: 0 auto"
+                        class="btn btn-warning btn-block wrapmid p-3"
+                        style="display: block; margin: 0 auto ; font-weight: bold ; text-align:center;"
                         >회원가입</b-button
                       >
                     </div>
@@ -237,7 +244,8 @@ export default {
       user_address: "",
       user_email: "",
       user_gender: "",
-      open: false
+      open: false,
+      id_check: false,
     };
   },
   methods: {
@@ -245,26 +253,40 @@ export default {
       const resp = await getUserIDList({
         user_id: this.user_id,
       });
-      console.log(resp);
       if (resp.data.code > 0) {
         alert("아이디를 변경하세요. 사용할 수 없는 아이디 입니다.");
-      } else alert("사용할 수 있는 아이디입니다.");
+        this.id_check = false;
+      } else {
+        alert("사용할 수 있는 아이디입니다. 회원가입을 완료해주세요.");
+        this.id_check = true;
+        console.log(this.id_check);
+      }
     },
     async registerUser() {
-      const resp = await insertUser({
-        user_id: this.user_id,
-        user_pw: this.user_pw,
-        user_name: this.user_name,
-        user_phone: this.user_phone,
-        user_address: this.user_address,
-        user_email: this.user_email,
-        user_gender: this.user_gender,
-      });
-      if (resp.data.code > 0) {
-        alert("회원가입이 완료되었습니다. " + this.user_id + "님 환영합니다!");
-        this.$router.push({
-          path: "/login",
+      if (this.id_check == true) {
+        const resp = await insertUser({
+          user_id: this.user_id,
+          user_pw: this.user_pw,
+          user_name: this.user_name,
+          user_phone: this.user_phone,
+          user_address: this.user_address,
+          user_email: this.user_email,
+          user_gender: this.user_gender,
         });
+        if (resp.data.code > 0) {
+          alert(
+            "회원가입이 완료되었습니다. " + this.user_id + "님 환영합니다!"
+          );
+          this.$router.push({
+            path: "/login",
+          });
+        } else {
+          alert("입력하신 정보를 다시 확인해주세요.");
+          this.id_check = false;
+        }
+      } else {
+        alert("아이디 중복확인을 자동으로 진행합니다.");
+        this.userDuplicate();
       }
     },
   },

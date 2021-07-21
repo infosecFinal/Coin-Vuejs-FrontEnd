@@ -85,7 +85,7 @@ export default {
           this.connected = true;
           console.log('success connect socket', frame);
           this.stompClient.subscribe('/topic/greetings', res=>{
-            // console.log('message from subs', res.body);
+            console.log('message from subs', res.body);
             // console.log(JSON.parse(res.body));
             // this.recvList.push(JSON.parse(res.body));
             this.$store.commit('stomp/pushMsg', JSON.parse(res.body));

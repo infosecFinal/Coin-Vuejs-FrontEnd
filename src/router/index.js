@@ -13,8 +13,10 @@ import Update from '@/components/account/Update.vue'
 import FindPassword from '@/components/account/FindPassword.vue'
 import AddressPopup from '@/components/account/AddressPopup.vue'
 import { getUserInfo } from '@/service'
-import store from '../store'
+import VueCookies from 'vue-cookies'
 import BtcChart from '@/views/BtcChart'
+import axios from 'axios'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -46,7 +48,8 @@ const routes = [{
     {
         path: '/board/free/detail/:contentId',
         name: 'ContentDetail',
-        component: ContentDetail
+        component: ContentDetail,
+        props: true
     },
     {
         path: '/board/free/create/:contentId?',
@@ -98,14 +101,19 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async(to, from, next) => {
-    const resp = await getUserInfo();
-    console.log("resp: ", resp);
-    
-    if (resp.data.code > 0) {
-        store.commit('account/setId', resp.data.data.user_id);
-        store.commit('account/setLoginState', true);
+    if(VueCookies.get('access_token')) {
+        const resp = await axios.get(`http://localhost:8083/account/valid`);
+        console.log("validation : ", resp);
+        if(resp.data.code > 0) {
+            const user_info = await getUserInfo();
+            console.log("user info: ", user_info);
+            store.commit('account/setLoginState', true);
+            store.commit('account/setId', user_info.data.data.user_id);
+            store.commit('account/setAdmin', user_info.data.data.isAdmin);
+        } else {
+            VueCookies.remove('access_token');
+        }
     }
-    console.log("login id: ", store.state.account.login_id)
     next();
 })
 

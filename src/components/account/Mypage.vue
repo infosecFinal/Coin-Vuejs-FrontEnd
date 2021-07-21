@@ -48,17 +48,11 @@
             <div class="form-group row">
               <div class="col-md-8" style="display: block; margin: 0 auto">
                 <br /><br />
-                <img
-                  src="../../assets/profile.jpg"
-                  width="200px"
-                  height="200px"
-                  style="
-                    border: 2px solid #f3f3f3;
-                    display: block;
-                    margin: 0 auto;
-                  "
-                />
-                <br /><br /><br />
+                <div
+                    class="imagePreviewWrapper"
+                    :style="{ 'background-image': `url(http://localhost:8083/file/profile/${getLoginId}?nocache=${rand})` }"
+                  ></div>
+                <br />
               </div>
               <div class="form-group">
                 <div class="col-md-8" style="display: block; margin: 0 auto">
@@ -77,6 +71,8 @@
                 <div class="form-group">
                   <div class="col-md-8" style="display: block; margin: 0 auto">
                     <label class="text-black">비밀번호</label>
+
+                    <div class="col input-group">
                     <input
                       type="password"
                       class="form-control input-field"
@@ -85,15 +81,19 @@
                       v-model="user_pw"
                       style="border: none"
                     />
+                    <span class="input-group-btn">
                     <b-button
-                      pill
                       class="text-decoration-none"
                       id="userDuplicateBtn"
                       @click="upwUpdateConfirm"
                       variant="warning"
-                      style="float: right; margin-top: 10px"
+                      style="border-top-right-radius: 50px;
+                              border-bottom-right-radius: 50px;
+                              height: 47px; font-size:85%; width:85px;"
                       >수정하기
                     </b-button>
+                    </span>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -192,6 +192,8 @@ export default {
       user_email: "",
       user_gender: "",
       user_phone: "",
+      previewImage: null,
+      rand : Math.random()
     };
   },
   created() {
@@ -279,5 +281,15 @@ export default {
   background: #fff;
   display: block;
   margin: 0 auto;
+}
+.imagePreviewWrapper {
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+  display: block;
+  cursor: pointer;
+  margin: 0 auto 30px;
+  background-size: contain;
+  background-position: center center;
 }
 </style>

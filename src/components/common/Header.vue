@@ -13,7 +13,7 @@
         class="collapse navbar-collapse justify-content-end"
       >
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/home">Home</b-nav-item>
           <b-nav-item @click="loginActions">{{
             getLoginState?'Logout':'Login'
           }}</b-nav-item>
@@ -76,7 +76,7 @@ export default {
         console.log('abc');
         if(this.getLoginState) {
           VueCooKies.remove("access_token");
-          alert('�α׾ƿ�');
+          alert('로그아웃 되었습니다.');
           this.setLoginState(false);
           this.setId('');
           this.$router.push({

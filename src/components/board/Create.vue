@@ -55,6 +55,7 @@ export default {
             content: '',
             file1: null,
             user_id : '',
+            board_id: '',
             data: {},
             files: [],
             formData: new FormData()
@@ -91,22 +92,20 @@ export default {
         },
         async insert() {
             const resp = await insertData({
-                user_id: this.getLoginId,
+                user_id: this.user_id,
                 title: this.title,
                 content: this.content
             });
-            console.log(resp);
+            console.log('res:', resp);
             if(this.file1 !== null) this.fileUpload();
             this.$router.push({
                 path: '/board/free'
             })
         },
         async update() {
-            console.log(this.user_id);
-            console.log(this.title);
+            console.log("update start: ",this.user_id);
             const resp = await updateData({
                 id: this.content_id,
-                user_id: this.user_id,
                 title: this.title,
                 content: this.content
             });
@@ -117,13 +116,13 @@ export default {
             })
         },
         async fileUpload() {
-            console.log(this.file1);
+            console.log(this.user_id);
             let formData = new FormData();
             for (let i = 0; i < this.file1.length; i++) {
                 formData.append('files', this.file1[i]);
                 console.log(i,": ", this.file1[i])
             }
-            await insertFile(formData,this.content_id?this.content_id:'new')
+            await insertFile(formData,this.content_id?this.content_id:'new',this.user_id?this.user_id:this.getLoginId)
             
         }
     }

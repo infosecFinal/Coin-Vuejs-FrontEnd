@@ -53,17 +53,20 @@
                   <label for="formFile" class="form-label">Upload Image:</label>
                   <div
                     class="imagePreviewWrapper"
-                    :style="{ 'background-image': `url(${previewImage})` }"
+                    :style="{
+                      'background-image': `url(${previewImage})`,
+                    }"
                     @click="selectImage"
                   ></div>
-                  <input
+
+                      <b-form-file
+                      v-model="file1"
                     accept=".jpg, .png, .gif"
-                    class="form-control col-md-8"
+                    class="scol-md-8"
                     style="display: block; margin: 0 auto"
                     ref="fileInput"
-                    type="file"
                     @input="pickFile"
-                  />
+                  ></b-form-file>
 
                   <br /><br />
                 </div>
@@ -73,7 +76,7 @@
                   <label class="text-black">아이디</label>
                   <input
                     disabled
-                    class="form-control input-field2 row"
+                    class="form-control input-field2"
                     id="login_id"
                     name="login_id"
                     v-model="getLoginId"
@@ -189,7 +192,8 @@
 <script>
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { getUserInfo, updateUser, uploadImage } from "@/service";
+import { getUserInfo, updateUser } from "@/service";
+import { insertFile } from '@/service/file/file.js'
 import { mapGetters } from "vuex";
 import WindowPopup from "./AddressPopup.vue";
 
@@ -198,17 +202,19 @@ export default {
   components: { WindowPopup },
   data() {
     return {
+      user_id: "",
       user_pw: "",
       user_name: "",
       user_address: "",
       user_email: "",
       user_gender: "",
       user_phone: "",
-      user_image: "",
-      file: "",
+      file1: null,
       previewImage: null,
-      file_name: "",
-      open: false
+      open: false,
+      data: {},
+      files: [],
+      formData: new FormData(),
     };
   },
   computed: {
@@ -220,23 +226,23 @@ export default {
       alert("로그인 후 이용해주세요");
       this.$router.go(-1);
     }
+    console.log("sadlkfj:", this.getLoginId);
   },
   methods: {
     selectImage() {
       this.$refs.fileInput.click();
     },
     pickFile() {
+
       let input = this.$refs.fileInput;
-      let file = input.files;
-      if (file && file[0]) {
+      let file1 = input.files;
+      if (file1 && file1[0]) {
         let reader = new FileReader();
         reader.onload = (e) => {
           this.previewImage = e.target.result;
         };
-        reader.readAsDataURL(file[0]);
-        this.$emit("input", file[0]);
-        this.user_image = file.origin_file_Name;
-        console.log(this.user_image);
+        reader.readAsDataURL(file1[0]);
+        this.$emit("input", this.file1);
       }
     },
     async userInfoPrint() {
@@ -254,32 +260,38 @@ export default {
     },
     async upwUpdateFinish() {
       const resp1 = await updateUser({
+        user_id: this.getLoginId,
         user_pw: this.user_pw,
         user_name: this.user_name,
         user_phone: this.user_phone,
         user_address: this.user_address,
         user_email: this.user_email,
-        user_gender: this.user_gender,
-        user_image: this.user_image,
+        user_gender: this.user_gender
       });
-
-      const resp2 = await uploadImage({
-        user_id: this.getLoginId,
-        user_image: this.user_image,
-      });
-
-      if (resp2.data.data === null) {
-        this.setImgaePath("../../assets/profile.jpg");
-      } else this.setImgaePath(this.user_image);
-
-      if (resp1.data.data > 0) {
+      if (this.file1 !== null) this.fileUpload();
+      
+      if (resp1.data.code > 0) {
         this.$router.push({
-          path: "/mypage",
+        path: "/mypage"
         });
-      } else console.log(resp1);
-      alert("수정한 정보를 다시 확인해주세요.");
+      }
     },
-  },
+
+    async fileUpload() {
+      console.log("file: ", this.file1);
+      let formData = new FormData();
+      
+        formData.append("files", this.file1);
+        
+      console.log("formData: ", formData)
+      const resp = await insertFile(
+        formData,
+        0,
+        this.getLoginId
+      );
+      console.log("resp: ", resp);
+    },
+  }
 };
 </script>
 

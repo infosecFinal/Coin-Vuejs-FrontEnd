@@ -16,13 +16,23 @@
         <div class="col-md-12">
           <h2 class="h3 mb-5 text-black">FindPassword</h2>
         </div>
-        <div class="w3-content w3-container w3-margin-top">
+        <!-- <div class="w3-content w3-container w3-margin-top"  style="display: block; margin: 0 auto"> -->
           <div
-            class="w3-container w3-card-4 w3-auto"
-            style="width: 382px; height: 456.3px"
+            class="col-lg-8"
+            style="display: block; margin: 0 auto; border-radius: 50px;"
           >
-            <div>
-              <p>
+            <div class="p-4 p-lg-4"
+              style="
+                background-color: #f1f5f8;
+                border-radius: 50px;
+                border: none;
+              ">
+                <br>
+                <div
+                  class="col-md-7 col-sm-7"
+                  style="border:none display:block; margin: 0 auto;"
+                >  
+                <p>
                 <label class="text-black">아이디</label>
                 <input
                   class="form-control input-field"
@@ -33,6 +43,11 @@
                   style="border: none"
                 />
               </p>
+            </div>
+            <div
+                  class="col-md-7 col-sm-7"
+                  style="border:none display:block; margin: 0 auto;"
+                >
               <p>
                 <label class="text-black">이메일</label>
                 <input
@@ -44,7 +59,13 @@
                   style="border: none"
                 />
               </p>
-              <p class="w3-center">
+            </div>
+            <br>
+            <div
+                  class="col-md-7 col-sm-7"
+                  style="border:none display:block; margin: 0 auto;"
+                >
+              <p class="w3-center" style="text-align:center;">
                 <b-button pill type="button" @click="findPw" variant="warning"
                   >임시 비밀번호 발급</b-button
                 >
@@ -54,8 +75,9 @@
                 >
               </p>
             </div>
+            </div>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
