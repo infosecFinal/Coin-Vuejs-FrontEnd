@@ -227,7 +227,7 @@ export default {
         login_pw: this.user_pw,
       });
 
-      if (resp.data.data !== null) {
+      if (resp.data.data > 0) {
         this.$router.push({
           path: "/mypage/update",
         });
