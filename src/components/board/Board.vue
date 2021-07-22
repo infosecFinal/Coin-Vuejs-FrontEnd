@@ -69,7 +69,7 @@
             style="width:80px; height:40px; border:none;"
           >
           </b-form-select>
-          <input v-model="to_find" style="border:none; width:200px; height:40px;" @keyup.enter="find" />
+          <input v-model="to_find" style="border:none; width:200px; height:40px;" @keyup.enter="fetch(true)" />
           <span class="input-group-btn">
           <!-- <b-input-group-append> -->
           <b-button style="float:right; margin-right:10px; border-top-right-radius: 50px;
@@ -126,7 +126,7 @@ export default {
     };
   },
   async created() {
-    this.fetch();
+    this.fetch(false);
     console.log(this.$store.getters["account/getLoginId"]);
   },
   computed: {
@@ -150,13 +150,9 @@ export default {
         });
       }
     },
-    async find() {
-      const resp = await findData(this.category, this.to_find);
-      if (resp.data.code > 0) this.items = resp.data.list;
-    },
-    async fetch() {
-      const resp = await fetchData();
-      if (resp.data.code > 0) {
+    async fetch(isFind) {
+      const resp = isFind ? await findData(this.category, this.to_find) : await fetchData()
+      if( resp.data.code > 0 ) {
         this.items = resp.data.list;
         const len = this.items.length;
         this.items.map((item, idx) => {
