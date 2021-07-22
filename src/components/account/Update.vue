@@ -141,9 +141,9 @@
                     name="login_address"
                     v-model="user_address"
                   />
-                  <window-popup v-model="open"
-                    >팝업창의 내용입니다.</window-popup
-                  >
+                  <window-popup v-on:setAddress="address" v-model="open"
+                          >팝업창의 내용입니다.</window-popup
+                        >
                   <b-button
                     @click="open = true"
                     pill
@@ -291,6 +291,10 @@ export default {
       );
       console.log("resp: ", resp);
     },
+     address(msg) {
+      console.log(msg);
+      this.user_address = msg;
+    }
   }
 };
 </script>
