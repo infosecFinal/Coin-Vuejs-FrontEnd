@@ -73,7 +73,7 @@
           <span class="input-group-btn">
           <!-- <b-input-group-append> -->
           <b-button style="float:right; margin-right:10px; border-top-right-radius: 50px;
-                            border-bottom-right-radius: 50px; height:40px; width:90px;" text="Button" variant="warning" @click="find"
+                            border-bottom-right-radius: 50px; height:40px; width:90px;" text="Button" variant="warning" @click="fetch(true)"
             >찾기</b-button
           >
           </span>
@@ -127,7 +127,6 @@ export default {
   },
   async created() {
     this.fetch(false);
-    console.log(this.$store.getters["account/getLoginId"]);
   },
   computed: {
     ...mapGetters("account", ["getLoginState"]),
@@ -156,7 +155,6 @@ export default {
         this.items = resp.data.list;
         const len = this.items.length;
         this.items.map((item, idx) => {
-          console.log(item);
           return (item["idx"] = len - idx);
         });
       }

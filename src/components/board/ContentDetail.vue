@@ -81,6 +81,10 @@
                 &nbsp;&nbsp;&nbsp;{{
                   comment.user_id + " |  " + comment.content
                 }}&nbsp;&nbsp;&nbsp;
+
+          &nbsp;
+          <b-button pill variant="warning" v-on:click="select(comment)"
+            >댓글 삭제</b-button>
               </li>
             </ul>
             <br />
@@ -104,7 +108,7 @@
 <script>
 import { fetchDataById, deleteData, getUserInfo } from "@/service";
 import { getFilesInfo } from "@/service/file/file.js";
-import { insertComment, fetchComment } from "@/service/comment/comment.js";
+import { insertComment, fetchComment, deleteComment } from "@/service/comment/comment.js";
 import { mapGetters } from "vuex";
 
 export default {
@@ -117,7 +121,7 @@ export default {
       user: "",
       comments: [],
       perPage: 10,
-      currentPage: 1,
+      currentPage: 1
     };
   },
   async created() {
@@ -126,11 +130,10 @@ export default {
     const user_resp = await getUserInfo();
     const cmt_resp = await fetchComment(this.id);
     this.comments = cmt_resp.data.list;
-           this.comments = this.comments.reverse();
+    this.comments = this.comments.reverse();
     this.data = data_resp.data.data;
     this.user = user_resp.data.data;
     this.files = file_resp.data.list;
-    console.log(this.comments.length);
   },
   computed: {
     ...mapGetters("account", ["getLoginId", "getisAdmin"]),
@@ -179,7 +182,17 @@ export default {
         this.comments = this.comments.reverse();
       }
     },
-  },
+    async select(event) {
+        console.log(this.comments);
+        const resp = await deleteComment(event);
+        if(resp.data.code > 0 ){
+        const resp = this.comments.filter( lst => lst != event);
+        this.comments = resp
+
+        }
+        
+    }
+  }
 };
 </script>
 

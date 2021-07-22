@@ -10,3 +10,7 @@ export const insertComment = (data) => {
 export const fetchComment = (data) => {
     return axios.get(`${baseURL}/comment/lists/${data}`);
 }
+
+export const deleteComment = (data) => {
+    return axios.post(`${baseURL}/comment/delete`, data);
+}
