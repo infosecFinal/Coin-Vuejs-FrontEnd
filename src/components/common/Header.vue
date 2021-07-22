@@ -13,13 +13,33 @@
         class="collapse navbar-collapse justify-content-end"
       >
         <b-navbar-nav>
+          <!-- <b-nav-item>{{getLoginId}}</b-nav-item> -->
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item @click="loginActions">{{
             getLoginState?'Logout':'Login'
           }}</b-nav-item>
-          <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
+          <!-- <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
             >{{ getLoginState?'MyPage':'Register' }}
+          </b-nav-item> -->
+
+
+        <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
+            style="font-weight: bold ;">{{ getLoginState? getLoginId+'님'+getImagePath:'Register' }}
           </b-nav-item>
+
+<!-- 
+        <b-nav-item-dropdown text= '{{getLoginState? getLoginId : 'Register'}}'>
+        </b-dropdown-item > -->
+
+          
+<!--           
+          <b-nav-item-dropdown :to="getLoginState ? '/mypage' : '/register'"
+            style="font-weight: bold ;">{{ getLoginState? getLoginId+'님':'Register' }}
+            <!-- <b-dropdown-item href="/mypage">MYPAGE<b-dropdown-item> -->
+            <!-- <b-dropdown-item @click="loginActions">{{getLoginState? 'Logout':'Login'}}</b-dropdown-item> -->
+          <!-- </b-nav-item-dropdown> --> 
+
+
           <!-- <b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
             <b-dropdown-item to="/board/free">Free</b-dropdown-item>
@@ -64,7 +84,9 @@ export default {
         ...mapGetters('account', [
             'getLoginState',
             'getLogout',
-            'getMypage'
+            'getMypage',
+            'getLoginId',
+            'getImagePath'
         ])
     },
     methods: {
