@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
 import ChatRoom from '../views/ChatRoom.vue'
 import Board from '@/components/board/Board.vue'
 import ContentDetail from '@/components/board/ContentDetail.vue'
@@ -22,11 +21,6 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        name: 'HelloWorld',
-        component: HelloWorld
-    },
-    {
-        path: '/home',
         name: 'BtcChart',
         component: BtcChart
     },
