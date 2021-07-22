@@ -104,9 +104,9 @@ export default {
       });
       console.log(resp);
 
-      if (resp.data.msg != "fail") {
-        alert("이메일로 임시 비밀번호를 발송하였습니다.");
-      } else alert("정보를 다시 확인해주세요.");
+      if (resp.data.code < 1) {
+        alert("입력한 정보를 확인해주세요");
+      } else alert("이메일로 임시 비밀번호를 전송하였습니다");
     },
   },
 };
