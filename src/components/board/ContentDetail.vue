@@ -73,7 +73,7 @@
           <div>
             <ul id="comments">
               <li
-                class="p-1"
+                class="p-2"
                 style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;"
                 v-for="(comment, idx) in itemsforList"
                 :key="idx"
@@ -83,8 +83,8 @@
                 }}&nbsp;&nbsp;&nbsp;
 
           &nbsp;
-          <b-button pill variant="warning" v-on:click="select(comment)"
-            >댓글 삭제</b-button>
+          <b-button style="float:right; padding-bottom:10px;" class="text-decoration-none" variant="link" v-on:click="select(comment) "
+            >삭제</b-button>
               </li>
             </ul>
             <br />
