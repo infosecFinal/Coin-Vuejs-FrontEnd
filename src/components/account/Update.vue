@@ -9,8 +9,7 @@
             <span class="mx-2 mb-0">/</span>
             <strong class="text-black"> Update </strong>
           </div>
-        </div>
-      </div>
+        </div>ㅣ
     </div>
 
     <br />
