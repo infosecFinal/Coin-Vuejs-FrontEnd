@@ -10,6 +10,7 @@
             <strong class="text-black"> Update </strong>
           </div>
         </div>
+      </div>
     </div>
 
     <br />
@@ -200,7 +201,6 @@
       </div>
     </div>
     <br />
-  </div>
   </div>
 </template>
 
