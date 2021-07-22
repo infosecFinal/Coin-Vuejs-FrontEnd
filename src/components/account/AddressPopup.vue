@@ -1,99 +1,85 @@
 <template>
   <div v-if="open">
-    <div align="center">
-      <table
-        border="0"
-        width="440"
-        cellspacing="0"
-        cellpadding="0"
-        bgcolor="#FFFFFF"
-      >
-        <tbody>
-          <tr>
-            <td width="12" align="left" valign="top"></td>
-            <td></td>
-            <td width="13" align="right" valign="top">
-              <p align="right"></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="12"></td>
-            <td>
-              <p align="center">
-                <br />
-                <font color="#3187BD" size="1">▶</font
-                ><b
-                  >도로명 주소를 검색합니다.<br />
-                  동/읍/면의 이름을 입력하시고 '주소찾기'를 클릭하세요.<br /> </b
-                >(예:야탑 또는 월계동 또는 조리읍)
-              </p>
+    <table
+      border="0"
+      width="440"
+      cellspacing="0"
+      cellpadding="0"
+      align="center"
+    >
+      <!-- <tbody> -->
+        <div>
+          <p align="center">
+            <br />
+            <font color="#3187BD" size="1">▶</font
+            ><b
+              >도로명 주소를 검색합니다.<br />
+              동/읍/면의 이름을 입력하시고 '주소찾기'를 클릭하세요.<br /> </b
+            >(예:야탑 또는 월계동 또는 조리읍)
+          </p>
 
-              <form method="post">
-                <div align="center">
-                  <table border="0" width="350" cellspacing="0" cellpadding="3">
-                    <tbody>
-                      <tr>
-                        <td width="160" align="right">
-                          <p align="left">
-                            <input
-                              v-model="user_dong"
-                              name="Dong"
-                              id="Dong"
-                              size="80"
-                              value=""
-                            />
-                          </p>
-                          <p align="left">
-                            <input
-                              v-model="find_address"
-                              name="Address"
-                              id="Address"
-                              size="80"
-                            />
-                          </p>
-                          <b-button @click="AddressList">주소검색</b-button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+          <form method="post" align="center">
+            <div>
+              <input
+                v-model="user_dong"
+                name="Dong"
+                id="Dong"
+                size="80"
+                value=""
+              />
+              <b-button
+                pill
+                variant="warning"
+                style="float:right;"
+                @click="AddressList"
+                offset-md="3"
+                >주소검색</b-button
+              >
+              <input
+                v-model="find_address"
+                name="Address"
+                id="Address"
+                size="80"
+              />
+            </div>
 
-                  <b-table
-                    striped
-                    hover
-                    head-variant="th"
-                    style="
+            <br /><br />
+            <div>
+              <b-table
+                striped
+                hover
+                head-variant="th"
+                style="
                       background-color: #e9ecef;
                       margin: auto;
                       text-align: center;
                     "
-                    :items="items"
-                    :per-page="perPage"
-                    :current-page="currentPage"
-                    :fields="fields"
-                    @row-clicked="rowClick"
-                    align="center"
-                  ></b-table>
-                  <br />
-                  <br />
-                  <b-pagination
-                    variant="warning"
-                    v-model="currentPage"
-                    :total-rows="rows"
-                    :per-page="perPage"
-                    align="center"
-                  ></b-pagination>
-                  <br />
-                  <br />
-                </div>
-              </form>
-              <center></center>
-            </td>
-            <td width="13"></td>
-          </tr>
-        </tbody>
-      </table>
-      <b-button @click="beforeDestroy">완료</b-button>
-    </div>
+                :items="items"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :fields="fields"
+                @row-clicked="rowClick"
+                align="center"
+              ></b-table>
+              <br />
+              <br />
+
+              <b-pagination
+                variant="warning"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                align="center"
+              ></b-pagination>
+            </div>
+            <br />
+            <br />
+
+            <b-button @click="beforeDestroy">완료</b-button>
+          </form>
+        </div>
+      <!-- </tbody> -->
+    </table>
   </div>
 </template>
 
@@ -104,7 +90,7 @@ export default {
   name: "AddressPopup",
   model: {
     prop: "open",
-    event: "close"
+    event: "close",
   },
 
   props: {
@@ -188,22 +174,21 @@ export default {
       const resp = await findAddressList(this.user_dong);
       if (resp.data.code > 0) this.items = resp.data.list;
     },
-  mounted() {
-    if (this.open) {
-      this.openPopup();
-    }
-  },
-  beforeDestroy() {
-    this.$emit('setAddress', this.find_address)
-    if (this.windowRef) {
-      this.closePopup();
-    }
-    }
+    mounted() {
+      if (this.open) {
+        this.openPopup();
+      }
+    },
+    beforeDestroy() {
+      this.$emit("setAddress", this.find_address);
+      if (this.windowRef) {
+        this.closePopup();
+      }
+    },
   },
 };
 </script>
 <style>
-
 .table {
   border-collapse: separate;
   text-indent: initial;
