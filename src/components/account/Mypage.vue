@@ -67,7 +67,7 @@
                 </div>
               </div>
 
-              <form name="umpform" class="form-horizontal">
+              <div name="umpform" class="form-horizontal">
                 <div class="form-group">
                   <div class="col-md-8" style="display: block; margin: 0 auto">
                     <label class="text-black">비밀번호</label>
@@ -80,6 +80,7 @@
                       name="login_pw"
                       v-model="user_pw"
                       style="border: none"
+                     
                     />
                     <span class="input-group-btn">
                     <b-button
@@ -96,7 +97,7 @@
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
 
               <div class="form-group">
                 <div class="col-md-8" style="display: block; margin: 0 auto">
@@ -226,8 +227,8 @@ export default {
         login_id: this.getLoginId,
         login_pw: this.user_pw,
       });
-
-      if (resp.data.data > 0) {
+      console.log(resp);
+      if (resp.data.code > 0) {
         this.$router.push({
           path: "/mypage/update",
         });
