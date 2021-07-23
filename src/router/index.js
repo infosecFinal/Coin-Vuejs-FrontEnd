@@ -82,7 +82,7 @@ const routes = [{
         component: FindPassword
     },
     {
-        path: '/register/address',
+        path: '/address',
         name: 'AddressPopup',
         component: AddressPopup
     }

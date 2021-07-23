@@ -14,8 +14,8 @@
       >
         <b-navbar-nav>
 
-          
-          <b-nav-item style="font-weight:bold;"> {{getLoginId}}님 안녕하세요!</b-nav-item>
+          <b-nav-item style="font-weight:bold;" v-if="getLoginId==''"></b-nav-item>
+          <b-nav-item style="font-weight:bold;" v-else> {{getLoginId}}님 안녕하세요!</b-nav-item>
 
           <!-- <b-nav-item>{{getLoginId}}</b-nav-item> -->
           <b-nav-item to="/">Home</b-nav-item>
