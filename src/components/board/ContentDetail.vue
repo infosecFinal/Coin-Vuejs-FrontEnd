@@ -42,7 +42,7 @@
         <br /><br /><br />
         <div
           class="content-detail-button"
-          v-if="user.user_id === data.user_id || getisAdmin"
+          v-if="getLoginId === data.user_id || getisAdmin"
           style="border:none; float: right;"
         >
           <b-button pill variant="warning" @click="modifyData"
