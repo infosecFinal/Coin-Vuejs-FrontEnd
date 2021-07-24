@@ -139,7 +139,7 @@
                           required="required"
                           v-model="user_address"
                         />
-                        <window-popup v-model="open"
+                        <window-popup v-on:setAddress="address" v-model="open"
                           >팝업창의 내용입니다.</window-popup
                         >
                         <span class="input-group-btn">
@@ -244,7 +244,7 @@ export default {
       user_address: "",
       user_email: "",
       user_gender: "",
-      open: false,
+      open:false,
       id_check: false,
     };
   },
@@ -289,6 +289,10 @@ export default {
         this.userDuplicate();
       }
     },
+    address(msg) {
+      console.log(msg);
+      this.user_address = msg;
+    }
   },
 };
 </script>

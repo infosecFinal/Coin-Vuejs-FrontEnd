@@ -143,8 +143,7 @@ export default {
     };
   },
   async created() {
-    this.fetch();
-    console.log(this.$store.getters["account/getLoginId"]);
+    this.fetch(false);
   },
   computed: {
     ...mapGetters("account", ["getLoginState"]),
@@ -167,16 +166,12 @@ export default {
         });
       }
     },
-    async created() {
-      this.fetch();
-    },
-    async fetch() {
-      const resp = await fetchData();
-      if (resp.data.code > 0) {
+    async fetch(isFind) {
+      const resp = isFind ? await findData(this.category, this.to_find) : await fetchData()
+      if( resp.data.code > 0 ) {
         this.items = resp.data.list;
         const len = this.items.length;
         this.items.map((item, idx) => {
-          console.log(item);
           return (item["idx"] = len - idx);
         });
       }

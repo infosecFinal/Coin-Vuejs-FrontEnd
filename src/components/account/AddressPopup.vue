@@ -1,95 +1,90 @@
 <template>
   <div v-if="open">
-    <div align="center">
-      <table
-        border="0"
-        width="440"
-        cellspacing="0"
-        cellpadding="0"
-        bgcolor="#FFFFFF"
-      >
-        <tbody>
-          <tr>
-            <td width="12" align="left" valign="top"></td>
-            <td></td>
-            <td width="13" align="right" valign="top">
-              <p align="right"></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="12"></td>
-            <td>
-              <p align="center">
-                <br />
-                <font color="#3187BD" size="1">▶</font
-                ><b
-                  >동/읍/면의 이름을 입력하시고 '주소찾기'를 클릭하세요.<br /> </b
-                >(예:야탑 또는 월계동 또는 조리읍)
-              </p>
+    <table
+      border="0"
+      width="440"
+      cellspacing="0"
+      cellpadding="0"
+      align="center"
+    >
+      <!-- <tbody> -->
+        <div>
+          <p align="center">
+            <br />
+            <font color="#3187BD" size="1">▶</font
+            ><b
+              >도로명 주소를 검색합니다.<br />
+              동/읍/면의 이름을 입력하시고 '주소찾기'를 클릭하세요.<br /> </b
+            >(예:야탑 또는 월계동 또는 조리읍)
+          </p>
 
-              <form name="PostForm" method="post" action="findNewaddr.asp">
-                <div align="center">
-                  <table border="0" width="350" cellspacing="0" cellpadding="3">
-                    <tbody>
-                      <tr>
-                        <td width="160" align="right">
-                          <p align="left">
-                            <input name="Dong" id="Dong" size="21" value="" />
-                          </p>
-                        </td>
-                        <input type="hidden" name="Action" value="주소찾기" />
-                        <td width="224">
-                          <input
-                            type="button"
-                            onclick=""
-                            value="주소찾기"
-                            class="button2"
-                            name="button2"
-                          />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+          <form method="post" align="center">
+            <div>
+              <input
+                v-model="user_dong"
+                name="Dong"
+                id="Dong"
+                size="80"
+                value=""
+              />
+              <b-button
+                pill
+                variant="warning"
+                style="float:right;"
+                @click="AddressList"
+                offset-md="3"
+                >주소검색</b-button
+              >
+              <input
+                v-model="find_address"
+                name="Address"
+                id="Address"
+                size="80"
+              />
+            </div>
 
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                </div>
-              </form>
-              <center></center>
-            </td>
-            <td width="13"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <br /><br />
+            <div>
+              <b-table
+                striped
+                hover
+                head-variant="th"
+                style="
+                      background-color: #e9ecef;
+                      margin: auto;
+                      text-align: center;
+                    "
+                :items="items"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :fields="fields"
+                @row-clicked="rowClick"
+                align="center"
+              ></b-table>
+              <br />
+              <br />
+
+              <b-pagination
+                variant="warning"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                align="center"
+              ></b-pagination>
+            </div>
+            <br />
+            <br />
+
+            <b-button @click="beforeDestroy">완료</b-button>
+          </form>
+        </div>
+      <!-- </tbody> -->
+    </table>
   </div>
 </template>
 
 <script>
-function copyStyles(sourceDoc, targetDoc) {
-  Array.from(sourceDoc.styleSheets).forEach((styleSheet) => {
-    if (styleSheet.cssRules) {
-      const newStyleEl = sourceDoc.createElement("style");
-
-      Array.from(styleSheet.cssRules).forEach((cssRule) => {
-        newStyleEl.appendChild(sourceDoc.createTextNode(cssRule.cssText));
-      });
-
-      targetDoc.head.appendChild(newStyleEl);
-    } else if (styleSheet.href) {
-      const newLinkEl = sourceDoc.createElement("link");
-
-      newLinkEl.rel = "stylesheet";
-      newLinkEl.href = styleSheet.href;
-      targetDoc.head.appendChild(newLinkEl);
-    }
-  });
-}
+import { findAddressList } from "@/service";
 
 export default {
   name: "AddressPopup",
@@ -97,6 +92,7 @@ export default {
     prop: "open",
     event: "close",
   },
+
   props: {
     open: {
       type: Boolean,
@@ -106,8 +102,37 @@ export default {
   data() {
     return {
       windowRef: null,
+      user_dong: this.user_dong,
+      find_address: "",
+      fields: [
+        {
+          key: "do_sc_mc",
+          label: "도/특별시/광역시",
+          sortable: true,
+        },
+        {
+          key: "si_gu",
+          label: "시/구",
+          sortable: true,
+        },
+        {
+          key: "dong",
+          label: "동/읍",
+          sortable: true,
+        },
+        {
+          key: "ro",
+          label: "도로명",
+          sortable: true,
+        },
+      ],
+
+      currentPage: 1,
+      perPage: 20,
+      items: [],
     };
   },
+
   watch: {
     open(newOpen) {
       if (newOpen) {
@@ -117,40 +142,54 @@ export default {
       }
     },
   },
+  computed: {
+    rows() {
+      return this.items.length;
+    },
+  },
   methods: {
+    rowClick(item) {
+      this.find_address =
+        `${item.do_sc_mc} ` + `${item.si_gu}` + ` ${item.dong}` + ` ${item.ro}`;
+      console.log(this.find_address);
+    },
     openPopup() {
       this.windowRef = window.open(
         "",
         "",
-        "width=600,height=400,left=200,top=200"
+        "width=600,height=600,left=600,top=600"
       );
       this.windowRef.document.body.appendChild(this.$el);
-      copyStyles(window.document, this.windowRef.document);
-      this.windowRef.addEventListener("beforeunload", this.closePopup);
     },
     closePopup() {
       if (this.windowRef) {
         this.windowRef.close();
-        this.windowRef.removeEventListener("beforeunload", this.closePopup);
+        //this.windowRef.removeEventListener("beforeunload", this.closePopup);
         this.windowRef = null;
         this.$emit("close", false);
       }
     },
-  },
-  mounted() {
-    if (this.open) {
-      this.openPopup();
-    }
-  },
-  beforeDestroy() {
-    if (this.windowRef) {
-      this.closePopup();
-    }
+
+    async AddressList() {
+      const resp = await findAddressList(this.user_dong);
+      if (resp.data.code > 0) this.items = resp.data.list;
+    },
+    mounted() {
+      if (this.open) {
+        this.openPopup();
+      }
+    },
+    beforeDestroy() {
+      this.$emit("setAddress", this.find_address);
+      if (this.windowRef) {
+        this.closePopup();
+      }
+    },
   },
 };
 </script>
 <style>
-table {
+.table {
   border-collapse: separate;
   text-indent: initial;
   white-space: normal;

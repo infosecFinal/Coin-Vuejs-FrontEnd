@@ -74,7 +74,7 @@
                   />
                   <b-button
                     pill
-                    href="/findpw"
+                    to="/findpw"
                     variant="link"
                     class="text-decoration-none"
                     style="
@@ -95,7 +95,6 @@
                     v-on:click="login"
                     pill
                     id="LoginBtn"
-                    @click="approveUser"
                     class="btn btn-block"
                     variant="warning"
                     >로그인</b-button
@@ -103,7 +102,7 @@
                   &nbsp; &nbsp;
                   <b-button
                     pill
-                    href="/register"
+                    to="/register"
                     variant="warning"
                     class="btn-block"
                     >회원가입</b-button

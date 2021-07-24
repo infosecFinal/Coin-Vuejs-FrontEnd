@@ -84,29 +84,37 @@
                 </div>
               </div>
 
-              <form name="umpform" class="form-horizontal">
+              <div name="umpform" class="form-horizontal">
                 <div class="form-group">
                   <div class="col-md-8" style="display: block; margin: 0 auto">
                     <label class="text-black">비밀번호</label>
+                    
+                     <div class="col input-group">
                     <input
                       type="password"
-                      class="form-control input-field"
+                      class="form-control"
                       id="login_pw"
                       name="login_pw"
                       v-model="user_pw"
+                      style="border:none; border-top-left-radius: 50px;
+                              border-bottom-left-radius: 50px;"
                     />
+                     <span class="input-group-btn">
                     <b-button
-                      pill
                       class="text-decoration-none"
                       id="userDuplicateBtn"
                       @click="upwUpdateFinish"
                       variant="warning"
-                      style="float: right; margin-top: 10px"
+                      style="border-top-right-radius: 50px;
+                              border-bottom-right-radius: 50px;
+                              height: 47px; font-size:85%; width:85px;"
                       >수정완료
                     </b-button>
+                     </span>
+                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
 
               <div class="form-group">
                 <div class="col-md-8" style="display: block; margin: 0 auto">
@@ -136,22 +144,29 @@
               <div class="form-group">
                 <div class="col-md-8" style="display: block; margin: 0 auto">
                   <label class="text-black">주소</label>
+                  <div class="col input-group">
                   <input
-                    class="form-control input-field"
+                    class="form-control"
                     id="login_address"
                     name="login_address"
                     v-model="user_address"
+                    style="border:none; border-top-left-radius: 50px;
+                              border-bottom-left-radius: 50px;"
                   />
-                  <window-popup v-model="open"
-                    >팝업창의 내용입니다.</window-popup
-                  >
+                  <window-popup v-on:setAddress="address" v-model="open"
+                          >팝업창의 내용입니다.</window-popup
+                        >
+                  <span class="input-group-btn">
                   <b-button
                     @click="open = true"
-                    pill
                     variant="warning"
-                    style="float: right; margin-top: 10px"
+                    style="border-top-right-radius: 50px;
+                              border-bottom-right-radius: 50px;
+                              height: 47px; font-size:85%; width:85px;"
                     >찾기</b-button
                   >
+                  </span>
+                  </div>
                 </div>
               </div>
 
@@ -291,6 +306,10 @@ export default {
       );
       console.log("resp: ", resp);
     },
+     address(msg) {
+      console.log(msg);
+      this.user_address = msg;
+    }
   }
 };
 </script>

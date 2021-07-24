@@ -42,7 +42,7 @@
         <br /><br /><br />
         <div
           class="content-detail-button"
-          v-if="user.user_id === data.user_id || getisAdmin"
+          v-if="getLoginId === data.user_id || getisAdmin"
           style="border:none; float: right;"
         >
           <b-button pill variant="warning" @click="modifyData"
@@ -66,14 +66,15 @@
         <div style="margin-top:3%;">
           <b-form-input
             style=" width:95%; display:block; margin: 0 auto; border-radius: 50px;"
-            placeholder="댓글입력"
+            :placeholder="getLoginState ? '댓글입력' : '로그인 후 이용가능합니다'"
+            :readonly="getLoginState ? false : true"
             @keyup.enter="postComment"
           ></b-form-input>
           <br />
           <div>
             <ul id="comments">
               <li
-                class="p-1"
+                class="p-2"
                 style=" width:97%; background-color:#e9ecef; display:block; border-radius: 50px; margin-top:6px;"
                 v-for="(comment, idx) in itemsforList"
                 :key="idx"
@@ -81,6 +82,10 @@
                 &nbsp;&nbsp;&nbsp;{{
                   comment.user_id + " |  " + comment.content
                 }}&nbsp;&nbsp;&nbsp;
+
+          &nbsp;
+          <b-button style="float:right; padding-bottom:10px;" class="text-decoration-none" variant="link" v-on:click="select(comment) "
+            >삭제</b-button>
               </li>
             </ul>
             <br />
@@ -102,9 +107,9 @@
 </template>
 
 <script>
-import { fetchDataById, deleteData, getUserInfo } from "@/service";
+import { fetchDataById, deleteData } from "@/service";
 import { getFilesInfo } from "@/service/file/file.js";
-import { insertComment, fetchComment } from "@/service/comment/comment.js";
+import { insertComment, fetchComment, deleteComment } from "@/service/comment/comment.js";
 import { mapGetters } from "vuex";
 
 export default {
@@ -117,23 +122,20 @@ export default {
       user: "",
       comments: [],
       perPage: 10,
-      currentPage: 1,
+      currentPage: 1
     };
   },
   async created() {
     const data_resp = await fetchDataById(this.id);
     const file_resp = await getFilesInfo(this.id);
-    const user_resp = await getUserInfo();
     const cmt_resp = await fetchComment(this.id);
     this.comments = cmt_resp.data.list;
-           this.comments = this.comments.reverse();
+    this.comments = this.comments.reverse();
     this.data = data_resp.data.data;
-    this.user = user_resp.data.data;
     this.files = file_resp.data.list;
-    console.log(this.comments.length);
   },
   computed: {
-    ...mapGetters("account", ["getLoginId", "getisAdmin"]),
+    ...mapGetters("account", ["getLoginId", "getisAdmin", "getLoginState"]),
     rows() {
       return this.comments.length;
     },
@@ -179,7 +181,17 @@ export default {
         this.comments = this.comments.reverse();
       }
     },
-  },
+    async select(event) {
+        console.log(this.comments);
+        const resp = await deleteComment(event);
+        if(resp.data.code > 0 ){
+        const resp = this.comments.filter( lst => lst != event);
+        this.comments = resp
+
+        }
+        
+    }
+  }
 };
 </script>
 

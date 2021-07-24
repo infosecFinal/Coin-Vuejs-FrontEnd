@@ -1,7 +1,7 @@
 <template>
   <div class="header-wrap">
     <b-navbar toggleable="sm">
-      <b-navbar-brand to="/home"
+      <b-navbar-brand to="/"
         ><img src="../../assets/logo.png" style="width: 50px; height: 50px;"
       /></b-navbar-brand>
       <h1>CoinNet</h1>
@@ -13,18 +13,29 @@
         class="collapse navbar-collapse justify-content-end"
       >
         <b-navbar-nav>
-          <b-nav-item to="/home">Home</b-nav-item>
+
+          <b-nav-item style="font-weight:bold;" v-if="getLoginId==''"></b-nav-item>
+          <b-nav-item style="font-weight:bold;" v-else> {{getLoginId}}님 안녕하세요!</b-nav-item>
+
+          <!-- <b-nav-item>{{getLoginId}}</b-nav-item> -->
+          <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item @click="loginActions">{{
             getLoginState?'Logout':'Login'
           }}</b-nav-item>
           <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
             >{{ getLoginState?'MyPage':'Register' }}
           </b-nav-item>
-          <b-nav-item-dropdown text="Board">
+
+
+        <!-- <b-nav-item :to="getLoginState ? '/mypage' : '/register'"
+            style="font-weight: bold ;">{{ getLoginState? getLoginId+'님'+getImagePath:'Register' }}
+          </b-nav-item> -->
+
+          <!-- <b-nav-item-dropdown text="Board">
             <b-dropdown-item href="#">Notice</b-dropdown-item>
             <b-dropdown-item to="/board/free">Free</b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item to="/chatroom">Chatroom</b-nav-item>
+          <b-nav-item to="/chatroom">Chatroom</b-nav-item> -->
           <div>
             <b-button circle variant="layout-warning" v-b-toggle.sidebar-right
               ><img
@@ -34,9 +45,9 @@
             /></b-button>
             <b-sidebar id="sidebar-right" title=" " right shadow width="20%">
               <div class="px-3 py-2">
-                <b-dropdown-item to="/home">Home</b-dropdown-item>
-                <b-dropdown-item to="/login">Login</b-dropdown-item>
-                <b-dropdown-item to="/register">Register</b-dropdown-item>
+                <b-dropdown-item to="/">Home</b-dropdown-item>
+                <!-- <b-dropdown-item to="/login">Login</b-dropdown-item>
+                <b-dropdown-item to="/register">Register</b-dropdown-item> -->
                 <b-dropdown-item to="/board/free">Board</b-dropdown-item>
                 <b-dropdown-item to="/chatroom">Chatroom</b-dropdown-item>
               </div>
@@ -64,7 +75,9 @@ export default {
         ...mapGetters('account', [
             'getLoginState',
             'getLogout',
-            'getMypage'
+            'getMypage',
+            'getLoginId',
+            'getImagePath'
         ])
     },
     methods: {
