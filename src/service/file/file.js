@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8083";
+const baseURL = "http://localhost:8084";
 
 export const insertFile = (data, board_id, user_id) => {
     console.log("insertFIle: ", data, board_id, user_id);
@@ -13,7 +13,7 @@ export const getFilesInfo = (board_id) => {
 
 export const getFile = (id) => {
     return axios.get(`${baseURL}/file/download/${id}`, {
-        headers: {responseType: 'arraybuffer'}
+        headers: { responseType: 'arraybuffer' }
     })
 }
 
