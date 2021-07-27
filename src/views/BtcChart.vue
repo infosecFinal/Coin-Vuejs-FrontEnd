@@ -155,7 +155,7 @@ export default {
       this.state_eth=1
     },
     async getData() {
-      const resp = await axios.get("http://localhost:8084/home/chart");
+      const resp = await axios.get("http://localhost:8083/home/chart");
       const timestamps = resp.data.list.map(function(value) {
         var ret = {
           x: new Date(value.timestamp),
@@ -167,7 +167,7 @@ export default {
       // console.log(this.series[0].data);
     },
     async getData_eth() {
-      const resp_eth = await axios.get("http://localhost:8084/home/chart_eth");
+      const resp_eth = await axios.get("http://localhost:8083/home/chart_eth");
       const timestamps_eth = resp_eth.data.list.map(function(value_eth) {
         var ret_eth = {
           x: new Date(value_eth.timestamp),

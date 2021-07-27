@@ -19,7 +19,7 @@ Vue.use(VueApexCharts)
 Vue.component("apexchart", VueApexCharts)
 
 
-Vue.prototype.$baseURL = 'http://localhost:8084'
+Vue.prototype.$baseURL = 'http://localhost:8083'
 Vue.use(BootstrapVue)
 Vue.use(VueCookies)
 Vue.config.productionTip = false
@@ -31,7 +31,7 @@ new Vue({
     async created() {
         console.log("created");
         if (VueCookies.get('access_token')) {
-            const resp = await axios.get(`http://localhost:8084/account/valid`);
+            const resp = await axios.get(`http://localhost:8083/account/valid`);
             console.log(resp.data.data);
             if (resp.data.code > 0) {
                 const user_info = await getUserInfo();

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8084";
+const baseURL = "http://localhost:8083";
 
 export const insertFile = (data, board_id, user_id) => {
     console.log("insertFIle: ", data, board_id, user_id);

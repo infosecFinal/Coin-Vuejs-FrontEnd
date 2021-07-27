@@ -53,23 +53,24 @@
       <br /><br />
       <!-- <b-row style="float: none; margin:0 auto;"> -->
       <div
-        class="col-md-7"
-        style=" border-radius: 50px; display:block; margin: 0 auto; padding:20px;"
+        class="col-xs"
+        style=" border-radius: 50px; display:block; margin: 0 auto;"
       >
         <!-- background-color:#e9ecef; -->
-        <span class="col">
+        <span class="col-xs">
           <!-- <b-button pill variant="warning" style="float:left; margin-left:10px;" @click="fetch">전체보기</b-button> -->
 
-          <span class="input-group">
+          <span class="input-group" style=" display:block; margin: 0 auto;">
             <span class="input-group-btn">
               <b-button
                 variant="warning"
-                style="float:left; margin-left:10px; border-top-left-radius: 50px;
+                style="border-top-left-radius: 50px;
                             border-bottom-left-radius: 50px; width:90px;height:40px;"
                 @click="fetch"
                 >전체보기</b-button
               >
             </span>
+            <span>
             <b-form-select
               v-model="category"
               :options="['title', 'content', 'user_id']"
@@ -82,10 +83,11 @@
               style="border:none; width:200px; height:40px;"
               @keyup.enter="find"
             />
+            </span>
             <span class="input-group-btn">
               <!-- <b-input-group-append> -->
               <b-button
-                style="float:right; margin-right:10px; border-top-right-radius: 50px;
+                style="border-top-right-radius: 50px;
                             border-bottom-right-radius: 50px; height:40px; width:90px;"
                 text="Button"
                 variant="warning"
@@ -94,8 +96,8 @@
               >
             </span>
             <!-- </b-input-group-append> -->
-          </span></span
-        >
+          </span>
+          </span>
       </div>
       <!-- </b-row> -->
       <br /><br /><br />
