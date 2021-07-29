@@ -76,7 +76,7 @@ export default {
     },
     methods: {
       connect() {
-        const serverURL = "http://192.168.0.2:8083";
+        const serverURL = "http://192.168.0.2:8084";
         this.socket = new SockJS(serverURL+'/gs-guide-websocket');
         
         this.stompClient = Stomp.over(this.socket);

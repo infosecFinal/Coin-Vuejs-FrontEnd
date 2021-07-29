@@ -158,8 +158,8 @@ export default {
     },
     async download(file) {
       // const file_resp = await getFile(file.idx);
-      // console.log(file_resp);
-      const url = `http://192.168.0.2:8083/file/download/${file.idx}`;
+      let file_path = encodeURIComponent(file.file_Path);
+      const url = `http://192.168.0.2:8084/file/download?filePath=${file_path}&fileName=${file.file_Name}`;
       const link = document.createElement("a");
       link.href = url;
       document.body.appendChild(link);
