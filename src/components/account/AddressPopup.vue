@@ -20,26 +20,32 @@
 
           <form method="post" align="center">
             <div>
+              <div class="col-xs input-group" style="display:block; margin: 0 auto;">
+                <span>
               <input
                 v-model="user_dong"
                 name="Dong"
                 id="Dong"
-                size="80"
                 value=""
+                style="width:370px;"
               />
+                </span>
+              <span class="input-group-btn">
               <b-button
                 pill
                 variant="warning"
                 style="float:right;"
                 @click="AddressList"
                 offset-md="3"
-                >주소검색</b-button
-              >
+                >주소검색
+                </b-button>
+              </span>
+              </div>
               <input
                 v-model="find_address"
                 name="Address"
                 id="Address"
-                size="80"
+                style="width:440px;"
               />
             </div>
 
@@ -237,5 +243,21 @@ input {
   border-style: inset;
   border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
   border-image: initial;
+}
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
+  display: block;
+  margin: 0 auto;
 }
 </style>
