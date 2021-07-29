@@ -177,7 +177,7 @@ export default {
     },
 
     async AddressList() {
-      const resp = await findAddressList(this.user_dong);
+      const resp = await findAddressList(encodeURIComponent(this.user_dong));
       if (resp.data.code > 0) this.items = resp.data.list;
     },
     mounted() {

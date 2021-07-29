@@ -62,20 +62,33 @@
             <b-button variant="warning" style="float:left; margin-left:10px; border-top-left-radius: 50px;
                             border-bottom-left-radius: 50px; width:90px;height:40px;" @click="fetch">전체보기</b-button>
             </span>
-          <b-form-select
-            v-model="category"
-            :options="['title', 'content', 'user_id']"
-            :value="null"
-            style="width:80px; height:40px; border:none;"
-          >
-          </b-form-select>
-          <input v-model="to_find" style="border:none; width:200px; height:40px;" @keyup.enter="fetch(true)" />
-          <span class="input-group-btn">
-          <!-- <b-input-group-append> -->
-          <b-button style="float:right; margin-right:10px; border-top-right-radius: 50px;
-                            border-bottom-right-radius: 50px; height:40px; width:90px;" text="Button" variant="warning" @click="fetch(true)"
-            >찾기</b-button
-          >
+            <span>
+            <b-form-select
+              v-model="category"
+              :options="['title', 'content', 'user_id']"
+              :value="null"
+              style="width:80px; height:40px; border:none;"
+            >
+            </b-form-select>
+            <input
+              v-model="to_find"
+              style="border:none; width:200px; height:40px;"
+              @keyup.enter="fetch(true)"
+            />
+            </span>
+            <span class="input-group-btn">
+              <!-- <b-input-group-append> -->
+              <b-button
+                style="border-top-right-radius: 50px;
+                            border-bottom-right-radius: 50px; height:40px; width:90px;"
+                text="Button"
+                variant="warning"
+                @click="fetch(true)"
+                >찾기</b-button
+              >
+            </span>
+            <!-- </b-input-group-append> -->
+          </span>
           </span>
           <!-- </b-input-group-append> -->
           </span></span>
@@ -150,7 +163,8 @@ export default {
       // }
     },
     async fetch(isFind) {
-      const resp = isFind ? await findData(this.category, this.to_find) : await fetchData()
+      let to_find = encodeURIComponent(this.to_find);
+      const resp = isFind ? await findData(this.category, to_find) : await fetchData()
       if( resp.data.code > 0 ) {
         this.items = resp.data.list;
         const len = this.items.length;
@@ -158,7 +172,7 @@ export default {
           return (item["idx"] = len - idx);
         });
       }
-    },
+    }
   },
 };
 </script>

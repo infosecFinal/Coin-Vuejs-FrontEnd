@@ -96,7 +96,7 @@ const router = new VueRouter({
 
 router.beforeEach(async(to, from, next) => {
     if (VueCookies.get('access_token')) {
-        const resp = await axios.get(`http://localhost:8083/account/valid`);
+        const resp = await axios.get(`http://192.168.0.2:8083/account/valid`);
         console.log("validation : ", resp);
         if (resp.data.code > 0) {
             const user_info = await getUserInfo();

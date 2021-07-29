@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const baseURL = 'http://localhost:8083';
+const baseURL = 'http://192.168.0.2:8083';
 
 export const fetchData = () => {
     return axios.get(`${baseURL}/board/lists`);
