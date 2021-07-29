@@ -91,7 +91,6 @@
           </span>
           </span>
           <!-- </b-input-group-append> -->
-          </span></span>
         </div>
       <!-- </b-row> -->
       <br /><br /><br />
