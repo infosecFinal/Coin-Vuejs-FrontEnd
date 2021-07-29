@@ -50,7 +50,7 @@
                 <br /><br />
                 <div
                     class="imagePreviewWrapper"
-                    :style="{ 'background-image': `url(http://localhost:8083/file/profile/${getLoginId}?nocache=${rand})` }"
+                    :style="{ 'background-image': `url(http://192.168.0.2:8083/file/profile/${getLoginId}?nocache=${rand})` }"
                   ></div>
                 <br />
               </div>

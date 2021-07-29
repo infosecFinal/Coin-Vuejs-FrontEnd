@@ -81,7 +81,7 @@
             <input
               v-model="to_find"
               style="border:none; width:200px; height:40px;"
-              @keyup.enter="find"
+              @keyup.enter="fetch(true)"
             />
             </span>
             <span class="input-group-btn">
@@ -91,7 +91,7 @@
                             border-bottom-right-radius: 50px; height:40px; width:90px;"
                 text="Button"
                 variant="warning"
-                @click="find"
+                @click="fetch(true)"
                 >찾기</b-button
               >
             </span>
@@ -169,7 +169,8 @@ export default {
       }
     },
     async fetch(isFind) {
-      const resp = isFind ? await findData(this.category, this.to_find) : await fetchData()
+      let to_find = encodeURIComponent(this.to_find);
+      const resp = isFind ? await findData(this.category, to_find) : await fetchData()
       if( resp.data.code > 0 ) {
         this.items = resp.data.list;
         const len = this.items.length;
@@ -177,31 +178,7 @@ export default {
           return (item["idx"] = len - idx);
         });
       }
-    },
-    methods: {
-      rowClick(item) {
-        this.$router.push({
-          path: `/board/free/detail/${item.id}`,
-        });
-      },
-      writeContent() {
-        if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
-        else {
-          this.$router.push({
-            path: "/board/free/create",
-          });
-        }
-      },
-      async find() {
-        const resp = await findData(this.category, this.to_find);
-        console.log(resp);
-        this.items = resp.data.list;
-      },
-      async fetch() {
-        const resp = await fetchData();
-        this.items = resp.data.list;
-      },
-    },
+    }
   },
 };
 </script>
