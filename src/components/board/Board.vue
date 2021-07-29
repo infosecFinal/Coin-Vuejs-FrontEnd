@@ -16,8 +16,7 @@
     <container
       class="text-light text-center col-lg-8 col-md-8"
       style=" display:block; margin: 0 auto; background-color: #f1f5f8;
-              border-radius: 50px; border: none;"
-    >
+              border-radius: 50px; border: none;">
       <br /><br /><br />
       <div>
         <b-table
@@ -52,53 +51,35 @@
 
       <br /><br />
       <!-- <b-row style="float: none; margin:0 auto;"> -->
-      <div
-        class="col-xs"
-        style=" border-radius: 50px; display:block; margin: 0 auto;"
-      >
-        <!-- background-color:#e9ecef; -->
-        <span class="col-xs">
+        <div class="col-md-7" style=" border-radius: 50px; display:block; margin: 0 auto; padding:20px;">
+          <!-- background-color:#e9ecef; -->
+          <span class="col">
           <!-- <b-button pill variant="warning" style="float:left; margin-left:10px;" @click="fetch">전체보기</b-button> -->
+         
 
-          <span class="input-group" style=" display:block; margin: 0 auto;">
+          <span class="input-group">
             <span class="input-group-btn">
-              <b-button
-                variant="warning"
-                style="border-top-left-radius: 50px;
-                            border-bottom-left-radius: 50px; width:90px;height:40px;"
-                @click="fetch"
-                >전체보기</b-button
-              >
+            <b-button variant="warning" style="float:left; margin-left:10px; border-top-left-radius: 50px;
+                            border-bottom-left-radius: 50px; width:90px;height:40px;" @click="fetch">전체보기</b-button>
             </span>
-            <span>
-            <b-form-select
-              v-model="category"
-              :options="['title', 'content', 'user_id']"
-              :value="null"
-              style="width:80px; height:40px; border:none;"
-            >
-            </b-form-select>
-            <input
-              v-model="to_find"
-              style="border:none; width:200px; height:40px;"
-              @keyup.enter="find"
-            />
-            </span>
-            <span class="input-group-btn">
-              <!-- <b-input-group-append> -->
-              <b-button
-                style="border-top-right-radius: 50px;
-                            border-bottom-right-radius: 50px; height:40px; width:90px;"
-                text="Button"
-                variant="warning"
-                @click="find"
-                >찾기</b-button
-              >
-            </span>
-            <!-- </b-input-group-append> -->
+          <b-form-select
+            v-model="category"
+            :options="['title', 'content', 'user_id']"
+            :value="null"
+            style="width:80px; height:40px; border:none;"
+          >
+          </b-form-select>
+          <input v-model="to_find" style="border:none; width:200px; height:40px;" @keyup.enter="fetch(true)" />
+          <span class="input-group-btn">
+          <!-- <b-input-group-append> -->
+          <b-button style="float:right; margin-right:10px; border-top-right-radius: 50px;
+                            border-bottom-right-radius: 50px; height:40px; width:90px;" text="Button" variant="warning" @click="fetch(true)"
+            >찾기</b-button
+          >
           </span>
-          </span>
-      </div>
+          <!-- </b-input-group-append> -->
+          </span></span>
+        </div>
       <!-- </b-row> -->
       <br /><br /><br />
       <b-row align-h="end"> </b-row>
@@ -161,12 +142,12 @@ export default {
       });
     },
     writeContent() {
-      if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
-      else {
+      // if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
+      // else {
         this.$router.push({
           path: "/board/free/create",
         });
-      }
+      // }
     },
     async fetch(isFind) {
       const resp = isFind ? await findData(this.category, this.to_find) : await fetchData()
@@ -177,30 +158,6 @@ export default {
           return (item["idx"] = len - idx);
         });
       }
-    },
-    methods: {
-      rowClick(item) {
-        this.$router.push({
-          path: `/board/free/detail/${item.id}`,
-        });
-      },
-      writeContent() {
-        if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
-        else {
-          this.$router.push({
-            path: "/board/free/create",
-          });
-        }
-      },
-      async find() {
-        const resp = await findData(this.category, this.to_find);
-        console.log(resp);
-        this.items = resp.data.list;
-      },
-      async fetch() {
-        const resp = await fetchData();
-        this.items = resp.data.list;
-      },
     },
   },
 };
@@ -220,6 +177,17 @@ export default {
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
+}
+.background {
+  font: 900 100px/0.65 system-ui;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+span {
+  display: inline-block;
+  text-indent: 0rem;
+  position: relative;
 }
 .abs {
   position: absolute;
@@ -245,7 +213,7 @@ export default {
   margin: 0 auto;
 }
 
-.th {
-  background-color: #ffc107;
-}
+th {
+    background-color: #ffc107;
+  }
 </style>

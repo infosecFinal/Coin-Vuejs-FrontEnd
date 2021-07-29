@@ -1,161 +1,219 @@
 <template>
-  <div class="mid" style="display:block; margin: 0 auto;">
-      <br><br>
-    <div class="col-sm-7 table" style="background-color:#f1f5f8; border-radius: 50px;">
-      <br><br>
-      <b-input :value="user_id" readonly  style="width:700px; display:block; margin: 0 auto; border-radius: 50px;"></b-input>
-      <br>
-      <b-form-input id="titlearea" v-model="title" placeholder="write title" style="width:700px; display:block; margin: 0 auto; "></b-form-input>
-      <br><br>
-      <b-form-textarea
+  <div>
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="/">Home</a> <span class="mx-2 mb-0">/</span>
+            <span class="text-black">Board</span>
+            <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Free</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <container
+      class="text-light text-center col-lg-8 col-md-8"
+      style=" display:block; margin: 0 auto; background-color: #f1f5f8;
+              border-radius: 50px; border: none;">
+      <br /><br /><br />
+      <div>
+        <b-table
+          striped
+          hover
+          head-variant="th"
+          style="background-color:#e9ecef;; margin:auto; text-align:center;"
+          :items="items"
+          :per-page="perPage"
+          :current-page="currentPage"
+          :fields="fields"
+          @row-clicked="rowClick"
+          align="center"
+        ></b-table>
+        <br /><br /><br />
+        <div class="col-lg-10 col-md-11 col-sm-11" style="text-align:right;">
+          <b-button pill variant="warning" @click="writeContent" offset-md="3"
+            >Write</b-button
+          >
+        </div>
+        <br />
 
-      id="textarea"
-      v-model="content"
-      placeholder="write Content"
-      rows="3"
-      max-rows="6"
-      style="height:300px; width:700px; display:block; margin: 0 auto;"
-    ></b-form-textarea>
-    <div v-if="files">
-            <span v-for="(file, idx) in files" :key=idx>{{file.origin_file_Name}}<button @click="deleteFileFromList(idx)">X</button>
-                <br>
+        <b-pagination
+          variant="warning"
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          align="center"
+          class="customPagination"
+        ></b-pagination>
+      </div>
+
+      <br /><br />
+      <!-- <b-row style="float: none; margin:0 auto;"> -->
+        <div class="col-md-7" style=" border-radius: 50px; display:block; margin: 0 auto; padding:20px;">
+          <!-- background-color:#e9ecef; -->
+          <span class="col">
+          <!-- <b-button pill variant="warning" style="float:left; margin-left:10px;" @click="fetch">전체보기</b-button> -->
+         
+
+          <span class="input-group">
+            <span class="input-group-btn">
+            <b-button variant="warning" style="float:left; margin-left:10px; border-top-left-radius: 50px;
+                            border-bottom-left-radius: 50px; width:90px;height:40px;" @click="fetch">전체보기</b-button>
             </span>
-    </div>
-      <b-form-file
-      style="margin:50px"
-      v-model="file1"
-      :state="Boolean(file1)"
-      placeholder="Choose a file or drop it here..."
-      drop-placeholder="Drop file here..."
-      multiple
-    ></b-form-file>
-
-    <div class="col" align="right" style="margin-right:70px;">
-    <b-button pill variant="warning" @click="content_id ? update() : insert()">등록</b-button>
-
-     &nbsp;
-    <b-button pill variant="warning" @click="cancel">취소</b-button>
-    </div>
-    <br><br>
-  </div>
+          <b-form-select
+            v-model="category"
+            :options="['title', 'content', 'user_id']"
+            :value="null"
+            style="width:80px; height:40px; border:none;"
+          >
+          </b-form-select>
+          <input v-model="to_find" style="border:none; width:200px; height:40px;" @keyup.enter="fetch(true)" />
+          <span class="input-group-btn">
+          <!-- <b-input-group-append> -->
+          <b-button style="float:right; margin-right:10px; border-top-right-radius: 50px;
+                            border-bottom-right-radius: 50px; height:40px; width:90px;" text="Button" variant="warning" @click="fetch(true)"
+            >찾기</b-button
+          >
+          </span>
+          <!-- </b-input-group-append> -->
+          </span></span>
+        </div>
+      <!-- </b-row> -->
+      <br /><br /><br />
+      <b-row align-h="end"> </b-row>
+    </container>
   </div>
 </template>
 
 <script>
-import {insertData, updateData, fetchDataById, getUserInfo} from '@/service'
-import {insertFile, getFilesInfo, deleteFile} from '@/service/file/file.js'
-import {mapGetters} from 'vuex'
+import { fetchData, findData } from "@/service";
+import { mapGetters } from "vuex";
 
 export default {
-    name: 'Create',
-    data() {
-        return {
-            content_id: Number(this.$route.params.contentId),
-            title: '',
-            content: '',
-            file1: null,
-            user_id : '',
-            board_id: '',
-            data: {},
-            files: [],
-            formData: new FormData()
-        }
+  name: "Board",
+  data() {
+    return {
+      to_find: "",
+      category: "title",
+      fields: [
+        {
+          key: "idx",
+          label: "번호",
+          sortable: true,
+        },
+        {
+          key: "user_id",
+          label: "작성자",
+          sortable: true,
+        },
+        {
+          key: "title",
+          label: "제목",
+          sortable: true,
+        },
+        {
+          key: "created_at",
+          label: "작성일",
+          sortable: true,
+        },
+      ],
+
+      currentPage: 1,
+      perPage: 10,
+      items: [],
+    };
+  },
+  async created() {
+    this.fetch(false);
+  },
+  computed: {
+    ...mapGetters("account", ["getLoginState"]),
+    rows() {
+      return this.items.length;
     },
-    async created() {
-        if(!isNaN(this.content_id)) {
-            const resp = await fetchDataById(this.content_id);
-            const files = await getFilesInfo(this.content_id);
-            this.user_id = resp.data.data.user_id;
-            this.title = resp.data.data.title;
-            this.content = resp.data.data.content;
-            this.files = files.data.list;
-        } else {
-            const resp = await getUserInfo();
-            if(resp.data.code > 0) this.user_id = resp.data.data.user_id;
-        }
+  },
+  methods: {
+    rowClick(item) {
+      this.$router.push({
+        path: `/board/free/detail/${item.id}`,
+        query: { idx: `${item.idx}` },
+      });
     },
-    computed: {
-        ...mapGetters('account', [
-            'getLoginId'
-        ])
+    writeContent() {
+      // if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
+      // else {
+        this.$router.push({
+          path: "/board/free/create",
+        });
+      // }
     },
-    methods: {
-        cancel() {
-            this.$router.push({
-                path: '/board/free'
-            })
-        },
-        async deleteFileFromList(idx) {
-            let file = this.files[idx]
-            this.files.splice(idx, 1);
-            await deleteFile(file);
-        },
-        async insert() {
-            const resp = await insertData({
-                user_id: this.user_id,
-                title: this.title,
-                content: this.content
-            });
-            console.log('res:', resp);
-            if(this.file1 !== null) this.fileUpload();
-            this.$router.push({
-                path: '/board/free'
-            })
-        },
-        async update() {
-            console.log("update start: ",this.user_id);
-            const resp = await updateData({
-                id: this.content_id,
-                title: this.title,
-                content: this.content
-            });
-            console.log("update response: ", resp);
-            if(this.file1 !== null) this.fileUpload();
-            this.$router.push({
-                path: '/board/free'
-            })
-        },
-        async fileUpload() {
-            console.log(this.user_id);
-            let formData = new FormData();
-            for (let i = 0; i < this.file1.length; i++) {
-                formData.append('files', this.file1[i]);
-                console.log(i,": ", this.file1[i])
-            }
-            await insertFile(formData,this.content_id?this.content_id:'new',this.user_id?this.user_id:this.getLoginId)
-            
-        }
-    }
-}
+    async fetch(isFind) {
+      const resp = isFind ? await findData(this.category, this.to_find) : await fetchData()
+      if( resp.data.code > 0 ) {
+        this.items = resp.data.list;
+        const len = this.items.length;
+        this.items.map((item, idx) => {
+          return (item["idx"] = len - idx);
+        });
+      }
+    },
+  },
+};
 </script>
 
 <style>
-.wrapmid{
-    display:table-cell;
-    text-align:center;
-    vertical-align:middle;
+.sr-only {
+  display: none;
 }
 .table {
-   max-width: 800px;
-   max-height: 1000px; 
-   left:0; 
-   right:0; 
-   margin-left:20%; 
-   margin-right:20%; 
-   top: 0; 
-   bottom:0; 
-   margin-top:auto; 
-   margin-bottom:auto;
-   }
-.wrapmid{
-    display:table-cell;
-    text-align:center;
-    vertical-align:middle;
+  max-width: 800px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-.custom-file, .custom-file-input {
-    position: relative;
-    width: 100%;
-    height: calc(1.5em + .75rem + 2px);
+.background {
+  font: 900 100px/0.65 system-ui;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+span {
+  display: inline-block;
+  text-indent: 0rem;
+  position: relative;
+}
+.abs {
+  position: absolute;
+  top: 100px;
+  left: auto;
+  bottom: auto;
+  right: auto;
+}
+.input-field {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: #252a32;
+  background: #fff;
+  display: block;
+  margin: 0 auto;
 }
 
+th {
+    background-color: #ffc107;
+  }
 </style>
