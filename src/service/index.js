@@ -70,3 +70,7 @@ export const findAddressList = (user_dong) => {
     console.log(user_dong)
     return axios.get(`${baseURL}/account/findaddress?user_dong=${user_dong}`)
 }
+
+export const findBtcByDate = (datetime) => {
+    return axios.get(`${baseURL}/chaert?datetime=${datetime}`)
+}
