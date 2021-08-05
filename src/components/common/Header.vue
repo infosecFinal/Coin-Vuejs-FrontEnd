@@ -62,7 +62,7 @@
 <script>
 
 import {mapGetters, mapMutations} from 'vuex'
-import VueCooKies from 'vue-cookies'
+import axios from 'axios';
 export default {
     name: "Header",
     data() {
@@ -88,7 +88,7 @@ export default {
       loginActions() {
         console.log('abc');
         if(this.getLoginState) {
-          VueCooKies.remove("access_token");
+          axios.get("http://localhost:8083/account/logout")
           alert('로그아웃 되었습니다.');
           this.setLoginState(false);
           this.setId('');

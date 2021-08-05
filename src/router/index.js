@@ -12,7 +12,7 @@ import Update from '@/components/account/Update.vue'
 import FindPassword from '@/components/account/FindPassword.vue'
 import AddressPopup from '@/components/account/AddressPopup.vue'
 import { getUserInfo } from '@/service'
-import VueCookies from 'vue-cookies'
+
 import BtcChart from '@/views/BtcChart'
 import axios from 'axios'
 import store from '../store'
@@ -95,18 +95,15 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async(to, from, next) => {
-    if (VueCookies.get('access_token')) {
-        const resp = await axios.get(`http://192.168.0.2:8083/account/valid`);
-        console.log("validation : ", resp);
+    
+        const resp = await axios.get(`http://localhost:8083/account/valid`);
+    
         if (resp.data.code > 0) {
             const user_info = await getUserInfo();
             console.log("user info: ", user_info);
             store.commit('account/setLoginState', true);
             store.commit('account/setId', user_info.data.data.user_id);
             store.commit('account/setAdmin', user_info.data.data.isAdmin);
-        } else {
-            VueCookies.remove('access_token');
-        }
     }
     next();
 })

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const baseURL = 'http://192.168.0.2:8083';
+const baseURL = 'http://localhost:8083';
 
 export const insertComment = (data) => {
     return axios.post(`${baseURL}/comment/insert`, data);

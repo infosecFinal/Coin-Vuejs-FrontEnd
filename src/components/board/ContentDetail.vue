@@ -159,7 +159,7 @@ export default {
     async download(file) {
       // const file_resp = await getFile(file.idx);
       // console.log(file_resp);
-      const url = `http://192.168.0.2:8083/file/download/${file.idx}`;
+      const url = `http://localhost:8083/file/download/${file.idx}`;
       const link = document.createElement("a");
       link.href = url;
       document.body.appendChild(link);
