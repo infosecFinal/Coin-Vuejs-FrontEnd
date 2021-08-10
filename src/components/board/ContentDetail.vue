@@ -152,19 +152,30 @@ export default {
       this.$router.push("/board/free");
     },
     modifyData() {
+      console.log("wefwef", this.id);
       this.$router.push({
-        path: `/board/free/create/${this.id}`,
+        path: `/board/create/${this.$route.params.pageType}/${this.id}`,
       });
     },
     async download(file) {
       // const file_resp = await getFile(file.idx);
       // console.log(file_resp);
-      const url = `http://localhost:8083/file/download/${file.idx}`;
+      if(this.$route.params.pageType === 'free') {
+        const url = `http://localhost:8083/file/download/safe/${file.idx}`;
+        const link = document.createElement("a");
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } else {
+         let file_path = encodeURIComponent(file.file_Path);
+      const url = `http://localhost:8083/file/download?filePath=${file_path}&fileName=${file.file_Name}`;
       const link = document.createElement("a");
       link.href = url;
       document.body.appendChild(link);
       link.click();
       link.remove();
+      }
     },
     async postComment(e) {
       console.log("insert cmt");

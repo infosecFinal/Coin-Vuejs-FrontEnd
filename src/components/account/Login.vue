@@ -120,7 +120,7 @@
 <script>
 import { checkUser } from "@/service";
 import { mapMutations } from "vuex";
-
+import VueCookies from 'vue-cookies';
 export default {
   data() {
     return {
@@ -139,21 +139,25 @@ export default {
       this.approveUser();
     },
     async approveUser() {
-      const resp = await checkUser({
-        login_id: this.login_id,
-        login_pw: this.login_pw,
-      });
-      if (resp.data.code > 0) {
-        this.setId(this.login_id);
-        this.setLogout("Logout");
-        this.setMypage("Mypage");
-        this.setLoginState(true);
-        this.$router.push({
-          path: "/board/free",
-        });
-        alert(this.login_id + "님 안녕하세요!");
-      } else alert("로그인 실패. 다시 입력해주세요");
-    },
+            const resp = await checkUser({
+                login_id: this.login_id,
+                login_pw: this.login_pw
+            });
+            console.log(resp);
+            if(resp.data.data !== "fail") {
+                VueCookies.set('access_token', resp.data.data);
+                console.log(VueCookies.get('access_token'));
+            
+                this.setId(this.login_id);
+                this.setLogout('Logout');
+                this.setMypage('Mypage');
+                this.setLoginState(true);
+                this.$router.push({
+                    path: '/board/free'
+                })
+            }
+            else alert('fail');
+        }
   },
 };
 </script>

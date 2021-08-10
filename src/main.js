@@ -35,7 +35,7 @@ new Vue({
             console.log(resp.data.data);
             if (resp.data.code > 0) {
                 const user_info = await getUserInfo();
-                console.log(user_info);
+                console.log("uinfo: ", user_info);
                 this.$store.commit('account/setLoginState', true);
                 console.log(this.$store.state.account.login_id);
             } else {

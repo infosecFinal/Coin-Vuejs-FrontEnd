@@ -33,7 +33,9 @@
         ></b-table>
         <br /><br /><br />
         <div class="col-lg-10 col-md-11 col-sm-11" style="text-align:right;">
-          <b-button pill variant="warning" @click="writeContent" offset-md="3"
+          <b-button pill variant="warning" 
+          v-if="pageType==='free' || getisAdmin"
+          @click="writeContent" offset-md="3"
             >Write</b-button
           >
         </div>
@@ -134,14 +136,22 @@ export default {
 
       currentPage: 1,
       perPage: 10,
+      pageType: '',
       items: [],
     };
   },
   async created() {
+    this.pageType = this.$route.params.type;
     this.fetch(false);
   },
+  watch: {
+    '$route.params.type': function(val) {
+      this.pageType = val;
+      this.fetch(false);
+    }
+  },
   computed: {
-    ...mapGetters("account", ["getLoginState"]),
+    ...mapGetters("account", ["getLoginState", "getisAdmin"]),
     rows() {
       return this.items.length;
     },
@@ -149,21 +159,22 @@ export default {
   methods: {
     rowClick(item) {
       this.$router.push({
-        path: `/board/free/detail/${item.id}`,
+        path: `/board/detail/${this.pageType}/${item.id}`,
         query: { idx: `${item.idx}` },
       });
     },
     writeContent() {
-      // if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
-      // else {
+      if(this.getLoginState){ 
         this.$router.push({
-          path: "/board/free/create",
+          path: `/board/create/${this.pageType}`,
         });
-      // }
+      } else {
+        alert('로그인 후 이용가능합니다')
+      }
     },
     async fetch(isFind) {
       let to_find = encodeURIComponent(this.to_find);
-      const resp = isFind ? await findData(this.category, to_find) : await fetchData()
+      const resp = isFind ? await findData(this.category, to_find, this.pageType) : await fetchData(this.pageType)
       if( resp.data.code > 0 ) {
         this.items = resp.data.list;
         const len = this.items.length;

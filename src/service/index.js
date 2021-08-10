@@ -3,8 +3,8 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 const baseURL = 'http://localhost:8083';
 
-export const fetchData = () => {
-    return axios.get(`${baseURL}/board/lists`);
+export const fetchData = (pageType) => {
+    return axios.get(`${baseURL}/board/lists?pageType=${pageType}`);
 }
 
 export const fetchDataById = (id) => {
@@ -25,8 +25,8 @@ export const deleteData = (id) => {
     })
 }
 
-export const findData = (category, to_find) => {
-    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`)
+export const findData = (category, to_find, pageType) => {
+    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}&pageType=${pageType}`)
 }
 
 export const insertUser = (data) => {

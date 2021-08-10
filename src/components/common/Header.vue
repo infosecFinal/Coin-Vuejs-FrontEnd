@@ -46,9 +46,8 @@
             <b-sidebar id="sidebar-right" title=" " right shadow width="20%">
               <div class="px-3 py-2">
                 <b-dropdown-item to="/">Home</b-dropdown-item>
-                <!-- <b-dropdown-item to="/login">Login</b-dropdown-item>
-                <b-dropdown-item to="/register">Register</b-dropdown-item> -->
                 <b-dropdown-item to="/board/free">Board</b-dropdown-item>
+                <b-dropdown-item to="/board/notice">Notice</b-dropdown-item>
                 <b-dropdown-item to="/chatroom">Chatroom</b-dropdown-item>
               </div>
             </b-sidebar>
@@ -62,7 +61,7 @@
 <script>
 
 import {mapGetters, mapMutations} from 'vuex'
-import axios from 'axios';
+import VueCookies from 'vue-cookies';
 export default {
     name: "Header",
     data() {
@@ -83,15 +82,17 @@ export default {
     methods: {
       ...mapMutations('account', [
         'setLoginState',
-        'setId'
+        'setId',
+        'setAdmin'
       ]),
       loginActions() {
         console.log('abc');
         if(this.getLoginState) {
-          axios.get("http://localhost:8083/account/logout")
-          alert('로그아웃 되었습니다.');
+          VueCookies.remove("access_token");
+          alert('로그아웃');
           this.setLoginState(false);
           this.setId('');
+          this.setAdmin(false);
           this.$router.push({
             path: '/'
           })

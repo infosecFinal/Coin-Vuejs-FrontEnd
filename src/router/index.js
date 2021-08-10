@@ -12,7 +12,7 @@ import Update from '@/components/account/Update.vue'
 import FindPassword from '@/components/account/FindPassword.vue'
 import AddressPopup from '@/components/account/AddressPopup.vue'
 import { getUserInfo } from '@/service'
-
+import VueCookies from 'vue-cookies'
 import BtcChart from '@/views/BtcChart'
 import axios from 'axios'
 import store from '../store'
@@ -30,23 +30,22 @@ const routes = [{
         component: ChatRoom
     },
     {
-        path: '/board/free',
+        path: '/board/:type',
         name: 'Board',
         component: Board
     },
     {
-        path: '/board/free/create',
+        path: '/board/create/:type',
         name: 'Create',
         component: Create
     },
     {
-        path: '/board/free/detail/:contentId',
+        path: '/board/detail/:pageType/:contentId',
         name: 'ContentDetail',
-        component: ContentDetail,
-        props: true
+        component: ContentDetail
     },
     {
-        path: '/board/free/create/:contentId?',
+        path: '/board/create/:pageType/:contentId?',
         name: 'Create',
         component: Create
     },
@@ -82,7 +81,7 @@ const routes = [{
         component: FindPassword
     },
     {
-        path: '/address',
+        path: '/register/address',
         name: 'AddressPopup',
         component: AddressPopup
     }
@@ -95,15 +94,18 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async(to, from, next) => {
-    
+    if(VueCookies.get('access_token')) {
         const resp = await axios.get(`http://localhost:8083/account/valid`);
-    
-        if (resp.data.code > 0) {
+        console.log("validation : ", resp);
+        if(resp.data.code > 0) {
             const user_info = await getUserInfo();
             console.log("user info: ", user_info);
             store.commit('account/setLoginState', true);
             store.commit('account/setId', user_info.data.data.user_id);
             store.commit('account/setAdmin', user_info.data.data.isAdmin);
+        } else {
+            VueCookies.remove('access_token');
+        }
     }
     next();
 })
