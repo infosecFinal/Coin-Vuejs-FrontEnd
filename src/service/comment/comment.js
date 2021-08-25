@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const baseURL = 'http://192.168.0.2:8084';
+
+const baseURL = 'http://weakapi.5nlytoday.com';
 
 export const insertComment = (data) => {
     return axios.post(`${baseURL}/comment/insert`, data);

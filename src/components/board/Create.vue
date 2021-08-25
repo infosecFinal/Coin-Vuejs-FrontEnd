@@ -58,10 +58,12 @@ export default {
             board_id: '',
             data: {},
             files: [],
+            pageType: this.$route.params.pageType,
             formData: new FormData()
         }
     },
     async created() {
+        console.log("content_id: ", this.content_id, " pageType: ", this.pageType);
         if(!isNaN(this.content_id)) {
             const resp = await fetchDataById(this.content_id);
             const files = await getFilesInfo(this.content_id);
@@ -74,6 +76,12 @@ export default {
             if(resp.data.code > 0) this.user_id = resp.data.data.user_id;
         }
     },
+    watch: {
+    '$route.params.pageType': function(val) {
+      this.pageType = val;
+      this.fetch(false);
+    }
+  },    
     computed: {
         ...mapGetters('account', [
             'getLoginId'
@@ -94,12 +102,13 @@ export default {
             const resp = await insertData({
                 user_id: this.user_id,
                 title: this.title,
-                content: this.content
+                content: this.content,
+                pageType: this.pageType
             });
             console.log('res:', resp);
             if(this.file1 !== null) this.fileUpload();
             this.$router.push({
-                path: '/board/free'
+                path: `/board/${this.pageType}`
             })
         },
         async update() {
@@ -112,18 +121,17 @@ export default {
             console.log("update response: ", resp);
             if(this.file1 !== null) this.fileUpload();
             this.$router.push({
-                path: '/board/free'
+                path: `/board/${this.pageType}`
             })
         },
         async fileUpload() {
-            console.log(this.user_id);
             let formData = new FormData();
             for (let i = 0; i < this.file1.length; i++) {
                 formData.append('files', this.file1[i]);
-                console.log(i,": ", this.file1[i])
             }
-            await insertFile(formData,this.content_id?this.content_id:'new',this.user_id?this.user_id:this.getLoginId)
-            
+            console.log(this.pageType);
+            const resp = await insertFile(formData,this.content_id?this.content_id:'new',this.user_id?this.user_id:this.getLoginId, this.pageType)
+            console.log("file resp" , resp);
         }
     }
 }

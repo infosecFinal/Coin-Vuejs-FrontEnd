@@ -19,7 +19,7 @@ Vue.use(VueApexCharts)
 Vue.component("apexchart", VueApexCharts)
 
 
-Vue.prototype.$baseURL = 'http://192.168.0.2:8084'
+Vue.prototype.$baseURL = 'http://weakapi.5nlytoday.com'
 Vue.use(BootstrapVue)
 Vue.use(VueCookies)
 Vue.config.productionTip = false
@@ -30,18 +30,17 @@ new Vue({
     render: h => h(App),
     async created() {
         console.log("created");
-        if (VueCookies.get('access_token')) {
-            const resp = await axios.get(`http://192.168.0.2:8084/account/valid`);
+        
+
+            const resp = await axios.get(`http://weakapi.5nlytoday.com/account/valid`);
+
             console.log(resp.data.data);
-            if (resp.data.code > 0) {
+            if (resp.data.msg !== 'fail') {
                 const user_info = await getUserInfo();
-                console.log(user_info);
+                console.log("uinfo: ", user_info);
                 this.$store.commit('account/setLoginState', true);
                 console.log(this.$store.state.account.login_id);
-            } else {
-                alert('Wrong Authentication');
-                VueCookies.remove('access_token');
             }
         }
     }
-}).$mount('#app')
+).$mount('#app')

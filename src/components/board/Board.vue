@@ -7,7 +7,7 @@
             <a href="/">Home</a> <span class="mx-2 mb-0">/</span>
             <span class="text-black">Board</span>
             <span class="mx-2 mb-0">/</span>
-            <strong class="text-black">Free</strong>
+            <strong class="text-black">{{pageType.charAt(0).toUpperCase() + pageType.slice(1)}}</strong>
           </div>
         </div>
       </div>
@@ -16,8 +16,7 @@
     <container
       class="text-light text-center col-lg-8 col-md-8"
       style=" display:block; margin: 0 auto; background-color: #f1f5f8;
-              border-radius: 50px; border: none;"
-    >
+              border-radius: 50px; border: none;">
       <br /><br /><br />
       <div>
         <b-table
@@ -34,7 +33,9 @@
         ></b-table>
         <br /><br /><br />
         <div class="col-lg-10 col-md-11 col-sm-11" style="text-align:right;">
-          <b-button pill variant="warning" @click="writeContent" offset-md="3"
+          <b-button pill variant="warning" 
+          v-if="pageType==='free' || getisAdmin"
+          @click="writeContent" offset-md="3"
             >Write</b-button
           >
         </div>
@@ -52,23 +53,16 @@
 
       <br /><br />
       <!-- <b-row style="float: none; margin:0 auto;"> -->
-      <div
-        class="col-xs"
-        style=" border-radius: 50px; display:block; margin: 0 auto;"
-      >
-        <!-- background-color:#e9ecef; -->
-        <span class="col-xs">
+        <div class="col-md-7" style=" border-radius: 50px; display:block; margin: 0 auto; padding:20px;">
+          <!-- background-color:#e9ecef; -->
+          <span class="col">
           <!-- <b-button pill variant="warning" style="float:left; margin-left:10px;" @click="fetch">전체보기</b-button> -->
+         
 
-          <span class="input-group" style=" display:block; margin: 0 auto;">
+          <span class="input-group">
             <span class="input-group-btn">
-              <b-button
-                variant="warning"
-                style="border-top-left-radius: 50px;
-                            border-bottom-left-radius: 50px; width:90px;height:40px;"
-                @click="fetch"
-                >전체보기</b-button
-              >
+            <b-button variant="warning" style="float:left; margin-left:10px; border-top-left-radius: 50px;
+                            border-bottom-left-radius: 50px; width:90px;height:40px;" @click="fetch">전체보기</b-button>
             </span>
             <span>
             <b-form-select
@@ -98,7 +92,8 @@
             <!-- </b-input-group-append> -->
           </span>
           </span>
-      </div>
+          <!-- </b-input-group-append> -->
+        </div>
       <!-- </b-row> -->
       <br /><br /><br />
       <b-row align-h="end"> </b-row>
@@ -141,14 +136,22 @@ export default {
 
       currentPage: 1,
       perPage: 10,
+      pageType: '',
       items: [],
     };
   },
   async created() {
+    this.pageType = this.$route.params.type;
     this.fetch(false);
   },
+  watch: {
+    '$route.params.type': function(val) {
+      this.pageType = val;
+      this.fetch(false);
+    }
+  },
   computed: {
-    ...mapGetters("account", ["getLoginState"]),
+    ...mapGetters("account", ["getLoginState", "getisAdmin"]),
     rows() {
       return this.items.length;
     },
@@ -156,21 +159,23 @@ export default {
   methods: {
     rowClick(item) {
       this.$router.push({
-        path: `/board/free/detail/${item.id}`,
+        path: `/board/detail/${this.pageType}/${item.id}`,
         query: { idx: `${item.idx}` },
       });
     },
     writeContent() {
-      if (!this.getLoginState) alert("로그인 후 글쓰기 가능합니다.");
-      else {
+      if(this.getLoginState){ 
         this.$router.push({
-          path: "/board/free/create",
+          path: `/board/create/${this.pageType}`,
         });
+      } else {
+        alert('로그인 후 이용가능합니다')
       }
     },
     async fetch(isFind) {
       let to_find = encodeURIComponent(this.to_find);
-      const resp = isFind ? await findData(this.category, to_find) : await fetchData()
+      const resp = isFind ? await findData(this.category, to_find, this.pageType) : await fetchData(this.pageType)
+      console.log("board resp: ", resp)
       if( resp.data.code > 0 ) {
         this.items = resp.data.list;
         const len = this.items.length;
@@ -198,6 +203,17 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
 }
+.background {
+  font: 900 100px/0.65 system-ui;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+span {
+  display: inline-block;
+  text-indent: 0rem;
+  position: relative;
+}
 .abs {
   position: absolute;
   top: 100px;
@@ -222,7 +238,7 @@ export default {
   margin: 0 auto;
 }
 
-.th {
-  background-color: #ffc107;
-}
+th {
+    background-color: #ffc107;
+  }
 </style>

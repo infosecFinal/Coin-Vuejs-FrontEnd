@@ -4,7 +4,9 @@
       <b-col>
         <div>
           <b-button-group vertical>
-            <b-button @click="[method1()]" variant="layout-warning">BTC</b-button>
+            <b-button @click="[method1()]" variant="layout-warning"
+              >BTC</b-button
+            >
             <b-button @click="[method2()]" variant="dark">ETH</b-button>
             <!-- <b-button variant="layout-light" to="/home">XRP</b-button>
             <b-button variant="dark" to="/home">ETC</b-button>
@@ -18,7 +20,22 @@
         <div class="columns">
           <div class="column">
             <div class="chart-box">
-              <div id="chart_btc" v-if="state_btc==1">
+              <!-- <div>
+                <input
+                  v-model="to_find"
+                  style="border; width:200px; height:40px;"
+                  @keyup.enter="find"
+                />
+                <b-button
+                  style="float:right; margin-right:10px; border-top-right-radius: 50px;
+                            border-bottom-right-radius: 50px; height:40px; width:90px;"
+                  text="Button"
+                  variant="warning"
+                  @click="find"
+                  >찾기</b-button
+                >
+              </div> -->
+              <div id="chart_btc" v-if="state_btc == 1">
                 <apexchart
                   type="candlestick"
                   height="700px"
@@ -27,7 +44,7 @@
                   :series="series"
                 ></apexchart>
               </div>
-              <div id="chart_eth" v-if="state_eth==1">
+              <div id="chart_eth" v-if="state_eth == 1">
                 <apexchart
                   type="candlestick"
                   height="700"
@@ -91,8 +108,8 @@ export default {
   },
   data: function() {
     return {
-      state_btc : 1,
-      state_eth : 0,
+      state_btc: 1,
+      state_eth: 0,
       series: [
         {
           data: [],
@@ -146,19 +163,18 @@ export default {
     this.getData_eth();
   },
   methods: {
-    method1(){
-      this.state_btc=1,
-      this.state_eth=0
+    method1() {
+      (this.state_btc = 1), (this.state_eth = 0);
     },
-    method2(){
-      this.state_btc=0,
-      this.state_eth=1
+    method2() {
+      (this.state_btc = 0), (this.state_eth = 1);
     },
     async getData() {
-      const resp = await axios.get("http://192.168.0.2:8084/home/chart");
+
+      const resp = await axios.get("http://weakapi.5nlytoday.com/home/chart");
       const timestamps = resp.data.list.map(function(value) {
         var ret = {
-          x: new Date(value.timestamp),
+          x: new Date(value.datetime),
           y: [value.open, value.high, value.low, value.close],
         };
         return ret;
@@ -167,10 +183,11 @@ export default {
       // console.log(this.series[0].data);
     },
     async getData_eth() {
-      const resp_eth = await axios.get("http://192.168.0.2:8084/home/chart_eth");
+
+      const resp_eth = await axios.get("http://weakapi.5nlytoday.com/home/chart_eth");
       const timestamps_eth = resp_eth.data.list.map(function(value_eth) {
         var ret_eth = {
-          x: new Date(value_eth.timestamp),
+          x: new Date(value_eth.datetime),
           y: [value_eth.open, value_eth.high, value_eth.low, value_eth.close],
         };
         return ret_eth;

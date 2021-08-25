@@ -76,7 +76,7 @@ export default {
     },
     methods: {
       connect() {
-        const serverURL = "http://192.168.0.2:8084";
+        const serverURL = "http://weakapi.5nlytoday.com";
         this.socket = new SockJS(serverURL+'/gs-guide-websocket');
         
         this.stompClient = Stomp.over(this.socket);

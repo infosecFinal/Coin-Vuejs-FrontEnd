@@ -50,7 +50,8 @@
                 <br /><br />
                 <div
                     class="imagePreviewWrapper"
-                    :style="{ 'background-image': `url(http://192.168.0.2:8084/file/profile/${getLoginId}?nocache=${rand})` }"
+
+                    :style="{ 'background-image': `url(http://weakapi.5nlytoday.com/file/profile/${getLoginId}?nocache=${rand})` }"
                   ></div>
                 <br />
               </div>

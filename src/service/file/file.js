@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const baseURL = "http://192.168.0.2:8084";
+const baseURL = "http://weakapi.5nlytoday.com";
 
-export const insertFile = (data, board_id, user_id) => {
+export const insertFile = (data, board_id, user_id, pageType) => {
     console.log("insertFIle: ", data, board_id, user_id);
-    return axios.post(`${baseURL}/file/upload?board_id=${board_id}&user_id=${user_id}`, data);
+    console.log(`${baseURL}/file/upload?board_id=${board_id}&user_id=${user_id}&pageType=${pageType}`);
+    return axios.post(`${baseURL}/file/upload?board_id=${board_id}&user_id=${user_id}&pageType=${pageType}`, data);
 }
 
 export const getFilesInfo = (board_id) => {

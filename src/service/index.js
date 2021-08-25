@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const baseURL = 'http://192.168.0.2:8084';
 
-export const fetchData = () => {
-    return axios.get(`${baseURL}/board/lists`);
+const baseURL = 'http://weakapi.5nlytoday.com';
+
+export const fetchData = (pageType) => {
+    return axios.get(`${baseURL}/board/lists?pageType=${pageType}`);
 }
 
 export const fetchDataById = (id) => {
@@ -25,8 +26,8 @@ export const deleteData = (id) => {
     })
 }
 
-export const findData = (category, to_find) => {
-    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}`)
+export const findData = (category, to_find, pageType) => {
+    return axios.get(`${baseURL}/board/find?category=${category}&content=${to_find}&pageType=${pageType}`)
 }
 
 export const insertUser = (data) => {
@@ -34,7 +35,7 @@ export const insertUser = (data) => {
 }
 
 export const checkUser = (data) => {
-    return axios.post(`${baseURL}/account/login`, data)
+    return axios.get(`${baseURL}/account/login?login_id=${data.login_id}&login_pw=${data.login_pw}`)
 }
 
 export const getUserIDList = (data) => {
@@ -69,4 +70,8 @@ export const getBtcList = () => {
 export const findAddressList = (user_dong) => {
     console.log(user_dong)
     return axios.get(`${baseURL}/account/findaddress?user_dong=${user_dong}`)
+}
+
+export const findBtcByDate = (datetime) => {
+    return axios.get(`${baseURL}/chaert?datetime=${datetime}`)
 }
